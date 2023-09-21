@@ -2,7 +2,7 @@
     background-color: #efefef;
     width: 100%;
     display: flex;
-    border-radius: 10px;
+    padding: 1rem;
 }
 
 .articleImgContainer{
@@ -17,28 +17,25 @@
     flex: 2;
     display: flex;
     flex-direction: column;
-    padding: 0 1rem;
+    padding: 10px;
+    gap: 10px;
 }
 
-.articleDetails{
-    padding: 10px 5px;
-}
 
 .articleActions{
     display: flex;
-    justify-content: space-around;
-    padding: 10px 5px;
-    gap: 5px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .articleActions button{
-    font-size: 14px;
-    padding: 10px;
+    padding: .5rem;
     border: none;
     background-color: #402313;
     color: white;
     font-weight: 600;
-    border-radius: 5px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 .articleActions button a{

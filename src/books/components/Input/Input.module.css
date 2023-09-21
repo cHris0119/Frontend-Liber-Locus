@@ -1,0 +1,26 @@
+.inputContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+
+}
+
+.label {
+    font-weight: medium;
+    font-size: 16px;
+    color: #161616;
+}
+
+.input {
+    padding: .9rem 1rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    border: none;
+    background-color: #191b1928;
+}
+
+.input::placeholder {
+    color: #3a4a3f45;
+}

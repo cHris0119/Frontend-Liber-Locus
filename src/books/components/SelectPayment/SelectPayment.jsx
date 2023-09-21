@@ -11,7 +11,7 @@ export const SelectPayment = () => {
       <div className={styles.cardPayContainer}>
         <h2>Selecciona tu tarjeta</h2>
 
-        <div className={styles.cardPaymentMain}>l
+        <div className={styles.cardPaymentMain}>
           <CardsList />
         </div>
 

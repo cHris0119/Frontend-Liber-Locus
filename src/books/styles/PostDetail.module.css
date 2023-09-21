@@ -11,7 +11,8 @@
 
 .productImgContainer{
     height: 80%;
-    width: 40%;
+    width: 50%;
+    background-color: #eee;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +22,6 @@
 .productImg{
     max-width: 100%;
     max-height: 100%;
-    border: 1rem solid #2d181d;
     border-radius: 10px;
     background-color: inherit;
     padding: 1rem;
@@ -97,6 +97,7 @@
     height: 15%;
     display: flex;
     align-items: center;
+    justify-content: end;
     padding: 0 1rem;
 }
 
@@ -108,6 +109,7 @@
     background-color: #2d181d;
     color: #fff;
     border: none;
+    border-radius: 10px;
     width: 100%;
     font-size: 1.2rem;
     font-weight: 600;
@@ -133,14 +135,13 @@
     }
 
     .productInfo{       
-        width: 90%;
+        width: 100%;
         height: 50%;
-        gap: 1rem;
     }
 
     .productInfoNames{
-        padding: .5rem;
-        gap: 10px;
+        padding: .8rem;
+        gap: 2px;
     }
 
     .productCategory{

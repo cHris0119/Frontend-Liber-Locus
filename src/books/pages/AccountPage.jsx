@@ -8,20 +8,24 @@ export const AccountPage = () => {
     <div className={styles.accountPage}>
         <AccountHeader />
 
-        <section className={styles.selectSection}>
-            <NavLink
-            to={'misPost'}
-            className={({ isActive }) => (isActive ? styles.active : '')}
-            >Publicaciones</NavLink>
-            <NavLink
-             to={'misSubastas'}
-             className={({ isActive }) => (isActive ? styles.active : '')
-             }>Mis subastas</NavLink>
-        </section>
+        <div className={styles.accountBottom}>
 
-        <section className={styles.accountContent}>
-            <Outlet />
-        </section>
+          <section className={styles.selectSection}>
+              <NavLink
+              to={'misPost'}
+              className={({ isActive }) => (isActive ? styles.active : '')}
+              >Publicaciones</NavLink>
+              <NavLink
+              to={'misSubastas'}
+              className={({ isActive }) => (isActive ? styles.active : '')
+              }>Mis subastas</NavLink>
+          </section>
+
+          <section className={styles.accountContent}>
+              <Outlet />
+          </section>
+
+        </div>
     </div>
   )
 }

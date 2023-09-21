@@ -17,8 +17,8 @@ export const MyPost = () => {
               <p>Publicado hace: 2d</p>
           </div>
           <div className={styles.articleActions}>
+            <button><Link to='/editarPost'>Editar</Link></button>
             <button>Eliminar</button>
-            <button><Link>Editar</Link></button>
           </div>
         </div>
 

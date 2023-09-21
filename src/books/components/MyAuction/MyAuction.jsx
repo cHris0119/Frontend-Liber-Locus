@@ -17,9 +17,9 @@ export const MyAuction = () => {
               <p>Publicado hace: 2d</p>
           </div>
           <div className={styles.articleActions}>
+            <button><Link>Editar</Link></button>
             <button>Eliminar</button>
             <button>Finalizar subasta</button>
-            <button><Link>Editar</Link></button>
           </div>
         </div>
 

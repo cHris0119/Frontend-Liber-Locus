@@ -1,0 +1,73 @@
+.forumHeaderContainer{
+    padding: 1rem;
+    background-color: #1c1e21;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content:center;
+    align-items: center;
+    position: relative;
+}
+
+.formForumHeader{
+    width: 50%;
+    
+}
+
+.formInput{
+    outline: none;
+    padding: 1rem;
+    border: none;
+    font-size: 18px;
+}
+.formInput:first-child{
+    width: 80%;
+}
+
+.formInput:last-child{
+    width: 20%;
+    font-weight: 600;
+    background-color: #524644;
+    color: #fff;
+    cursor: pointer;
+}
+
+.forumHeaderButton{
+    display: none;
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+}
+
+.forumHeaderSvg{
+    width: 2rem;
+    height: 2rem;
+}
+
+
+
+  
+  @media screen and (max-width: 1265px) {
+    .forumHeaderButton{
+        display: flex;
+    }
+
+    .formForumHeader{
+        width: 70%;
+        margin: 0 auto;
+    }
+    .formInput{
+        padding: .6rem;
+        border: none;
+        font-size: 16px;
+    }
+    .formInput:first-child{
+        width: 70%;
+    }
+    
+    .formInput:last-child{
+        width: 30%;
+    }
+
+  }
