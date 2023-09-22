@@ -1,5 +1,5 @@
 .forumContainer{
-    width: calc(100% - 15rem);
+    width: calc(100% - 20rem);
     padding-bottom: 4.5rem;
 
     
@@ -10,6 +10,7 @@
     margin: 1rem auto;
     width: 80%;
     display: flex;
+    border-radius: 10px;
     justify-content: space-around;
   }
   
@@ -21,13 +22,12 @@
   }
   
   .active {
-    border-top: 3px solid #000000;
+    border-top: 4px solid #000000;
   }
 
   .forumContent{
     margin: 0 auto;
     width: 80%;
-
   }
 
 @media screen and (max-width: 1265px) {

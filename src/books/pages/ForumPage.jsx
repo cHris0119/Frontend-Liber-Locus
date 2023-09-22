@@ -10,14 +10,22 @@ export const ForumPage = () => {
         <div className={styles.forumMain}>
 
         <section className={styles.selectSection}>
+
               <NavLink
               to={'ultimosPost'}
               className={({ isActive }) => (isActive ? styles.active : '')}
               >Ultimas publicaciones</NavLink>
+
               <NavLink
               to={'paraTi'}
               className={({ isActive }) => (isActive ? styles.active : '')
               }>Para ti</NavLink>
+
+              <NavLink
+              to={'listaForos'}
+              className={({ isActive }) => (isActive ? styles.active : '')
+              }>Foros</NavLink>
+
           </section>
 
           <div className={styles.forumContent}>

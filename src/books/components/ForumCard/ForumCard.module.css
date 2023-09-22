@@ -1,0 +1,41 @@
+.forumCard{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    gap: 1rem;
+    border-radius: 10px;
+}
+.forumDetails{
+    display: flex;
+    
+    align-items: center;
+    gap: .5rem;
+    width: 80%;
+}
+
+.imgContainer{
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgContainer img{
+    max-width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.unirseButton{
+    border: none;
+    padding: .5rem 1rem;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0079D3;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+

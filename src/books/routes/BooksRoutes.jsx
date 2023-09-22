@@ -1,8 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { Home, Marketplace, PaymentSelection, PostDetail, ShippingDetail, AccountPage, EditAccount, EditDirection, EditPost, ForumPage } from '../pages'
-import { DiscussionList, MyAuction, MyPost, PublishBookForm, Sidebar } from '../components'
+import { Home, Marketplace, PaymentSelection, PostDetail, ShippingDetail, AccountPage, EditAccount, EditDirection, EditPost, ForumPage, ForumMain, CreateDiscussionPage } from '../pages'
+import { DiscussionList, ForumList, MyAuction, MyDiscussion, MyPost, PublishBookForm, Sidebar } from '../components'
 import useModalOpen from '../hooks/useModalOpen'
 import ScrollToTop from '../services/ScrollToTop'
+import { EditDiscussionPage } from '../pages/EditDiscussionPage'
 
 export const BooksRoutes = () => {
   const [modalOpen, handleModal] = useModalOpen()
@@ -26,7 +27,17 @@ export const BooksRoutes = () => {
           <Route path="foro" element={<ForumPage />}>
             <Route path="ultimosPost" element={<DiscussionList />} />
             <Route path="paraTi" element={<DiscussionList />} />
+            <Route path="listaForos" element={<ForumList />} />
             <Route path="/foro/" element={<Navigate to='/foro/ultimosPost' />} />
+          </Route>
+          <Route path="/crearDiscusion" element={<CreateDiscussionPage />} />
+          <Route path="/editarDiscusion/:id" element={<EditDiscussionPage />} />
+
+          <Route path="/foro/:nombre" element={<ForumMain />}>
+
+            <Route path="ultimasDiscusiones" element={<DiscussionList />} />
+            <Route path="misDiscusiones" element={<MyDiscussion />} />
+
           </Route>
 
           <Route path="reseña" element={<h1>Reseñas</h1>} />
