@@ -1,25 +1,23 @@
 .formSearch{
     display: flex;
     flex: 3;
-    gap: 10px;
     justify-content: center;
     align-items: center;
     min-width: 50%;
 }   
 
+
 .formSearch > input[type="text"]{
     border: none;
     flex: 3;
-    padding: 10px 15px;
+    padding: 8px 10px;
+    border-radius: 10px 0 0 10px;
     outline: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
     background-color: #524644;
     color: #fff;
 }
 
-.formSearch > input[type="text"]::placeholder{
-  color: rgba(255, 255, 255, 0.5);
-}
 
 .formSearch > input[type="submit"]{
     border: none;
@@ -27,13 +25,13 @@
     color: #fff;
     flex: 1;
     font-weight: 500;
-    padding: 10px;
-    font-size: 1.2rem;
+    padding: 8px 10px;
+    font-size: 1rem;
     transition: all .3s;
+    border-radius: 0 10px 10px 0;
 }
 
 .formSearch > input[type="submit"]:hover{
-    border-radius: 20px;
     background-color: #322528ec;
     cursor: pointer;
 }

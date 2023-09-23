@@ -1,73 +1,97 @@
-.forumHeaderContainer{
-    padding: 1rem;
-    background-color: #1c1e21;
-    width: 100%;
+.forumHeaderContainer {
+  padding: 1rem;
+  background-color: #fff;
+  margin: 1rem auto;
+  width: 80%;
+  border-radius: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.formForumHeader {
+  width: 90%;
+}
+
+.formInput {
+  outline: none;
+  padding: 0.5rem;
+  border: none;
+  font-size: 18px;
+}
+.formInput:first-child {
+  width: 80%;
+  background-color: #d1d1d1;
+  color: #000;
+}
+
+.formInput:first-child:hover {
+  background-color: #fff;
+  outline: 1px solid #524644;
+}
+
+.formInput:first-child:focus {
+  background-color: #fff;
+  outline: 1px solid #524644;
+}
+
+.formInput:last-child {
+  width: 20%;
+  font-weight: 600;
+  background-color: #524644;
+  color: #fff;
+  cursor: pointer;
+}
+
+.formInput:last-child:hover {
+  background-color: #524644de;
+}
+
+.forumHeaderButton {
+  display: none;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.forumHeaderSvg {
+  width: 2rem;
+  height: 2rem;
+  color: #000;
+}
+
+@media screen and (max-width: 1265px) {
+  .forumHeaderButton {
     display: flex;
-    flex-flow: row wrap;
-    justify-content:center;
-    align-items: center;
-    position: relative;
-}
-
-.formForumHeader{
-    width: 50%;
-    
-}
-
-.formInput{
-    outline: none;
-    padding: 1rem;
-    border: none;
-    font-size: 18px;
-}
-.formInput:first-child{
-    width: 80%;
-}
-
-.formInput:last-child{
-    width: 20%;
-    font-weight: 600;
-    background-color: #524644;
-    color: #fff;
-    cursor: pointer;
-}
-
-.forumHeaderButton{
-    display: none;
-    border: none;
-    background-color: transparent;
-    color: #fff;
-    cursor: pointer;
-}
-
-.forumHeaderSvg{
-    width: 2rem;
-    height: 2rem;
-}
-
-
-
-  
-  @media screen and (max-width: 1265px) {
-    .forumHeaderButton{
-        display: flex;
-    }
-
-    .formForumHeader{
-        width: 70%;
-        margin: 0 auto;
-    }
-    .formInput{
-        padding: .6rem;
-        border: none;
-        font-size: 16px;
-    }
-    .formInput:first-child{
-        width: 70%;
-    }
-    
-    .formInput:last-child{
-        width: 30%;
-    }
-
   }
+
+  .formForumHeader {
+    width: 70%;
+    margin: 0 auto;
+  }
+  .formInput {
+    padding: 0.6rem;
+    border: none;
+    font-size: 16px;
+  }
+  .formInput:first-child {
+    width: 70%;
+  }
+
+  .formInput:last-child {
+    width: 30%;
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+    .forumHeaderContainer{
+        margin: 0 auto;
+        border-radius: 0;
+        width: 100%;
+        
+    }
+}

@@ -1,5 +1,5 @@
 .forumContainer{
-    width: calc(100% - 20rem);
+    width: calc(100% - 15rem);
     padding-bottom: 4.5rem;
 
     
@@ -15,7 +15,7 @@
   }
   
   .selectSection a {
-    padding: 5px 0;
+    padding: 10px 0;
     color: #000;
     width: 50%;
     text-align: center;
@@ -30,7 +30,7 @@
     width: 80%;
   }
 
-@media screen and (max-width: 1265px) {
+@media screen and (max-width: 767px) {
     .forumContainer{
         width: 100%;
         

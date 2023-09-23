@@ -1,9 +1,11 @@
 .postListContainer{
-    width: 90%;
+    width: 80%;
+    
+    border-radius: 10px;
     margin: 0 auto;
     display: grid;
-    gap: 3rem;
-    padding: 1rem 1rem 4.5rem 1rem;
+    gap: 2rem;
+    padding: 2rem;
     grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
 }
 
@@ -13,8 +15,7 @@
         margin: 0 auto;
         display: grid;
         gap: 1rem;
-        padding: 1rem 1rem 4.5rem 1rem;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
   
   }

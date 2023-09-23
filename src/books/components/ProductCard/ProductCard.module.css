@@ -12,13 +12,11 @@
 
 .cardInfo{
     box-shadow: 0px 4px 11px 0px rgba(0, 0, 0, 0.25);
-    height: 350px;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    padding: .8rem;
+    padding: .5rem;
     border-radius: 10px 10px 5px 5px;
     cursor: pointer;
     gap: 10px;
@@ -30,12 +28,9 @@
 }
 
 .cardImgContainer{
-    width: 100%;
-    height: 60%;
-    background-color: #D9D9D9;
+    width: 50%;
     text-align: center;
     padding: 1rem;
-    border-radius: 10px 10px 10px 10px;
 }
 
 .cardImg{
@@ -45,46 +40,65 @@
 }
 
 .cardDetails{
+    border-top: 2px solid #00000050;
+    padding: 1rem;
     width: 100%;
     height: 40%;
-    padding: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: .5rem;
 }
 
 .cardDescription{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
-    align-items: center;
+    align-items:start;
     justify-content: space-between;
-    padding: 1rem 0;
- 
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: .5rem;
+    /* background-color: lightblue; */
+}
+
+.cardDetails h3{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
 .cardDescription p {
     font-weight: bold;
     color: #E16A00;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 .cardDescription span{
     border: 2px solid #000;
-    padding: 4px 6px;
+    padding: 4px;
     border-radius: 5px; 
     font-weight: bold;
     width: max-content;
 }
 
 @media screen and (max-width: 767px) {
+
+    .cardInfo{
+        padding: .5rem;
+        gap: 0;
+    }
+
+    .cardImgContainer{
+        width: 60%;
+        text-align: center;
+        padding: 1rem;
+    }
   
     .cardDetails{
         flex-direction: column;
         text-align: center;
-        gap: 10px;
+        gap: 0;
+  
     }
     .cardDetails h3{
         font-size: 1rem;
@@ -105,8 +119,6 @@
         height: 100%;
         align-items: center;
         justify-content: center;
-        padding: 0;
-        gap: 10px;
     }
     
   }

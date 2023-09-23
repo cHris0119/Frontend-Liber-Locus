@@ -67,7 +67,6 @@
 }
 
 .productCategory:hover{
-    cursor: none;
     background-color: rgba(0, 0, 0, .8);
     color: #fff;
 }

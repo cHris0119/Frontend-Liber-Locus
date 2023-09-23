@@ -1,15 +1,13 @@
 .flexContainer{
-    width: 90%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 2rem;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .flexContainer h2{
- 
     text-align: center;
     text-transform: uppercase;
     border-bottom: 2px solid #fff;
@@ -26,8 +24,7 @@
     grid-template-columns: repeat(auto-fit,minmax(200px, 1fr));
     justify-content: center;
     align-items: center;
-    gap: 2rem;
-    padding: 1rem;
+    gap: 1rem;
 }
 
 
@@ -47,7 +44,7 @@
     .lastPostContainer{
         width: 100%;
         gap: 1rem;
-        grid-template-columns: minmax(200px,1fr);
+        grid-template-columns: 1fr 1fr;
     }
 
     .flexContainer{

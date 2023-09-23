@@ -6,8 +6,8 @@ import styles from './MarketplaceHeader.module.css'
 export const MarketplaceHeader = () => {
   return (
     <div className={styles.marketHeader}>
-      <Filters />
       <Searcher />
+      <Filters />
       <NavLink className={styles.publishBook} to={'/publicarLibro'}>
         <button className={styles.publishBookButton}>Publicar</button>
       </NavLink>
