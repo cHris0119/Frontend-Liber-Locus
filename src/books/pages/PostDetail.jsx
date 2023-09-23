@@ -1,4 +1,5 @@
 import { useParams, NavLink } from 'react-router-dom'
+import 'animate.css'
 import booksList from '../mocks/lastPostsMock.json'
 import { BackButton, QuestionsPost } from '../components/'
 
@@ -10,9 +11,9 @@ export const PostDetail = () => {
   const selectedBook = books.find(book => book.id === Number(postId))
 
   return (
-    <>
-      <div className={styles.productDetailContainer}>
+    <div className={`${styles.container} animate__animated animate__fadeIn animate__faster`}>
         <BackButton />
+      <div className={styles.productDetailContainer}>
         <div className={styles.productImgContainer}>
           <img className={styles.productImg} src="https://prodimage.images-bn.com/pimages/9781435159570_p0_v1_s1200x630.jpg" alt={selectedBook.name} />
         </div>
@@ -33,6 +34,6 @@ export const PostDetail = () => {
       </div>
 
       <QuestionsPost />
-    </>
+    </div>
   )
 }

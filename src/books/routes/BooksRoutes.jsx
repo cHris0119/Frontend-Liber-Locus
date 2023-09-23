@@ -4,6 +4,7 @@ import { DiscussionList, ForumList, MyAuction, MyDiscussion, MyPost, PublishBook
 import useModalOpen from '../hooks/useModalOpen'
 import ScrollToTop from '../services/ScrollToTop'
 import { EditDiscussionPage } from '../pages/EditDiscussionPage'
+import 'animate.css'
 
 export const BooksRoutes = () => {
   const [modalOpen, handleModal] = useModalOpen()
