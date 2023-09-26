@@ -27,7 +27,7 @@ export const linksNav = [
   },
   {
     label: 'Reseñas',
-    to: '/reseña',
+    to: '/reseñas',
     icon: <MdReviews />
   },
   {

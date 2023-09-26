@@ -1,0 +1,33 @@
+.questionContainer{
+    margin-top: 10rem;
+
+    width: 60%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.postedBy span{
+    font-weight: 600;
+}
+
+.questionDescription{
+    margin-top: .5rem;
+}
+
+.questionDescription p{
+    font-size: 14px;
+}
+
+@media (max-width: 1265px) {
+    .questionContainer{
+        width: 70%;  
+    }
+  
+}
+
+@media screen and (max-width: 767px) {
+    .questionContainer{
+        width: 100%;  
+    }
+}

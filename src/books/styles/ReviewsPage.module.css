@@ -1,0 +1,45 @@
+
+.reviewPageContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.selectSection {
+    background-color: #fff;
+    margin: 1rem auto;
+    width: 50%;
+    display: flex;
+    border-radius: 10px;
+    justify-content: space-around;
+  }
+  
+  .selectSection a {
+    padding: 10px 0;
+    color: #000;
+    width: 50%;
+    text-align: center;
+  }
+
+  .selectSection a:hover {
+    color: rgba(0, 0, 0, 80%);
+  }
+  
+  .active {
+    border-top: 4px solid #000000;
+  }
+
+  @media (max-width: 1265px) {
+    .selectSection {
+      width: 70%;
+    }
+  
+}
+
+@media screen and (max-width: 767px) {
+  .selectSection {
+    width: 90%;
+  }
+}

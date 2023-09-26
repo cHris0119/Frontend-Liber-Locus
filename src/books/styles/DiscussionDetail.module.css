@@ -1,0 +1,15 @@
+.discussionDetailContainer{
+    position: relative;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+@media screen and (max-width: 767px) {
+    .discussionDetailContainer{
+        padding-bottom: 4.5rem;
+    }
+}

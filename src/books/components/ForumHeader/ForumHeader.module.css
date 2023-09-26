@@ -1,6 +1,6 @@
 .forumHeaderContainer {
   padding: 1rem;
-  background-color: #fff;
+  
   margin: 1rem auto;
   width: 80%;
   border-radius: 10px;
@@ -23,7 +23,8 @@
 }
 .formInput:first-child {
   width: 80%;
-  background-color: #d1d1d1;
+  background-color: #fff;
+  border-radius: 10px 0 0 10px;
   color: #000;
 }
 
@@ -42,6 +43,7 @@
   font-weight: 600;
   background-color: #524644;
   color: #fff;
+  border-radius: 0 10px 10px 0;
   cursor: pointer;
 }
 
@@ -58,16 +60,13 @@
 }
 
 .forumHeaderSvg {
+  background-color: #fff;
   width: 2rem;
   height: 2rem;
   color: #000;
 }
 
 @media screen and (max-width: 1265px) {
-  .forumHeaderButton {
-    display: flex;
-  }
-
   .formForumHeader {
     width: 70%;
     margin: 0 auto;
@@ -84,14 +83,16 @@
   .formInput:last-child {
     width: 30%;
   }
-
 }
 
 @media screen and (max-width: 767px) {
-    .forumHeaderContainer{
-        margin: 0 auto;
-        border-radius: 0;
-        width: 100%;
-        
-    }
+  .forumHeaderButton {
+    display: flex;
+  }
+
+  .forumHeaderContainer {
+    margin: 0 auto;
+    border-radius: 0;
+    width: 100%;
+  }
 }

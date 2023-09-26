@@ -1,0 +1,24 @@
+.reviewsListContainer{
+    width: 50%;
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+@media (max-width: 1265px) {
+    .reviewsListContainer{
+        width: 70%;
+    }
+  
+}
+
+@media screen and (max-width: 767px) {
+    .reviewsListContainer{
+        width: 90%;
+        padding-bottom: 4.5rem;
+        
+    }
+}

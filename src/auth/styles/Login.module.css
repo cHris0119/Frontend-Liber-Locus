@@ -53,28 +53,28 @@ a {
   font-weight: bold;
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1265px) {
   .title {
     margin-bottom: 0px;
-    font-size: 32px;
+    font-size: 18px;
   }
   .authPage {
     display: flex;
     flex-direction: column;
-    background-color: white;
     align-items: center;
+    width: 100%;
+    padding: 1rem;
   }
 
   .formContainer {
-    width: 100%;
+    width: 90%;
+    max-width: 500px;
     align-items: center;
   }
 
   .form {
-    max-width: 500px;
-    width: 90vw;
-    padding: 15px 0;
-    gap: 1rem;
+    width: 90%;
+    gap: 2rem;
   }
 
   .twoInputs {
@@ -83,7 +83,7 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 1rem;
   }
 
   .backgroundDark {

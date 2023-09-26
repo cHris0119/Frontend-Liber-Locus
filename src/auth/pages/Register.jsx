@@ -43,12 +43,12 @@ export const Register = () => {
             type="password"
           />
 
-          <Input
+          {/* <Input
             placeholder="Confirma la contraseña..."
             label="Confirmar Contraseña"
             name="confirmPassword"
             type="password"
-          />
+          /> */}
           <Button
             backgroundColor="#c75200"
             buttonText="Siguiente"

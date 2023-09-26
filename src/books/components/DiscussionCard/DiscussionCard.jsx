@@ -6,7 +6,7 @@ export const DiscussionCard = () => {
   return (
     <>
     <article className={styles.discussionCardContainer}>
-        <Link>
+        <Link to='/DiscussionDetail/1'>
 
         <p className={styles.postedBy}>
             <span><Link>Foro1</Link></span> Subido por usuario1

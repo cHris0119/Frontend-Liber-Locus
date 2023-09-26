@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { Home, Marketplace, PaymentSelection, PostDetail, ShippingDetail, AccountPage, EditAccount, EditDirection, EditPost, ForumPage, ForumMain, CreateDiscussionPage } from '../pages'
-import { DiscussionList, ForumList, MyAuction, MyDiscussion, MyPost, PublishBookForm, Sidebar } from '../components'
+import { Home, Marketplace, PaymentSelection, PostDetail, ShippingDetail, AccountPage, EditAccount, EditDirection, EditPost, ForumPage, ForumMain, CreateDiscussionPage, DiscussionDetail, ReviewsPage } from '../pages'
+import { DiscussionList, ForumList, MyAuction, MyDiscussion, MyPost, PublishBookForm, ReviewsList, Sidebar } from '../components'
 import useModalOpen from '../hooks/useModalOpen'
 import ScrollToTop from '../services/ScrollToTop'
 import { EditDiscussionPage } from '../pages/EditDiscussionPage'
@@ -32,6 +32,7 @@ export const BooksRoutes = () => {
             <Route path="/foro/" element={<Navigate to='/foro/ultimosPost' />} />
           </Route>
           <Route path="/crearDiscusion" element={<CreateDiscussionPage />} />
+          <Route path="/DiscussionDetail/:id" element={<DiscussionDetail />} />
           <Route path="/editarDiscusion/:id" element={<EditDiscussionPage />} />
 
           <Route path="/foro/:nombre" element={<ForumMain />}>
@@ -41,7 +42,14 @@ export const BooksRoutes = () => {
 
           </Route>
 
-          <Route path="reseña" element={<h1>Reseñas</h1>} />
+          <Route path="reseñas" element={<ReviewsPage />} >
+
+            <Route path="populares" element={<ReviewsList />} />
+            <Route path="recientes" element={<ReviewsList />} />
+            <Route path="paraTi" element={<ReviewsList />} />
+
+          </Route>
+
           <Route path="notificaciones" element={<h1>Notificaciones</h1>} />
           <Route path="publicarLibro" element={<PublishBookForm />} />
           <Route path="/detallePost/:postId" element={<PostDetail />} />
