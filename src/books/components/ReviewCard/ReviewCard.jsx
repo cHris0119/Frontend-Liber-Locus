@@ -5,7 +5,7 @@ import styles from './ReviewCard.module.css'
 export const ReviewCard = () => {
   return (
 
-    <Link>
+    <Link to='/detalleReseña/1'>
       <article className={styles.reviewCardContainer}>
         <div className={styles.left}>
             <div className={styles.imgContainer}>
