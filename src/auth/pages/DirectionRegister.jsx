@@ -54,7 +54,7 @@ export const DirectionRegister = () => {
       handleResetForm()
       setFormSubmitted(false)
       const userToCreate = {
-        nombreDir: nameDir,
+        nameDir,
         calle,
         numero: parseInt(numero),
         idCom: parseInt(comuna),

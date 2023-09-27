@@ -1,28 +1,28 @@
 import { useDispatch, useSelector } from 'react-redux'
-// import booksApi from '../api/'
-import { onChecking, onLogin, onLogout } from '../store/auth/authSlice'
+import booksApi from '../api/booksApi'
+import { clearErrorMessage, onChecking, onLogin, onLogout } from '../store/auth/authSlice'
 
 export const useAuthStore = () => {
   const { status, user, errorMessage } = useSelector(state => state.auth)
   const dispatch = useDispatch()
 
   const startLogin = async ({ email, password }) => {
-    console.log({ email, password })
     dispatch(onChecking())
 
-    setTimeout(() => {
-      dispatch(onLogin({ name: 'Pepito', uid: '0001' }))
-    }, 2000)
-    // try {
-    //   const response = await booksApi.post('/algo', { email, password })
-    //   console.log({response})
-    // } catch (error) {
-    //   console.log({error})
-    //   dipatch(onLogout('Credenciales incorrectas'))
-    // setTimeout(() => {
-    //     dispatch(clearErrorMessage())
-    //   }, 10)
-    // }
+    try {
+      const response = await booksApi.post('api/login/', { email, password })
+      console.log({ response })
+
+      dispatch(onLogin({ email, password }))
+
+      //
+    } catch (error) {
+      console.log('errorLog: ', { error })
+      dispatch(onLogout('Credenciales incorrectas'))
+      setTimeout(() => {
+        dispatch(clearErrorMessage())
+      }, 10)
+    }
   }
 
   const startLogout = async () => {
@@ -30,7 +30,7 @@ export const useAuthStore = () => {
   }
 
   const startRegister = async ({
-    nombreDir,
+    nameDir,
     calle,
     numero,
     idCom,
@@ -40,8 +40,8 @@ export const useAuthStore = () => {
     password,
     photoDir
   }) => {
-    console.log('sadasd', {
-      nombre_dir: nombreDir,
+    console.log({
+      nombre_dir: nameDir,
       calle,
       numero,
       id_com: idCom,
@@ -51,6 +51,23 @@ export const useAuthStore = () => {
       password,
       photo_dir: photoDir
     })
+    try {
+      const response = await booksApi.post('api/registerUser/', {
+        nombre_dir: nameDir,
+        calle,
+        numero,
+        id_com: idCom,
+        first_name: firstname,
+        last_name: lastname,
+        email,
+        password,
+        photo_dir: photoDir
+      })
+
+      console.log(response)
+    } catch (error) {
+      console.log('errorReg: ', error)
+    }
   }
   return {
     //* Propiedades

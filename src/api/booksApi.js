@@ -1,7 +1,7 @@
-import { getEnvVariables } from '../helpers'
+import { getEnvVariables } from '../helpers/'
 import axios from 'axios'
 
-const { VITE_API_URL } = getEnvVariables
+const { VITE_API_URL } = getEnvVariables()
 
 const booksApi = axios.create({
   baseURL: VITE_API_URL

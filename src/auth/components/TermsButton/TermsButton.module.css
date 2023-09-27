@@ -1,7 +1,14 @@
 .termsContainer{
     display: flex;
+    flex-direction: column;
     gap: .2rem;
     align-items: center;
+}
+
+.inputContainer{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
 }
 
 .terms{

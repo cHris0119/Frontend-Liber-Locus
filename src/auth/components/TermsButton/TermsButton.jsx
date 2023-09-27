@@ -9,6 +9,8 @@ export const TermsButton = ({
   return (
     <>
       <div className={styles.termsContainer}>
+        <div className={styles.inputContainer}>
+
           <input
           type="checkbox"
           name='terms'
@@ -20,9 +22,10 @@ export const TermsButton = ({
               <span className={styles.terms}> terminos </span>
               y condiciones?
           </label>
-      </div>
-
+        </div>
       {error && <span className={styles.error}>{errorMsg}</span>}
+
+      </div>
 
     </>
   )

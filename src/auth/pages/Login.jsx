@@ -1,10 +1,11 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useForm, useAuthStore } from '../../hooks'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Input, Button } from '../components/'
 
 import styles from '../styles/Login.module.css'
 import { useSelector } from 'react-redux'
+import Swal from 'sweetalert2'
 
 const initialForm = {
   email: '',
@@ -13,13 +14,13 @@ const initialForm = {
 
 const formValidations = {
   email: [(value) => value.includes('@') && value.length >= 1, 'Debe ser un email valido'],
-  password: [(value) => value.length >= 1, 'La contraseña es requerida']
+  password: [(value) => value.length >= 8, 'La contraseña es requerida.']
 }
 
 export const Login = () => {
   localStorage.clear('userRegister')
   const { status } = useSelector(state => state.auth)
-  const { startLogin } = useAuthStore()
+  const { startLogin, errorMessage } = useAuthStore()
 
   const [formSubmitted, setFormSubmitted] = useState(false)
 
@@ -39,7 +40,7 @@ export const Login = () => {
     formValidations
   })
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -49,11 +50,14 @@ export const Login = () => {
       handleResetForm()
       setFormSubmitted(false)
       startLogin({ email, password })
-      navigate('/home', {
-        replace: true
-      })
     }
   }
+
+  useEffect(() => {
+    if (errorMessage !== undefined) {
+      Swal.fire('Error en la autenticación', errorMessage, 'error')
+    }
+  }, [errorMessage])
 
   return (
     <div className={styles.authPage}>
@@ -85,7 +89,7 @@ export const Login = () => {
             backgroundColor="#c75200"
             buttonText={
               status === 'checking' ? 'Cargando...' : 'Iniciar Sesión' }
-            disa={false}
+            disa={status === 'checking'}
           />
 
           <span className={styles.link}>
