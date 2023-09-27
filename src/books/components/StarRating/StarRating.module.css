@@ -1,0 +1,14 @@
+.ratingContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.radio{
+    display: none;
+}
+
+.star{
+    cursor: pointer;
+}

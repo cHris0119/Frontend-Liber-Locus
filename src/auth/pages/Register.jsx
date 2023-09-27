@@ -1,25 +1,79 @@
-import { Input, Button } from '../components'
+import { useState } from 'react'
+
+import { Input, Button, TermsButton } from '../components'
 import { Link, useNavigate } from 'react-router-dom'
+
+import { useForm } from '../../books/hooks/useForm'
 import styles from '../styles/Login.module.css'
 
+const initialForm = {
+  firstname: '',
+  lastname: '',
+  email: '',
+  password: '',
+  terms: false
+}
+
+const formValidations = {
+  email: [(value) => value.includes('@'), 'Debe ser un email valido'],
+  password: [(value) => value.length >= 6, 'La contraseña debe tener más de 6 letras'],
+  firstname: [(value) => value.length >= 1, 'El nombre es requerido'],
+  lastname: [(value) => value.length >= 1, 'El apellido es requerido'],
+  terms: [(value) => value === true, 'No puedes continuar sin aceptar']
+}
+
 export const Register = () => {
+  const [formSubmitted, setFormSubmitted] = useState(false)
+
+  const {
+    handleInputChange,
+    handleCheckboxChange,
+    handleResetForm,
+    formState,
+
+    firstnameValid,
+    lastnameValid,
+    passwordValid,
+    emailValid,
+    termsValid,
+    isFormValid
+
+  } = useForm({
+    initialForm,
+    formValidations
+  })
+
   const navigate = useNavigate()
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    navigate('/auth/direccionRegistro')
+
+    setFormSubmitted(true)
+    if (isFormValid) {
+      handleResetForm()
+      navigate('/auth/direccionRegistro')
+    }
   }
 
   return (
     <div className={styles.authPage}>
       <div className={styles.formContainer}>
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form
+        className={styles.form}
+        onSubmit={handleSubmit}>
+
           <h3 className={styles.title}>Crea tu cuenta</h3>
+
           <div className={styles.twoInputs}>
             <Input
               placeholder="Nombre..."
               label="Nombre"
               name="firstname"
               type="text"
+              value={formState.firstname}
+              onChange={handleInputChange}
+              error={firstnameValid && formSubmitted}
+              errorMsg = {firstnameValid}
             />
 
             <Input
@@ -27,6 +81,10 @@ export const Register = () => {
               label="Apellido"
               name="lastname"
               type="text"
+              value={formState.lastname}
+              onChange={handleInputChange}
+              error={lastnameValid && formSubmitted}
+              errorMsg ={lastnameValid}
             />
           </div>
           <Input
@@ -34,6 +92,10 @@ export const Register = () => {
             label="Correo"
             name="email"
             type="email"
+            value={formState.email}
+            onChange={handleInputChange}
+            error={emailValid && formSubmitted}
+            errorMsg= {emailValid}
           />
 
           <Input
@@ -41,14 +103,19 @@ export const Register = () => {
             label="Contraseña"
             name="password"
             type="password"
+            value={formState.password}
+            onChange={handleInputChange}
+            error={passwordValid && formSubmitted}
+            errorMsg={passwordValid}
           />
 
-          {/* <Input
-            placeholder="Confirma la contraseña..."
-            label="Confirmar Contraseña"
-            name="confirmPassword"
-            type="password"
-          /> */}
+          <TermsButton
+              check={formState.terms}
+              onChange={handleCheckboxChange}
+              error={termsValid && formSubmitted}
+              errorMsg = {termsValid}
+          />
+
           <Button
             backgroundColor="#c75200"
             buttonText="Siguiente"

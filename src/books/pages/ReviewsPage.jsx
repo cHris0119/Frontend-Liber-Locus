@@ -1,10 +1,16 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, Link } from 'react-router-dom'
 
 import styles from '../styles/ReviewsPage.module.css'
 
 export const ReviewsPage = () => {
   return (
     <div className={styles.reviewPageContainer}>
+
+        <section className={styles.createButton}>
+          <Link to={'/crearReseña'}>
+            Crear Reseña
+          </Link>
+        </section>
 
         <section className={styles.selectSection}>
 

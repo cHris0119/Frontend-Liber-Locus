@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import styles from './ReviewCard.module.css'
+import { StarRatingWithoutChange } from '../StarRating/StarRating'
 
 export const ReviewCard = () => {
   return (
@@ -15,7 +16,11 @@ export const ReviewCard = () => {
 
         <div className={styles.right}>
             <h2>Dracula <span>· hace 4d</span></h2>
-            <p className={styles.user}>User1 <span>⭐⭐⭐</span></p>
+            <p className={styles.user}>User1
+              <span>
+              <StarRatingWithoutChange numStar={4} />
+              </span>
+            </p>
             <p className={styles.description}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore cum commodi, est consectetur, soluta alias quibusdam quae molestias autem eos esse iste perspiciatis temporibus in quisquam similique, numquam veniam quas.
               </p>

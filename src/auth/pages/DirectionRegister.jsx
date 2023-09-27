@@ -1,4 +1,4 @@
-import { Input, Button } from '../components'
+import { Input, Button, InputComboBox } from '../components'
 import { Link, useNavigate } from 'react-router-dom'
 import styles from '../styles/Login.module.css'
 
@@ -13,11 +13,9 @@ export const DirectionRegister = () => {
     <div className={styles.formContainer}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <h3 className={styles.title}>Direccion</h3>
-        <Input
-            placeholder="Comuna..."
-            label="Comuna"
-            name="comuna"
-            type="text"
+          <InputComboBox
+          label='Comuna'
+          name='comuna'
           />
         <div className={styles.twoInputs}>
           <Input

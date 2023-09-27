@@ -3,10 +3,12 @@ import styles from './Input.module.css'
 export const Input = ({
   label,
   type,
-  value,
+  value = '',
   placeholder,
   error,
-  name
+  errorMsg,
+  name,
+  onChange
 }) => {
   return (
     <div className={styles.inputContainer}>
@@ -23,8 +25,9 @@ export const Input = ({
         value={value}
         placeholder={placeholder}
         className={styles.inputAuth}
+        onChange={onChange}
       />
-      {error && <span>{error}</span>}
+      {error && <span className={styles.error}>{errorMsg}</span>}
     </div>
   )
 }

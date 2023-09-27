@@ -1,0 +1,14 @@
+.termsContainer{
+    display: flex;
+    gap: .2rem;
+    align-items: center;
+}
+
+.terms{
+    color: blue;
+    cursor: pointer;
+}
+
+.error{
+    color: red;
+}

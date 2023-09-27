@@ -9,7 +9,6 @@
 
 .selectSection {
     background-color: #fff;
-    margin: 1rem auto;
     width: 50%;
     display: flex;
     border-radius: 10px;
@@ -31,8 +30,33 @@
     border-top: 4px solid #000000;
   }
 
+  .createButton{
+    background-color: #fff;
+    width: 50%;
+    margin: 5% auto 0 auto;
+    display: flex;
+    border-radius: 10px;
+  }
+
+  .createButton a{
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+    color: #000000;
+    cursor: pointer;
+  }
+
+  .createButton a:hover{
+    color: #00000090;
+    background-color: #eee;
+    border-radius: 10px;
+  }
+
   @media (max-width: 1265px) {
     .selectSection {
+      width: 70%;
+    }
+    .createButton{
       width: 70%;
     }
   
@@ -40,6 +64,9 @@
 
 @media screen and (max-width: 767px) {
   .selectSection {
+    width: 90%;
+  }
+  .createButton{
     width: 90%;
   }
 }
