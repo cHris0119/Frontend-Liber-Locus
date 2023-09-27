@@ -28,6 +28,30 @@ export const useAuthStore = () => {
   const startLogout = async () => {
     dispatch(onLogout())
   }
+
+  const startRegister = async ({
+    nombreDir,
+    calle,
+    numero,
+    idCom,
+    firstname,
+    lastname,
+    email,
+    password,
+    photoDir
+  }) => {
+    console.log('sadasd', {
+      nombre_dir: nombreDir,
+      calle,
+      numero,
+      id_com: idCom,
+      first_name: firstname,
+      last_name: lastname,
+      email,
+      password,
+      photo_dir: photoDir
+    })
+  }
   return {
     //* Propiedades
     status,
@@ -36,6 +60,7 @@ export const useAuthStore = () => {
 
     //* Metodos
     startLogin,
-    startLogout
+    startLogout,
+    startRegister
   }
 }
