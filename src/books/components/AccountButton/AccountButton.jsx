@@ -1,13 +1,11 @@
-import { useContext } from 'react'
+import { useSelector } from 'react-redux'
 import { NavBar } from '..'
 import { linksModal } from '../../services/linksArray'
 
 import styles from './AccountButton.module.css'
-import { AuthContext } from '../../../auth/context/AuthContext'
 
 export const AccountButton = ({ NavOpen, modalOpen, handleModal }) => {
-  const { authState } = useContext(AuthContext)
-  const { user } = authState
+  const { user } = useSelector(state => state.auth)
   return (
 
     <div
@@ -18,7 +16,7 @@ export const AccountButton = ({ NavOpen, modalOpen, handleModal }) => {
       <div className={styles.Account}>
         <div className={styles['Account-img']}></div>
         {NavOpen
-          ? (<p className={styles.Username}>{user?.name}</p>)
+          ? (<p className={styles.Username}>{ user.name }</p>)
           : undefined
         }
       </div>

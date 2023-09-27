@@ -24,3 +24,7 @@
 .inputAuth::placeholder {
     color: #3a4a3f45;
 }
+
+.error{
+    color: red;
+}

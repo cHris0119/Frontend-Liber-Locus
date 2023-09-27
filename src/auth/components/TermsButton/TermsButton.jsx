@@ -6,7 +6,6 @@ export const TermsButton = ({
   error,
   errorMsg
 }) => {
-  console.log(error)
   return (
     <>
       <div className={styles.termsContainer}>

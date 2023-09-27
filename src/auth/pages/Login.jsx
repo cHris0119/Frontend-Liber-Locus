@@ -1,11 +1,10 @@
-import { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useForm, useAuthStore } from '../../hooks'
+import { useState } from 'react'
 import { Input, Button } from '../components/'
-import { useForm } from '../../books/hooks/useForm'
-
-import { AuthContext } from '../context/AuthContext'
 
 import styles from '../styles/Login.module.css'
+import { useSelector } from 'react-redux'
 
 const initialForm = {
   email: '',
@@ -17,7 +16,11 @@ const formValidations = {
   password: [(value) => value.length >= 1, 'La contraseña es requerida']
 }
 
-export const Login = ({ setLoggedIn }) => {
+export const Login = () => {
+  localStorage.clear('userRegister')
+  const { status } = useSelector(state => state.auth)
+  const { startLogin } = useAuthStore()
+
   const [formSubmitted, setFormSubmitted] = useState(false)
 
   const {
@@ -25,6 +28,8 @@ export const Login = ({ setLoggedIn }) => {
     handleResetForm,
     formState,
 
+    email,
+    password,
     emailValid,
     passwordValid,
     isFormValid
@@ -35,7 +40,6 @@ export const Login = ({ setLoggedIn }) => {
   })
 
   const navigate = useNavigate()
-  const { login } = useContext(AuthContext)
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -43,7 +47,8 @@ export const Login = ({ setLoggedIn }) => {
     setFormSubmitted(true)
     if (isFormValid) {
       handleResetForm()
-      login('Chris')
+      setFormSubmitted(false)
+      startLogin({ email, password })
       navigate('/home', {
         replace: true
       })
@@ -78,7 +83,8 @@ export const Login = ({ setLoggedIn }) => {
           />
           <Button
             backgroundColor="#c75200"
-            buttonText="Iniciar Sesión"
+            buttonText={
+              status === 'checking' ? 'Cargando...' : 'Iniciar Sesión' }
             disa={false}
           />
 

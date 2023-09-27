@@ -4,7 +4,9 @@ export const InputComboBox = ({
   label,
   value,
   error,
-  name
+  errorMsg,
+  name,
+  onChange
 }) => {
   return (
       <div className={styles.DirectionContainer}>
@@ -18,13 +20,15 @@ export const InputComboBox = ({
           id={name}
           name={name}
           value={value}
+          onChange={onChange}
           className={styles.inputDirection}
         >
-            <option value="Renca">Renca</option>
-            <option value="Huechuraba">Huechuraba</option>
-            <option value="Conchali">Conchali</option>
+            <option value={null}>Seleccione</option>
+            <option value={1}>Renca</option>
+            <option value={2}>Huechuraba</option>
+            <option value={3}>Conchali</option>
         </select>
-        {error && <span>{error}</span>}
+        {error && <span className={styles.error}>{errorMsg}</span>}
       </div>
   )
 }

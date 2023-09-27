@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Input, Button, TermsButton } from '../components'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { useForm } from '../../books/hooks/useForm'
+import { useForm } from '../../hooks/'
 import styles from '../styles/Login.module.css'
 
 const initialForm = {
@@ -50,7 +50,11 @@ export const Register = () => {
 
     setFormSubmitted(true)
     if (isFormValid) {
+      const { terms, ...rest } = formState
+      const user = { ...rest }
+      localStorage.setItem('userRegister', JSON.stringify(user))
       handleResetForm()
+      setFormSubmitted(false)
       navigate('/auth/direccionRegistro')
     }
   }

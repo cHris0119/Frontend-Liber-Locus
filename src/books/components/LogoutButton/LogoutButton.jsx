@@ -2,16 +2,14 @@ import { useNavigate } from 'react-router-dom'
 import { FiLogOut } from 'react-icons/fi'
 
 import styles from './LogoutButton.module.css'
-import { useContext } from 'react'
-import { AuthContext } from '../../../auth/context/AuthContext'
+import { useAuthStore } from '../../../hooks'
 
 export const LogoutButton = () => {
   //
   const navigate = useNavigate()
-  const { logout } = useContext(AuthContext)
-
-  const handleLogout = () => {
-    logout()
+  const { startLogout } = useAuthStore()
+  const handleLogout = async () => {
+    await startLogout()
     navigate('/login', {
       replace: true
     })
