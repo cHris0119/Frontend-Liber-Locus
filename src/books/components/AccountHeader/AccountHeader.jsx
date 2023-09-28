@@ -1,8 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 
 import styles from './AccountHeader.module.css'
+import { useSelector } from 'react-redux'
 
 export const AccountHeader = () => {
+  const { user } = useSelector(state => state.auth)
+
   const navigate = useNavigate()
 
   const handleClick = () => {
@@ -14,12 +17,12 @@ export const AccountHeader = () => {
 
             <section className={styles.headerLeft}>
                 <div className={styles.headerContainerImg}>
-                    <img src="#" alt="img-user" />
+                    <img src={user.userPhoto} alt="img-user" />
                 </div>
             </section>
 
             <section className={styles.headerRight}>
-                <h1>Nombre de usuario</h1>
+                <h1>{ `${user.firstName} ${user.lastName}` }</h1>
                 <div className={styles.userFollowers}>
                     <p><span>100</span> seguidores</p>
                     <p><span>5</span> seguidos</p>

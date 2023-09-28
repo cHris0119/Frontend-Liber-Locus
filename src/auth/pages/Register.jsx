@@ -14,11 +14,11 @@ const initialForm = {
   terms: false
 }
 
-const passRegex = /^(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\-])(?=.*[0-9]).*$/
+const passRegex = /^(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\-])(?=.*[0-9])(?=.*[A-Z]).*$/
 
 const formValidations = {
   email: [(value) => value.includes('@'), 'Debe ser un email valido'],
-  password: [(value) => value.length >= 8 && passRegex.test(value), 'La contraseña debe tener más de 8 letras y contar con al menos un caracter especial y un número'],
+  password: [(value) => value.length >= 8 && passRegex.test(value), 'La contraseña debe tener más de 8 letras y contar con al menos un caracter especial, una mayuscula y un número'],
   firstname: [(value) => value.length >= 1, 'El nombre es requerido'],
   lastname: [(value) => value.length >= 1, 'El apellido es requerido'],
   terms: [(value) => value === true, 'No puedes continuar sin aceptar']

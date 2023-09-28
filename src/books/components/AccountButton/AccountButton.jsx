@@ -16,7 +16,7 @@ export const AccountButton = ({ NavOpen, modalOpen, handleModal }) => {
       <div className={styles.Account}>
         <div className={styles['Account-img']}></div>
         {NavOpen
-          ? (<p className={styles.Username}>{ user.name }</p>)
+          ? (<p className={styles.Username}>{ user.firstName }</p>)
           : undefined
         }
       </div>

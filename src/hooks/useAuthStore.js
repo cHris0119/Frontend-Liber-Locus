@@ -12,8 +12,11 @@ export const useAuthStore = () => {
     try {
       const response = await booksApi.post('api/login/', { email, password })
       console.log({ response })
+      const { token, userData } = response.data
+      const { first_name: firstName, id, last_name: lastName, user_photo: userPhoto } = userData
 
-      dispatch(onLogin({ email, password }))
+      localStorage.setItem('token', JSON.stringify(token))
+      dispatch(onLogin({ id, firstName, lastName, userPhoto }))
 
       //
     } catch (error) {
@@ -26,6 +29,7 @@ export const useAuthStore = () => {
   }
 
   const startLogout = async () => {
+    localStorage.clear('token')
     dispatch(onLogout())
   }
 
