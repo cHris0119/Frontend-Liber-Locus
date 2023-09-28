@@ -1,6 +1,6 @@
 # Frontend-Liber-Locus
 
-# Para instalar dependencias react y django
+# Para instalar dependencias react
 
 - npm install
 
