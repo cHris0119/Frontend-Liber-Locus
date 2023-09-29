@@ -1,16 +1,23 @@
+import { useEffect } from 'react'
 import { ProductCard } from '../'
-import booksLists from '../../mocks/lastPostsMock.json'
+import { useBookStore } from '../../../hooks'
 
 import styles from './PostList.module.css'
+import { useSelector } from 'react-redux'
 
 export const PostList = () => {
-  const posts = booksLists.Books
-  const hasPost = posts.length > 0
+  const { bookList } = useSelector(state => state.book)
+  const { startLoadingEvents } = useBookStore()
+  const hasPost = bookList.length > 0
+  //
+  useEffect(() => {
+    startLoadingEvents()
+  }, [])
   return (
     <>
       {hasPost
         ? (<div className={styles.postListContainer}>
-          <ProductCard books={posts} />
+          <ProductCard books={bookList} />
         </div>)
         : (<h2>Cargando...</h2>)
 

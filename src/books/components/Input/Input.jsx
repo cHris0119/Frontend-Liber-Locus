@@ -4,8 +4,11 @@ export const Input = ({
   label,
   type,
   value,
-
-  name
+  placeholder,
+  name,
+  onChange,
+  error,
+  errorMsg
 }) => {
   return (
     <div className={styles.inputContainer}>
@@ -20,11 +23,13 @@ export const Input = ({
         <input
         type={type}
         name={name}
+        placeholder={placeholder}
         id={name}
+        onChange={onChange}
         value={value}
         className={styles.input}
         />
-
+      {error && <span className={styles.error}>{errorMsg}</span>}
     </div>
   )
 }

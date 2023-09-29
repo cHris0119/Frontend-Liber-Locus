@@ -2,23 +2,31 @@ import { createSlice } from '@reduxjs/toolkit'
 export const bookSlice = createSlice({
   name: 'book',
   initialState: {
-    bookList: [{
-      id: '',
-      name: '',
-      price: '',
-      description: '',
-      author: '',
-      bookImmg: '',
-      seller_id: '',
-      bookState: '',
-      valoration: '',
-      bookCategory: ''
-    }]
+    isLoadingEvents: true,
+    bookList: [],
+    message: undefined
   },
   reducers: {
-    increment: (state, action) => {
-      state.counter += 1
+    onAddBook: (state, { payload }) => {
+      state.bookList.push(payload)
+      state.message = undefined
+    },
+    errorToAdd: (state, { payload }) => {
+      state.message = { payload }
+    },
+    clearMessage: (state) => {
+      state.message = undefined
+    },
+    onLoadBook: (state, { payload = [] }) => {
+      state.isLoadingEvents = false
+      //
+      payload.forEach(book => {
+        const exists = state.events?.some(dbBook => dbBook.id === book.id)
+        if (!exists) {
+          state.bookList.push(book)
+        }
+      })
     }
   }
 })
-export const { increment } = bookSlice.actions
+export const { onAddBook, errorToAdd, clearMessage, onLoadBook } = bookSlice.actions

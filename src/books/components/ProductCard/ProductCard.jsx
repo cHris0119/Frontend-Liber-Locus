@@ -4,7 +4,7 @@ import styles from './ProductCard.module.css'
 export const ProductCard = ({ books }) => {
   return (
     <>
-      {books.map((book) => (
+      {books?.map((book) => (
         <NavLink to={`/detallePost/${book.id}`} key={book.id} className={styles.customNavlink}>
           <article className={styles.lastPostCard}>
 

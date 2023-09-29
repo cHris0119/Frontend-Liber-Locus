@@ -2,13 +2,62 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Input } from '../components/Input/Input'
 
 import styles from '../styles/EditAccount.module.css'
+import { useSelector } from 'react-redux'
+import { useAuthStore, useForm } from '../../hooks'
+import { useState } from 'react'
+
+const formValidations = {
+  firstName: [(value) => value.length >= 1, 'Debe ser un nombre valido'],
+  lastName: [(value) => value.length >= 1, 'Debe ser un apellido valido'],
+  userPhoto: [(value) => value.length >= 1, 'Debe ser una foto valida valido']
+
+}
 
 export const EditAccount = () => {
+  const { user } = useSelector(state => state.auth)
+  const [formSubmitted, setFormSubmitted] = useState(false)
+  const { startEditUser } = useAuthStore()
+
+  const initialForm = {
+    userPhoto: user.userPhoto,
+    firstName: user.firstName,
+    lastName: user.lastName
+  }
+
   const navigate = useNavigate()
+
+  const {
+    handleInputChange,
+    handleResetForm,
+    formState,
+
+    firstName,
+    lastName,
+    userPhoto,
+    firstNameValid,
+    lastNameValid,
+    userPhotoValid,
+    isFormValid
+
+  } = useForm({
+    initialForm,
+    formValidations
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    navigate('/perfil/misPost')
+    setFormSubmitted(true)
+    if (isFormValid) {
+      handleResetForm()
+      setFormSubmitted(false)
+      startEditUser({
+        firstName,
+        lastName,
+        userPhoto,
+        id: user.id
+      })
+      navigate('/perfil/misPost')
+    }
   }
   return (
     <div className={styles.editAccountContainer}>
@@ -20,34 +69,42 @@ export const EditAccount = () => {
             <h1>Editar Cuenta</h1>
 
             <Input
+            label='Image'
+            type='text'
+            value={formState.userPhoto}
+            name='userPhoto'
+            onChange={handleInputChange}
+            error={userPhotoValid && formSubmitted}
+            errorMsg = {userPhotoValid}
+            />
+
+            <Input
             label='Nombre'
             type='text'
-            value='chris'
-            name='nombre'
+            value={formState.firstName}
+            name='firstName'
+            onChange={handleInputChange}
+            error={firstNameValid && formSubmitted}
+            errorMsg = {firstNameValid}
             />
 
             <Input
             label='Apellido'
             type='text'
-            value='hola'
-            name='apellido'
-            />
-
-            <Input
-            label='Email'
-            type='email'
-            value='chris@gmail.com'
-            name='email'
-            />
-
-            <Input
-            label='Contraseña'
-            type='password'
-            value='chris'
-            name='password'
+            value={formState.lastName}
+            name='lastName'
+            onChange={handleInputChange}
+            error={lastNameValid && formSubmitted}
+            errorMsg = {lastNameValid}
             />
 
             <div className={styles.editOthers}>
+
+            <span className={styles.link}>
+                    <Link to='/editarDireccion'>
+                        Editar contraseña
+                    </Link>
+                </span>
 
                 <span className={styles.link}>
                     <Link to='/editarDireccion'>

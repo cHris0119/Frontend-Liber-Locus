@@ -13,10 +13,11 @@
     color: #161616;
 }
 
-.input {
-    padding: .9rem 1rem;
+.textarea {
+    resize: vertical;
+    padding: 1rem;
     border-radius: 10px;
-    font-size: 1.1rem;
+    font-size: 16px;
     border: none;
     background-color: #191b1928;
 }

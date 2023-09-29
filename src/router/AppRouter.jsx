@@ -1,19 +1,39 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { AuthRoutes } from '../auth/routes/AuthRoutes'
 import { BooksRoutes } from '../books/routes/BooksRoutes'
-import { useSelector } from 'react-redux'
+import { useAuthStore } from '../hooks'
+import { useEffect } from 'react'
 
 const AppRouter = () => {
-  const { status } = useSelector(state => state.auth)
-  const authStatus = status
+  const { status, checkAuthToken } = useAuthStore()
+
+  useEffect(() => {
+    checkAuthToken()
+  }, [])
+
+  if (status === 'checking') {
+    return (
+        <h3>Cargando...</h3>
+    )
+  }
 
   return (
     <Routes>
       {
-        (authStatus !== 'authenticated')
+        (status === 'not-authenticated')
 
-          ? <Route path='/auth/*' element={<AuthRoutes /> } />
-          : <Route path="/*" element={<BooksRoutes /> } />
+          ? (
+            <>
+              <Route path='/auth/*' element={<AuthRoutes /> } />
+              <Route path="/*" element={ <Navigate to="/auth/login" /> } />
+            </>
+            )
+          : (
+            <>
+            <Route path="/*" element={<BooksRoutes /> } />
+            <Route path="/*" element={ <Navigate to="/" /> } />
+            </>
+            )
 
       }
 
