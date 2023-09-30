@@ -44,13 +44,13 @@ export const EditAccount = () => {
     formValidations
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setFormSubmitted(true)
     if (isFormValid) {
       handleResetForm()
       setFormSubmitted(false)
-      startEditUser({
+      await startEditUser({
         firstName,
         lastName,
         userPhoto,

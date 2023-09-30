@@ -2,63 +2,74 @@ import { useNavigate } from 'react-router-dom'
 import { Input } from '../components/Input/Input'
 
 import { InputComboBox } from '../../auth/components'
-import { useEffect, useState } from 'react'
-import { useForm } from '../../hooks'
-import booksApi from '../../api/booksApi'
+import { useState } from 'react'
+import { useAuthStore, useForm } from '../../hooks'
 
 import styles from '../styles/EditDirection.module.css'
 import { useSelector } from 'react-redux'
-import { Loader } from '../components'
-import { useDirection } from '../hooks/useDirection'
 
-// const formValidations = {
-//   comuna: [(value) => value !== 'Seleccione', 'Debes ingresar una comuna'],
-//   calle: [(value) => value.length >= 1, 'La calle es requerida'],
-//   numero: [(value) => value.length >= 1 && !isNaN(parseInt(value)), 'El numero es requerido'],
-//   nameDir: [(value) => value.length >= 1, 'El numero es requerido']
+const formValidations = {
+  comuna: [(value) => value !== 'Seleccione', 'Debes ingresar una comuna'],
+  calle: [(value) => value.length >= 1, 'La calle es requerida'],
+  numero: [(value) => !isNaN(parseInt(value)), 'El numero2 es requerido'],
+  nameDir: [(value) => value.length >= 1, 'El nombre es requerido']
 
-// }
+}
 
 export const EditDirection = () => {
   const navigate = useNavigate()
+  const { startEditDirection } = useAuthStore()
+  const { user } = useSelector(state => state.auth)
+  const { direction } = user
   const [formSubmitted, setFormSubmitted] = useState(false)
 
-  const { Loading, initialForm } = useDirection()
-  const [formState, setFormState] = useState(initialForm)
-  console.log('dire', initialForm)
-
-  const handleInputChange = ({ target }) => {
-    const { name, value } = target
-    setFormState({
-      ...formState,
-      [name]: value
-    })
+  const initialForm = {
+    comuna: direction.commune,
+    calle: direction.calle,
+    numero: direction.numero,
+    nameDir: direction.nombre
   }
 
-  console.log('for', formState)
-  const handleSubmit = (e) => {
+  const {
+    handleInputChange,
+    handleResetForm,
+    formState,
+
+    comunaValid,
+    calleValid,
+    numeroValid,
+    nameDirValid,
+    isFormValid
+
+  } = useForm({
+    initialForm,
+    formValidations
+  })
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setFormSubmitted(true)
 
     if (isFormValid) {
       const { comuna, calle, numero, nameDir } = formState
+      const { id } = user
       handleResetForm()
       setFormSubmitted(false)
-      console.log(formState)
-      // navigate('/editarPefil')
+
+      await startEditDirection({
+        id,
+        id_com: parseInt(comuna),
+        calle,
+        numero: parseInt(numero),
+        nombre: nameDir
+      })
+      navigate('/editarPerfil')
     }
   }
+
   return (
 
     <div className={styles.editAccountContainer}>
-
-      {Loading
-        ? (
-        <div>
-          <Loader />
-        </div>
-          )
-        : (
 
   <form
         className={styles.editAccountForm}
@@ -73,7 +84,8 @@ export const EditDirection = () => {
               type="text"
               value={formState.nameDir}
               onChange={handleInputChange}
-
+              error={nameDirValid && formSubmitted}
+              errorMsg = {nameDirValid}
             />
 
           <InputComboBox
@@ -81,7 +93,8 @@ export const EditDirection = () => {
           name='comuna'
           value={formState.comuna}
           onChange={handleInputChange}
-
+          error={comunaValid && formSubmitted}
+          errorMsg = {comunaValid}
           />
         <div className={styles.twoInputs}>
           <Input
@@ -91,7 +104,8 @@ export const EditDirection = () => {
             type="text"
             value={formState.calle}
             onChange={handleInputChange}
-
+            error={calleValid && formSubmitted}
+            errorMsg = {calleValid}
           />
 
           <Input
@@ -101,7 +115,8 @@ export const EditDirection = () => {
             type="text"
             value={formState.numero}
             onChange={handleInputChange}
-
+            error={numeroValid && formSubmitted}
+            errorMsg ={numeroValid}
           />
            </div>
 
@@ -111,7 +126,6 @@ export const EditDirection = () => {
                 Guardar cambios
             </button>
         </form>
-          )}
 
     </div>
   )

@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import booksApi from '../api/booksApi'
-import { clearErrorMessage, onChecking, onEditUser, onLogin, onLogout } from '../store/auth/authSlice'
+import { clearErrorMessage, onChecking, onEditDirection, onEditUser, onLogin, onLogout } from '../store/auth/authSlice'
+import Swal from 'sweetalert2'
 
 export const useAuthStore = () => {
   const { status, user, errorMessage } = useSelector(state => state.auth)
@@ -14,10 +15,18 @@ export const useAuthStore = () => {
       const response = await booksApi.post('api/login/', { email, password })
       console.log({ response })
       const { token, userData } = response.data
-      const { first_name: firstName, id, last_name: lastName, user_photo: userPhoto } = userData
 
       localStorage.setItem('token', JSON.stringify(token))
-      dispatch(onLogin({ id, firstName, lastName, userPhoto }))
+      const {
+        id,
+        first_name: firstName,
+        last_name: lastName,
+        user_photo: userPhoto,
+        direction
+      } = userData
+      dispatch(onLogin({
+        id, firstName, lastName, userPhoto, direction
+      }))
 
       //
     } catch (error) {
@@ -82,10 +91,16 @@ export const useAuthStore = () => {
       const response = await booksApi.get(`api/obtainUser/${tokenSinComillas}`)
 
       const { userData } = response.data
-
-      const { first_name: firstName, id, last_name: lastName, user_photo: userPhoto } = userData
-
-      dispatch(onLogin({ id, firstName, lastName, userPhoto }))
+      const {
+        first_name: firstName,
+        last_name: lastName,
+        user_photo: userPhoto,
+        id,
+        direction
+      } = userData
+      dispatch(onLogin({
+        id, firstName, lastName, userPhoto, direction
+      }))
     } catch (error) {
       localStorage.clear()
       dispatch(onLogout())
@@ -108,6 +123,29 @@ export const useAuthStore = () => {
     }
   }
 
+  //* Editar Direccion
+
+  const startEditDirection = async (direction) => {
+    try {
+      // console.log(direction)
+      const { id, ...rest } = direction
+
+      const response = await booksApi.post(`api/editDirection/${id}/`, rest)
+      const { data } = response
+      console.log(data)
+
+      dispatch(onEditDirection(data.dirData))
+      Swal.fire({
+        icon: 'success',
+        title: 'Direccion editada con exito.',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return {
     //* Propiedades
     status,
@@ -119,6 +157,7 @@ export const useAuthStore = () => {
     startLogout,
     startRegister,
     startEditUser,
+    startEditDirection,
     checkAuthToken
   }
 }

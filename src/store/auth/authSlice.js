@@ -38,7 +38,14 @@ export const authSlice = createSlice({
     },
 
     onEditUser: (state, { payload }) => {
-      state.user = payload
+      console.log('aasdasd', payload)
+      state.user = {
+        ...state.user,
+        ...payload
+      }
+    },
+    onEditDirection: (state, { payload }) => {
+      state.user.direction = payload
     }
   }
 
@@ -49,5 +56,6 @@ export const {
   onLogout,
   clearErrorMessage,
   onRegister,
-  onEditUser
+  onEditUser,
+  onEditDirection
 } = authSlice.actions
