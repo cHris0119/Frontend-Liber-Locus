@@ -36,6 +36,10 @@
     cursor: pointer;
 }
 
+.articleActions button:hover{
+    background-color: #402313c6;
+}
+
 .articleActions button a{
     color: white;
 }

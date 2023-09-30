@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react'
 import styles from './InputComboBox.module.css'
+import booksApi from '../../../api/booksApi'
 
 export const InputComboBox = ({
   label,
@@ -8,20 +10,27 @@ export const InputComboBox = ({
   name,
   onChange
 }) => {
-  // const [comunas, setComunas] = useState([])
+  const [category, setCategory] = useState([])
+  const token = JSON.parse(localStorage.getItem('token'))
+  const config = {
+    headers: {
+      Authorization: `Token ${token}`
+    }
+  }
 
-  // useEffect(() => {
-  //   const getComunas = async () => {
-  //     try {
-  //       const comunas = await booksApi.get('api/communeGet')
-  //       const data = comunas.data
-  //       setComunas(data)
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   getComunas()
-  // }, [])
+  useEffect(() => {
+    const getCategory = async () => {
+      try {
+        const category = await booksApi.get('api/getCategories/',
+          config)
+        const data = category.data
+        setCategory(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getCategory()
+  }, [])
 
   return (
       <div className={styles.genreContainer}>
@@ -39,8 +48,9 @@ export const InputComboBox = ({
           className={styles.inputgenre}
         >
             <option value={null}>Seleccione</option>
-            <option value={1}>Terror</option>
-            <option value={2}>Romance</option>
+            { category.map((genre) => (
+            <option key={genre.id} value={genre.id}>{genre.description}</option>
+            )) }
 
         </select>
         {error && <span className={styles.error}>{errorMsg}</span>}

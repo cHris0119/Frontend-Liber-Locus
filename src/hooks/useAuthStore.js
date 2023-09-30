@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import booksApi from '../api/booksApi'
-import { clearErrorMessage, onChecking, onLogin, onLogout } from '../store/auth/authSlice'
+import { clearErrorMessage, onChecking, onEditUser, onLogin, onLogout } from '../store/auth/authSlice'
 
 export const useAuthStore = () => {
   const { status, user, errorMessage } = useSelector(state => state.auth)
@@ -50,7 +50,7 @@ export const useAuthStore = () => {
     lastname,
     email,
     password,
-    photoDir
+    imgUser
   }) => {
     try {
       const response = await booksApi.post('api/registerUser/', {
@@ -62,7 +62,7 @@ export const useAuthStore = () => {
         last_name: lastname,
         email,
         password,
-        photo_dir: photoDir
+        photo_dir: imgUser
       })
 
       console.log(response)
@@ -95,12 +95,13 @@ export const useAuthStore = () => {
   //* Editar usuario
   const startEditUser = async ({ firstName, lastName, userPhoto, id }) => {
     try {
-      const response = await booksApi.put(`api/editarUser/${id}/`, {
+      const response = await booksApi.put(`api/editUser/${id}/`, {
         first_name: firstName,
         last_name: lastName,
         photo_dir: userPhoto
       })
       console.log(response)
+      dispatch(onEditUser({ id, firstName, lastName, userPhoto }))
       //
     } catch (error) {
       console.log(error)

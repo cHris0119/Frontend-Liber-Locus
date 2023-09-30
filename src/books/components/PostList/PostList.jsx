@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { ProductCard } from '../'
+import { Loader, ProductCard } from '../'
 import { useBookStore } from '../../../hooks'
 
 import styles from './PostList.module.css'
@@ -19,7 +19,9 @@ export const PostList = () => {
         ? (<div className={styles.postListContainer}>
           <ProductCard books={bookList} />
         </div>)
-        : (<h2>Cargando...</h2>)
+        : (<div className={styles.postListContainer}>
+          (<Loader />)
+        </div>)
 
       }
     </>

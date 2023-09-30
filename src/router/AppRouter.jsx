@@ -3,6 +3,7 @@ import { AuthRoutes } from '../auth/routes/AuthRoutes'
 import { BooksRoutes } from '../books/routes/BooksRoutes'
 import { useAuthStore } from '../hooks'
 import { useEffect } from 'react'
+import { Loader } from '../books/components'
 
 const AppRouter = () => {
   const { status, checkAuthToken } = useAuthStore()
@@ -13,7 +14,9 @@ const AppRouter = () => {
 
   if (status === 'checking') {
     return (
-        <h3>Cargando...</h3>
+      <div style={{ height: '100vh' }}>
+      <Loader />
+      </div>
     )
   }
 

@@ -7,6 +7,7 @@ import { useForm } from '../../hooks/'
 import styles from '../styles/Login.module.css'
 
 const initialForm = {
+  imgUser: '',
   firstname: '',
   lastname: '',
   email: '',
@@ -53,6 +54,7 @@ export const Register = () => {
     setFormSubmitted(true)
     if (isFormValid) {
       const { terms, ...rest } = formState
+      // console.log(rest)
       const user = { ...rest }
       localStorage.setItem('userRegister', JSON.stringify(user))
       handleResetForm()
@@ -71,6 +73,14 @@ export const Register = () => {
           <h3 className={styles.title}>Crea tu cuenta</h3>
 
           <div className={styles.twoInputs}>
+          <Input
+              placeholder="Nombre..."
+              label="Nombre"
+              name="imgUser"
+              type="file"
+              value={formState.imgUser}
+              onChange={handleInputChange}
+            />
             <Input
               placeholder="Nombre..."
               label="Nombre"

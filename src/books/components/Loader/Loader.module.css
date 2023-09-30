@@ -1,0 +1,12 @@
+.loaderContainer{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.loaderContainer h1{
+    color: #fff;
+}

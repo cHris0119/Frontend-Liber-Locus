@@ -1,14 +1,15 @@
 import { useParams, NavLink } from 'react-router-dom'
 import 'animate.css'
-import booksList from '../mocks/lastPostsMock.json'
+
 import { BackButton, QuestionsPost } from '../components/'
 
 import styles from '../styles/PostDetail.module.css'
+import { useSelector } from 'react-redux'
 
 export const PostDetail = () => {
-  const books = booksList.Books
+  const { bookList } = useSelector(state => state.book)
   const { postId } = useParams()
-  const selectedBook = books.find(book => book.id === Number(postId))
+  const selectedBook = bookList.find(book => book.id === Number(postId))
 
   return (
     <div className={`${styles.container} animate__animated animate__fadeIn animate__faster`}>
@@ -21,11 +22,11 @@ export const PostDetail = () => {
         {/* Este div tiene que ser un componente. */}
         <div className={styles.productInfo}>
           <ul className={styles.productInfoNames}>
-            <li className={styles.productCategory}>{selectedBook.category}</li>
+            <li className={styles.productCategory}>{selectedBook.book_category}</li>
             <li className={styles.productName}>{selectedBook.name}</li>
             <li className={styles.productPrice}>{selectedBook.price} CLP</li>
             <li className={styles.productSeller}>Vendedor: Juan</li>
-            <li className={styles.productDescription}><p>Buen libro, buena historia, bla bla bla.</p></li>
+            <li className={styles.productDescription}><p>{selectedBook.description}</p></li>
           </ul>
           <div className={styles.buyButtonContainer}>
             <NavLink className={styles.linkBuyButton} to={`/detalleEnvio/${postId}`}><button className={styles.buyButton} >Comprar</button></NavLink>
