@@ -10,7 +10,7 @@ export const MyPost = () => {
   const { bookList } = useSelector(state => state.book)
   const { startLoadingEvents, startDeletingBook } = useBookStore()
 
-  const myBooks = bookList.filter((book) => book.seller === user.id)
+  const myBooks = bookList.filter((book) => book.seller.id === user.id)
 
   const handleDelete = (id) => {
     const confirmacion = confirm('Estas seguro que quieres eliminar este libro?')

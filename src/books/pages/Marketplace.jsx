@@ -13,7 +13,7 @@ export const Marketplace = () => {
   const handleSearch = (e) => {
     setSearch(e.target.value)
 
-    if (search === '') return
+    if (search === '') return setFilteredBook(bookList)
 
     const result = bookList.filter(book => {
       return book.name.toLowerCase().includes(search.toLowerCase())

@@ -32,6 +32,7 @@ export const Register = () => {
     handleInputChange,
     handleCheckboxChange,
     handleResetForm,
+    handleFileChange,
     formState,
 
     firstnameValid,
@@ -45,6 +46,7 @@ export const Register = () => {
     initialForm,
     formValidations
   })
+  console.log(formState)
 
   const navigate = useNavigate()
 
@@ -77,9 +79,9 @@ export const Register = () => {
               label="Imagen"
               name="imgUser"
               type="file"
-              value={formState.imgUser}
-              onChange={handleInputChange}
+              onChange={handleFileChange}
             />
+            <p>{formState.imgUser}</p>
           <div className={styles.twoInputs}>
             <Input
               placeholder="Nombre..."

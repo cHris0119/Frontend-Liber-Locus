@@ -49,6 +49,24 @@ export const useForm = ({ initialForm = {}, formValidations = {} }) => {
     })
   }
 
+  const handleFileChange = ({ target }) => {
+    const { name, files } = target
+    const selectedFile = files[0]
+    if (selectedFile) {
+      const reader = new FileReader()
+      reader.readAsDataURL(selectedFile)
+      reader.onload = () => {
+        const base64 = reader.result
+        setFormState({
+          ...formState,
+          [name]: base64
+        })
+      }
+    }
+
+    console.log('file', selectedFile)
+  }
+
   const handleResetForm = () => {
     setFormState(initialForm)
   }
@@ -61,6 +79,7 @@ export const useForm = ({ initialForm = {}, formValidations = {} }) => {
     handleInputChange,
     handleCheckboxChange,
     handleResetForm,
+    handleFileChange,
 
     ...formValidation,
     isFormValid
