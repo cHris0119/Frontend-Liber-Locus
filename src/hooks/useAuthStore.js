@@ -76,6 +76,12 @@ export const useAuthStore = () => {
 
       console.log(response)
     } catch (error) {
+      const { response } = error
+      dispatch(onLogout(response.data.error))
+      setTimeout(() => {
+        dispatch(clearErrorMessage())
+      }, 10)
+
       console.log('errorReg: ', error)
     }
   }

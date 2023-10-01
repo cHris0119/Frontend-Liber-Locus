@@ -1,10 +1,12 @@
-import booksList from '../../mocks/lastPostsMock.json'
-
+import { useSelector } from 'react-redux'
 import styles from './SummaryProduct.module.css'
 
 export const SummaryProduct = ({ bookId }) => {
-  const books = booksList.Books
-  const selectedBook = books.find(book => book.id === Number(bookId))
+  const { bookList } = useSelector(state => state.book)
+
+  const selectedBook = bookList.find(book => book.id === Number(bookId))
+
+  const sellerName = `${selectedBook.seller.first_name} ${selectedBook.seller.last_name}`
 
   return (
     <ul className={styles.summaryProductContainer}>
@@ -17,7 +19,7 @@ export const SummaryProduct = ({ bookId }) => {
       </div>
 
       <div className={styles.summaryProductSeller}>
-        <li>Vendedor: Juan lopez</li>
+        <li>Vendedor: {sellerName}</li>
       </div>
 
     </ul>

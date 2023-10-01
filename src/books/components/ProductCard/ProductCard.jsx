@@ -21,7 +21,7 @@ export const ProductCard = ({ books }) => {
 
                 <div className={styles.cardDescription}>
                   <p>{book.price} CLP</p>
-                  <span>{book.category}</span>
+                  <span>{book.category.description}</span>
                 </div>
               </div>
 

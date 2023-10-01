@@ -7,15 +7,17 @@ import { EditDiscussionPage } from '../pages/EditDiscussionPage'
 import 'animate.css'
 import { EditReview } from '../pages/EditReview'
 import { useEffect } from 'react'
-import { useBookStore } from '../../hooks'
+import { useBookStore, useReviewStore } from '../../hooks'
 import { useSelector } from 'react-redux'
 
 export const BooksRoutes = () => {
   const [modalOpen, handleModal] = useModalOpen()
   const { startLoadingEvents } = useBookStore()
+  const { startLoadingReviews } = useReviewStore()
   const { isLoadingBooks } = useSelector(state => state.book)
 
   useEffect(() => {
+    startLoadingReviews()
     startLoadingEvents()
   }, [])
 

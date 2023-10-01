@@ -72,15 +72,15 @@ export const Register = () => {
 
           <h3 className={styles.title}>Crea tu cuenta</h3>
 
-          <div className={styles.twoInputs}>
           <Input
               placeholder="Nombre..."
-              label="Nombre"
+              label="Imagen"
               name="imgUser"
               type="file"
               value={formState.imgUser}
               onChange={handleInputChange}
             />
+          <div className={styles.twoInputs}>
             <Input
               placeholder="Nombre..."
               label="Nombre"

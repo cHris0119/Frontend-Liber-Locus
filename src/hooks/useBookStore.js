@@ -109,6 +109,7 @@ export const useBookStore = () => {
   const startLoadingEvents = async () => {
     try {
       const { data } = await booksApi.get('api/books/get_all_books/', config)
+      console.log(data)
 
       dispatch(onLoadBook(data))
     } catch (error) {

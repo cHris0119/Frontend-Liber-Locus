@@ -2,8 +2,10 @@ import { Input, Button, InputComboBox } from '../components'
 import { Link, useNavigate } from 'react-router-dom'
 
 import styles from '../styles/Login.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm, useAuthStore } from '../../hooks'
+import { useSelector } from 'react-redux'
+import Swal from 'sweetalert2'
 
 const initialForm = {
   comuna: 'Seleccione',
@@ -23,6 +25,7 @@ const formValidations = {
 export const DirectionRegister = () => {
   const [formSubmitted, setFormSubmitted] = useState(false)
   const { startRegister } = useAuthStore()
+  const { errorMessage } = useSelector(state => state.auth)
 
   const {
     handleInputChange,
@@ -45,7 +48,7 @@ export const DirectionRegister = () => {
   const storedUser = localStorage.getItem('userRegister') || null
   const user = JSON.parse(storedUser)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setFormSubmitted(true)
 
@@ -62,11 +65,17 @@ export const DirectionRegister = () => {
         photoDir: 'Hola'
       }
 
-      startRegister(userToCreate)
+      await startRegister(userToCreate)
 
       navigate('/')
     }
   }
+  useEffect(() => {
+    if (errorMessage !== undefined) {
+      Swal.fire('Error en la autenticación', errorMessage, 'error')
+    }
+  }, [errorMessage])
+
   return (
     <div className={styles.authPage}>
     <div className={styles.formContainer}>

@@ -22,10 +22,10 @@ export const PostDetail = () => {
         {/* Este div tiene que ser un componente. */}
         <div className={styles.productInfo}>
           <ul className={styles.productInfoNames}>
-            <li className={styles.productCategory}>{selectedBook.book_category}</li>
+            <li className={styles.productCategory}>{selectedBook.category.description}</li>
             <li className={styles.productName}>{selectedBook.name}</li>
             <li className={styles.productPrice}>{selectedBook.price} CLP</li>
-            <li className={styles.productSeller}>Vendedor: Juan</li>
+            <li className={styles.productSeller}>Vendedor: {selectedBook.seller.first_name} {selectedBook.seller.last_name}</li>
             <li className={styles.productDescription}><p>{selectedBook.description}</p></li>
           </ul>
           <div className={styles.buyButtonContainer}>
