@@ -17,6 +17,7 @@
 }
 
 .form {
+  padding: 1rem 0;
   width: 500px;
   display: flex;
   flex-direction: column;
@@ -74,7 +75,7 @@ a {
 
   .form {
     width: 90%;
-    gap: 2rem;
+    gap: 1rem;
   }
 
   .twoInputs {

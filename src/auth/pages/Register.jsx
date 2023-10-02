@@ -72,7 +72,7 @@ export const Register = () => {
         className={styles.form}
         onSubmit={handleSubmit}>
 
-          <h3 className={styles.title}>Crea tu cuenta</h3>
+          <h1 className={styles.title}>Crea tu cuenta</h1>
 
           <Input
               placeholder="Nombre..."
