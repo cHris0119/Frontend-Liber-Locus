@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { Loader, ProductCard } from '../'
 import { useBookStore } from '../../../hooks'
+import { useSelector } from 'react-redux'
 
 import styles from './PostList.module.css'
-import { useSelector } from 'react-redux'
 
 export const PostList = () => {
   const { bookList } = useSelector(state => state.book)

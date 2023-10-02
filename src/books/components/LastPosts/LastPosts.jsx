@@ -1,10 +1,18 @@
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { HomeSection, ProductCard } from '../'
-import lastPostBooks from '../../mocks/lastPostsMock.json'
+import { useBookStore } from '../../../hooks'
 
 import styles from './LastPosts.module.css'
 
 export const LastPosts = () => {
-  const lastPost = lastPostBooks.Books.slice(0, 4)
+  const { bookList } = useSelector(state => state.book)
+  const { startLoadingEvents } = useBookStore()
+  const lastPost = bookList.slice(0, 4)
+
+  useEffect(() => {
+    startLoadingEvents()
+  }, [])
 
   return (
     <HomeSection>

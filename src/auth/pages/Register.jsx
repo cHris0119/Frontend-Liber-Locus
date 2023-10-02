@@ -71,16 +71,8 @@ export const Register = () => {
         className={styles.form}
         onSubmit={handleSubmit}>
 
-          <h1 className={styles.title}>Crea tu cuenta</h1>
+          <h1 className={styles.title}>CREA TU CUENTA</h1>
 
-          <Input
-              placeholder="Nombre..."
-              label="Imagen"
-              name="imgUser"
-              type="file"
-              onChange={handleFileChange}
-            />
-            <p>{formState.imgUser}</p>
           <div className={styles.twoInputs}>
             <Input
               placeholder="Nombre..."
@@ -125,6 +117,13 @@ export const Register = () => {
             error={passwordValid && formSubmitted}
             errorMsg={passwordValid}
           />
+
+          <Input
+              label="Imagen"
+              name="imgUser"
+              type="file"
+              onChange={handleFileChange}
+            />
 
           <TermsButton
               check={formState.terms}

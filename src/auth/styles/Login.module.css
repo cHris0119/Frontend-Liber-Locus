@@ -46,6 +46,7 @@
   width: 35%;
   max-height: 100vh;
   position: relative;
+
 }
 
 a {
@@ -57,13 +58,16 @@ a {
 @media (max-width: 1265px) {
   .title {
     margin-bottom: 0px;
-    font-size: 18px;
+    font-size: 22px;
   }
   .authPage {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100%;
+    height: auto;
+    min-height: 100vh;
     padding: 1rem;
   }
 
@@ -80,7 +84,6 @@ a {
 
   .twoInputs {
     width: 100%;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;

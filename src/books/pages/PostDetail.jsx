@@ -1,12 +1,11 @@
+import { useSelector } from 'react-redux'
 import { useParams, NavLink } from 'react-router-dom'
 import 'animate.css'
-
+import { useBookStore } from '../../hooks'
+import { useEffect } from 'react'
 import { BackButton, Loader, QuestionsPost } from '../components/'
 
 import styles from '../styles/PostDetail.module.css'
-import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { useBookStore } from '../../hooks'
 
 export const PostDetail = () => {
   const { bookList } = useSelector(state => state.book)

@@ -80,7 +80,7 @@ export const DirectionRegister = () => {
     <div className={styles.authPage}>
     <div className={styles.formContainer}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <h3 className={styles.title}>Direccion</h3>
+        <h3 className={styles.title}>DIRECCIÓN</h3>
 
         <Input
               placeholder="Casa, trabajo..."
