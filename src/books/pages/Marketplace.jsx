@@ -27,7 +27,6 @@ export const Marketplace = () => {
   }
 
   useEffect(() => {
-    console.log('category', category)
     if (category === 'Todos') return setFilteredBook(bookList)
 
     const result = bookList.filter(book => {

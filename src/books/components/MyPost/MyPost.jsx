@@ -25,6 +25,7 @@ export const MyPost = () => {
   useEffect(() => {
     startLoadingEvents()
   }, [])
+
   return (
     <>
     { myBooks?.map((book) => (

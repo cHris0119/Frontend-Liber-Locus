@@ -1,15 +1,32 @@
 import { useParams, NavLink } from 'react-router-dom'
 import 'animate.css'
 
-import { BackButton, QuestionsPost } from '../components/'
+import { BackButton, Loader, QuestionsPost } from '../components/'
 
 import styles from '../styles/PostDetail.module.css'
 import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useBookStore } from '../../hooks'
 
 export const PostDetail = () => {
   const { bookList } = useSelector(state => state.book)
   const { postId } = useParams()
+  const { startLoadingEvents } = useBookStore()
+  const { isLoadingBooks } = useSelector(state => state.book)
+
   const selectedBook = bookList.find(book => book.id === Number(postId))
+
+  useEffect(() => {
+    startLoadingEvents()
+  }, [])
+
+  if (isLoadingBooks === true) {
+    return (
+      <div style={{ height: '100vh' }}>
+      <Loader />
+      </div>
+    )
+  }
 
   return (
     <div className={`${styles.container} animate__animated animate__fadeIn animate__faster`}>

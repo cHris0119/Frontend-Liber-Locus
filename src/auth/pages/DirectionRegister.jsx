@@ -61,9 +61,9 @@ export const DirectionRegister = () => {
         calle,
         numero: parseInt(numero),
         idCom: parseInt(comuna),
-        ...user,
-        photoDir: 'Hola'
+        ...user
       }
+      console.log('asdad', userToCreate)
 
       await startRegister(userToCreate)
 

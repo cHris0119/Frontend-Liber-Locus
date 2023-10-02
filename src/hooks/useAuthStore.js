@@ -75,6 +75,12 @@ export const useAuthStore = () => {
       })
 
       console.log(response)
+      Swal.fire({
+        icon: 'success',
+        title: 'Registro completado.',
+        showConfirmButton: false,
+        timer: 1500
+      })
     } catch (error) {
       const { response } = error
       dispatch(onLogout(response.data.error))

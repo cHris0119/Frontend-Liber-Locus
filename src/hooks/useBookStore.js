@@ -41,6 +41,8 @@ export const useBookStore = () => {
 
       const { BookData } = response.data
 
+      console.log('BookData', BookData)
+
       dispatch(onAddBook(BookData))
       Swal.fire({
         icon: 'success',
@@ -116,7 +118,7 @@ export const useBookStore = () => {
       console.log('Error cargando libros')
       Swal.fire({
         icon: 'error',
-        title: 'Error al eliminar.',
+        title: 'Error al cargar libros.',
         showConfirmButton: false,
         timer: 1500
       })
