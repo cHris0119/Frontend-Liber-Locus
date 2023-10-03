@@ -11,7 +11,7 @@ const RenderQuestions = () => {
         <p className={styles.lastAnswerQuestion}>{question.question}</p>
         {question.answer
           ? <div className={styles.lastAnswerContainer}>
-            <p className={styles.lastAnswerP}>{question.answer}</p><span className={styles.lastAnswerDate}>{question.created_at}</span>
+            <p className={styles.lastAnswerP}>{question.answer} ·</p><span className={styles.lastAnswerDate}>{question.created_at}</span>
           </div>
           : <form className={styles.formAnswer}>
             <input type="text" placeholder='...' />
@@ -26,7 +26,7 @@ const RenderQuestions = () => {
 export const AnswerPost = () => {
   return (
     <div className={styles.answerContainer}>
-      <h3 style={{ color: '#fff' }} >Ultimas respuestas</h3>
+      <h3 style={{ color: '#000' }} >Ultimas respuestas</h3>
       <RenderQuestions />
     </div>
   )

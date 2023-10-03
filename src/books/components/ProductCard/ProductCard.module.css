@@ -116,5 +116,12 @@
         align-items: center;
         justify-content: center;
     }
+
+    .cardDescription span{
+        padding: .2rem 1rem;
+        border-radius: 5px; 
+        font-weight: bold;
+        width: max-content;
+    }
     
   }

@@ -5,7 +5,7 @@ export const QuestionForm = () => {
 
     <div className={styles.questionFormContainer}>
 
-      <h3 style={{ color: '#fff' }}>Pregunta al vendedor</h3>
+      <h3 style={{ color: '#000' }}>Pregunta al vendedor</h3>
 
       <form className={styles.questionForm}>
         <input className={styles.questionFormInput} type="text" placeholder='Escribe tu pregunta' />

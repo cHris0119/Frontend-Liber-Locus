@@ -25,7 +25,7 @@ export const EditPostForm = ({ bookList }) => {
     nameAuthor: bookToEdit.author,
     price: bookToEdit.price,
     description: bookToEdit.description,
-    genre: bookToEdit.book_category
+    genre: bookToEdit.book_category.id
   }
 
   const {
