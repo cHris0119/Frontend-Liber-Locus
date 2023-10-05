@@ -1,11 +1,46 @@
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+
+import { useReviewStore } from '../../../hooks'
+import { Loader, StarRatingWithoutChange } from '../'
 
 import styles from './MyReview.module.css'
 
 export const MyReview = () => {
+  const { user } = useSelector(state => state.auth)
+  const { reviewList, isLoadingReview } = useSelector(state => state.review)
+  const { startLoadingReviews, startDeletingReview } = useReviewStore()
+
+  const myReviews = reviewList.filter((review) => review.user.id === user.id)
+  const hasReview = myReviews.length > 0
+
+  const handleDelete = async (id) => {
+    const confirmacion = confirm('Estas seguro que quieres eliminar esta reseña?')
+    if (confirmacion) {
+      await startDeletingReview(id)
+      console.log('Eliminado')
+    } else {
+      console.log('cancelado')
+    }
+  }
+
+  useEffect(() => {
+    startLoadingReviews()
+  }, [])
+
+  if (isLoadingReview === true) {
+    return (
+      <div style={{ height: '100%' }}>
+      <Loader />
+      </div>
+    )
+  }
   return (
     <>
-    <article className={styles.myPost}>
+    {hasReview
+      ? (myReviews?.map((review) => (
+    <article key={review.id} className={styles.myPost}>
 
       <div className={styles.articleImgContainer}>
         <img src="" alt="img-review" />
@@ -13,17 +48,20 @@ export const MyReview = () => {
 
       <div className={styles.articleContent}>
         <div className={styles.articleDetails}>
-            <p>Dracula</p>
-            <p>Calificación: ⭐⭐⭐</p>
+            <p>{review.title}</p>
+            <StarRatingWithoutChange numStar={review.valoration} />
             <p>Publicado hace: 2d</p>
         </div>
         <div className={styles.articleActions}>
           <button><Link to='/editarReview'>Editar</Link></button>
-          <button>Eliminar</button>
+          <button onClick={() => handleDelete(review.id)}>Eliminar</button>
         </div>
       </div>
 
     </article>
+
+        )))
+      : (<h2 className={styles.noFound}>No tienes reviews</h2>)}
 
   </>
   )

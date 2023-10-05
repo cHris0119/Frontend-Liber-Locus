@@ -1,15 +1,24 @@
 import { ReviewCard } from '../ReviewCard/ReviewCard'
 import styles from './ReviewsList.module.css'
 
-export const ReviewsList = () => {
-  const reviews = [1, 2, 3, 4, 5, 6, 7]
+export const ReviewsList = ({ reviewList }) => {
+  const hasReview = reviewList.length > 0
+  console.log(reviewList)
   return (
-    <div className={styles.reviewsListContainer}>
-
-      { reviews.map((review) => (
-        <ReviewCard key={review} />
-      )) }
-
-    </div>
+    <>
+    {hasReview
+      ? (
+      <div className={styles.reviewsListContainer}>
+        <ReviewCard
+        review = {reviewList}
+        />
+      </div>
+        )
+      : (
+        <div className={styles.NoFoundContainer}>
+          <h2 className={styles.noFound}>No se encuentran libros...</h2>
+        </div>
+        )}
+</>
   )
 }

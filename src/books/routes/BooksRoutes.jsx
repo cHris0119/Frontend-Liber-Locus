@@ -6,9 +6,11 @@ import ScrollToTop from '../services/ScrollToTop'
 import { EditDiscussionPage } from '../pages/EditDiscussionPage'
 import 'animate.css'
 import { EditReview } from '../pages/EditReview'
+import { useSelector } from 'react-redux'
 
 export const BooksRoutes = () => {
   const [modalOpen, handleModal] = useModalOpen()
+  const { reviewList } = useSelector(state => state.review)
 
   return (
     <>
@@ -49,9 +51,9 @@ export const BooksRoutes = () => {
           {/* RESEÑAS */}
           <Route path="reseñas" element={<ReviewsPage />} >
 
-            <Route path="populares" element={<ReviewsList />} />
-            <Route path="recientes" element={<ReviewsList />} />
-            <Route path="paraTi" element={<ReviewsList />} />
+            <Route path="populares" element={<ReviewsList reviewList={reviewList} />} />
+            <Route path="recientes" element={<ReviewsList reviewList={reviewList} />} />
+            <Route path="paraTi" element={<ReviewsList reviewList={reviewList} />} />
 
           </Route>
 

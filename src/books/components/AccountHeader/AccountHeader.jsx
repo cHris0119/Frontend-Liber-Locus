@@ -18,7 +18,7 @@ export const AccountHeader = () => {
             <section className={styles.headerLeft}>
                 <div className={styles.headerContainerImg}>
                     <img
-                    src={user.userPhoto} alt="img-user" />
+                    src={`http://127.0.0.1:8000/LB_API/staticfiles${user.userPhoto}`} alt="img-user" />
                 </div>
             </section>
 

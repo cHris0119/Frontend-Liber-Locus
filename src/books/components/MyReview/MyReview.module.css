@@ -39,3 +39,10 @@
 .articleActions button a{
     color: white;
 }
+
+.noFound{
+    
+    text-align: center;
+    text-transform: uppercase;
+    color: #ffffff;
+}

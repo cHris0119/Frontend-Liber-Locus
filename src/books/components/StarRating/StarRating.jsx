@@ -3,7 +3,13 @@ import { FaStar } from 'react-icons/fa'
 
 import styles from './StarRating.module.css'
 
-export const StarRating = ({ numStar = 0 }) => {
+export const StarRating = ({
+  numStar = 0,
+  value,
+  onChange,
+  error,
+  errorMsg
+}) => {
   const [rating, setRating] = useState(numStar)
   const [hover, setHover] = useState(null)
 
@@ -32,13 +38,14 @@ export const StarRating = ({ numStar = 0 }) => {
                     type="radio"
                     name='valoration'
                     value={currentRating}
+                    onChange={onChange}
                     onClick={() => setRating(currentRating)}
                     />
                 </label>
           )
         })}
         </div>
-        <p>{ rating ?? 0 } / 5</p>
+
     </div>
   )
 }
@@ -49,7 +56,6 @@ export const StarRatingWithoutChange = ({ numStar = 0, size = 30 }) => {
 
   return (
     <div className={styles.ratingContainer}>
-        <label>Valoración</label>
 
         <div>
 
@@ -76,7 +82,6 @@ export const StarRatingWithoutChange = ({ numStar = 0, size = 30 }) => {
           )
         })}
         </div>
-        <p>{ rating ?? 0 } / 5</p>
     </div>
   )
 }

@@ -12,6 +12,7 @@ export const PostList = ({ bookList }) => {
         ? (<div className={styles.postListContainer}>
           <ProductCard books={bookList} />
         </div>)
+
         : (<div className={styles.NoFoundContainer}>
           {/* (<Loader />) */}
           <h2 className={styles.noFound}>No se encuentran libros...</h2>

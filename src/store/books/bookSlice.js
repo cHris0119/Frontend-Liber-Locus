@@ -46,4 +46,11 @@ export const bookSlice = createSlice({
     }
   }
 })
-export const { onAddBook, errorToAdd, clearMessage, onLoadBook, onDeleteBook, onUpdateBook } = bookSlice.actions
+export const {
+  onAddBook,
+  errorToAdd,
+  clearMessage,
+  onLoadBook,
+  onDeleteBook,
+  onUpdateBook
+} = bookSlice.actions

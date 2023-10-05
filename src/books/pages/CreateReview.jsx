@@ -1,15 +1,56 @@
 import { useNavigate } from 'react-router-dom'
 import { Input } from '../components/Input/Input'
 
-import styles from '../styles/CreateReview.module.css'
 import { StarRating } from '../components/StarRating/StarRating'
+import styles from '../styles/CreateReview.module.css'
+import { useForm, useReviewStore } from '../../hooks'
+import { useState } from 'react'
+import { TextAreaForm } from '../components'
+
+const initialForm = {
+  img: '',
+  title: '',
+  valoration: 0,
+  description: ''
+}
+
+const formValidations = {
+  title: [(value) => value.length >= 1, 'Debe ser un titulo valido'],
+  valoration: [(value) => value.length >= 1 && !isNaN(parseInt(value)), 'El numero es requerido'],
+  description: [(value) => value.length >= 1, 'Debe ser una descripcion valida']
+}
 
 export const CreateReview = () => {
   const navigate = useNavigate()
+  const [formSubmitted, setFormSubmitted] = useState(false)
+  const { startAddReview } = useReviewStore()
 
-  const handleSubmit = (e) => {
+  const {
+    handleInputChange,
+    handleResetForm,
+    handleFileChange,
+    formState,
+
+    titleValid,
+    valorationValid,
+    descriptionValid,
+    isFormValid
+
+  } = useForm({
+    initialForm,
+    formValidations
+  })
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    navigate('/reseñas/populares')
+    setFormSubmitted(true)
+    if (isFormValid) {
+      handleResetForm()
+      setFormSubmitted(false)
+
+      await startAddReview(formState)
+      navigate('/reseñas/populares')
+    }
   }
 
   return (
@@ -24,29 +65,38 @@ export const CreateReview = () => {
         <Input
         label='Imagen'
         type='file'
-        value=''
-        name='imagen'
+        name='img'
+        onChange={handleFileChange
+        }
+
         />
 
         <Input
         label='Titulo'
         type='text'
-        value=''
-        name='titulo'
+        name='title'
+        value={formState.title}
+        onChange={handleInputChange}
+        error={titleValid && formSubmitted}
+        errorMsg = {titleValid}
         />
 
-        <StarRating />
+        <StarRating
+         value={formState.valoration}
+         onChange={handleInputChange}
+         error={valorationValid && formSubmitted}
+         errorMsg = {valorationValid}
+        />
 
-        <div className={styles.textareaContainer}>
+        <TextAreaForm
+        label='Descripcion'
+        name='description'
+        value={formState.description}
+        onChange={handleInputChange}
+        error={descriptionValid && formSubmitted}
+        errorMsg = {descriptionValid}
 
-          <label htmlFor="descripcion">
-            Descripción
-          </label>
-
-          <textarea>
-          </textarea>
-
-        </div>
+          />
 
         <button
         className={styles.saveChanges}
