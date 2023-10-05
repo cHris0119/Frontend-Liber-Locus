@@ -1,28 +1,10 @@
-import { useEffect } from 'react'
-import { Loader, ProductCard } from '../'
-import { useBookStore } from '../../../hooks'
-import { useSelector } from 'react-redux'
+import { ProductCard } from '../'
 
 import styles from './PostList.module.css'
 
-export const PostList = () => {
-  const { bookList } = useSelector(state => state.book)
-  const { startLoadingEvents } = useBookStore()
-  const { isLoadingBooks } = useSelector(state => state.book)
+export const PostList = ({ bookList }) => {
   const hasPost = bookList.length > 0
   //
-
-  useEffect(() => {
-    startLoadingEvents()
-  }, [])
-
-  if (isLoadingBooks === true) {
-    return (
-      <div style={{ height: '100vh' }}>
-      <Loader />
-      </div>
-    )
-  }
 
   return (
     <>

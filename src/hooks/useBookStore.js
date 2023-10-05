@@ -34,7 +34,6 @@ export const useBookStore = () => {
         book_img: 'bookIMG',
         seller: uid,
         book_state: 2,
-        valoration: 1,
         book_category: genre
       },
       config)
@@ -65,6 +64,8 @@ export const useBookStore = () => {
   const startUpdateBook = async (book) => {
     const { id, name, price, description, author, book_img: bookImg, book_category: bookCategory } = book
     try {
+      console.log('book', book)
+
       //
       const response = await booksApi.put(`api/books/update/${id}/`, {
         name,
@@ -74,7 +75,8 @@ export const useBookStore = () => {
         book_img: bookImg,
         book_category: bookCategory
       }, config)
-      dispatch(onUpdateBook(book))
+      const { data } = response
+      dispatch(onUpdateBook(data))
 
       Swal.fire({
         icon: 'success',
@@ -111,7 +113,6 @@ export const useBookStore = () => {
   const startLoadingEvents = async () => {
     try {
       const { data } = await booksApi.get('api/books/get_all_books/', config)
-      console.log(data)
 
       dispatch(onLoadBook(data))
     } catch (error) {

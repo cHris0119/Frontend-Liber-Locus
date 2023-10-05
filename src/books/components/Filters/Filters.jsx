@@ -3,8 +3,11 @@ import styles from './Filters.module.css'
 import booksApi from '../../../api/booksApi'
 
 export const Filters = ({
-  handleCategory,
-  category
+  category,
+  price,
+
+  handlePrice,
+  handleCategory
 }) => {
   const [genero, setGenero] = useState([])
   const token = JSON.parse(localStorage.getItem('token'))
@@ -27,13 +30,19 @@ export const Filters = ({
     }
     getCategory()
   }, [])
+
   return (
 
     <div className={styles.filtersContainer}>
 
-      <select className={styles.filter}>
-        <option value="Menor a mayor">Menor a mayor</option>
-        <option value="Mayor a menor">Mayor a menor</option>
+      <select
+      onChange={handlePrice}
+      value={price}
+      className={styles.filter}>
+
+        <option value="seleccione">Seleccione</option>
+        <option value="menor">Menor a mayor</option>
+        <option value="mayor">Mayor a menor</option>
       </select>
 
       <select

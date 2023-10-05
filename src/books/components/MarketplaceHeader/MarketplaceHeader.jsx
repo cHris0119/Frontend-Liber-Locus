@@ -4,12 +4,14 @@ import { NavLink } from 'react-router-dom'
 import styles from './MarketplaceHeader.module.css'
 
 export const MarketplaceHeader = ({
-  filteredBook,
-  setFilteredBook,
-  handleSearch,
-  handleCategory,
+
   search,
-  category
+  category,
+  price,
+
+  handlePrice,
+  handleSearch,
+  handleCategory
 }) => {
   return (
     <div className={styles.marketHeader}>
@@ -20,11 +22,13 @@ export const MarketplaceHeader = ({
        />
 
       <Filters
-      filteredBook={filteredBook}
-      setFilteredBook={setFilteredBook}
-      handleCategory = {handleCategory}
       category={category}
+      price={price}
+
+      handlePrice = {handlePrice}
+      handleCategory = {handleCategory}
        />
+
       <NavLink className={styles.publishBook} to={'/publicarLibro'}>
         <button className={styles.publishBookButton}>Publicar</button>
       </NavLink>

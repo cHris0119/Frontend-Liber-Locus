@@ -20,7 +20,7 @@ export const ProductCard = ({ books }) => {
                 </div>
 
                 <div className={styles.cardDescription}>
-                  <p>{book.price} CLP</p>
+                  <p>{parseInt(book.price)} CLP</p>
                   <span>{book.book_category.description}</span>
                 </div>
               </div>

@@ -65,10 +65,8 @@ export const EditPostForm = ({ bookList }) => {
         description,
         author: nameAuthor,
         book_img: 'aaa',
-        book_category: genre,
-        valoration: bookToEdit.valoration,
-        seller: bookToEdit.seller,
-        book_state: bookToEdit.book_state
+        book_category: parseInt(genre),
+        seller: bookToEdit.seller
       }
       await startUpdateBook(book)
       navigate('/perfil/misPost')
