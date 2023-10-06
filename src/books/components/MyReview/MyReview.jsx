@@ -36,10 +36,19 @@ export const MyReview = () => {
       </div>
     )
   }
+
   return (
     <>
     {hasReview
-      ? (myReviews?.map((review) => (
+      ? (myReviews?.map((review) => {
+          const fechaActual = new Date()
+          const fechaReview = new Date(review.created_at)
+          const diferencia = fechaActual - fechaReview
+          const segundos = Math.floor(diferencia / 1000)
+          const minutos = Math.floor(segundos / 60)
+          const horas = Math.floor(minutos / 60)
+          const dias = Math.floor(horas / 24)
+          return (
     <article key={review.id} className={styles.myPost}>
 
       <div className={styles.articleImgContainer}>
@@ -50,17 +59,18 @@ export const MyReview = () => {
         <div className={styles.articleDetails}>
             <p>{review.title}</p>
             <StarRatingWithoutChange numStar={review.valoration} />
-            <p>Publicado hace: 2d</p>
+            <p>Publicado hace: {dias < 1 ? '' : ` ${dias} días`} {horas < 1 ? 'Menos de una hora' : ` ${horas} horas`}</p>
         </div>
         <div className={styles.articleActions}>
-          <button><Link to='/editarReview'>Editar</Link></button>
+          <button><Link to={`/editarReview/${review.id}`}>Editar</Link></button>
           <button onClick={() => handleDelete(review.id)}>Eliminar</button>
         </div>
       </div>
 
     </article>
 
-        )))
+          )
+        }))
       : (<h2 className={styles.noFound}>No tienes reviews</h2>)}
 
   </>

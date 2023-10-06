@@ -1,59 +1,31 @@
-import { useNavigate } from 'react-router-dom'
-import { Input } from '../components/Input/Input'
-
+import { useEffect } from 'react'
+import { EditReviewForm, Loader } from '../components'
 import styles from '../styles/EditReview.module.css'
+import { useSelector } from 'react-redux'
+import { useReviewStore } from '../../hooks'
 
 export const EditReview = () => {
-  const navigate = useNavigate()
+  const { startLoadingReviews } = useReviewStore()
+  const { isLoadingReview, reviewList } = useSelector(state => state.review)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    navigate('/perfil/misReseñas')
+  useEffect(() => {
+    startLoadingReviews()
+  }, [])
+
+  if (isLoadingReview === true) {
+    return (
+      <div style={{ height: '100vh' }}>
+      <Loader />
+      </div>
+    )
   }
   return (
+
     <div className={styles.editAccountContainer}>
 
-    <form
-    className={styles.editAccountForm}
-    onSubmit={handleSubmit}
-    >
-        <h1>Editar Reseña</h1>
+      <EditReviewForm reviews = {reviewList} />
 
-        <Input
-        label='Imagen'
-        type='file'
-        name='image'
-        />
+    </div>
 
-        <Input
-        label='Nombre'
-        type='text'
-        value='Dracula'
-        name='nombre'
-        />
-
-        <Input
-        label='Valoración 0-10'
-        type='number'
-        value='3'
-        name='valoracion'
-        />
-
-        <div className={styles.textareaContainer}>
-            <label htmlFor="descripcion">Descripción</label>
-            <textarea
-            name="descripcion"
-            id="descripcion"
-            value='Muy buen libro, recomendado'
-            ></textarea>
-        </div>
-
-        <button
-        className={styles.saveChanges}
-        >
-            Guardar cambios
-        </button>
-    </form>
-</div>
   )
 }

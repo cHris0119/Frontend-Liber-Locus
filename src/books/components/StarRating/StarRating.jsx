@@ -10,7 +10,7 @@ export const StarRating = ({
   error,
   errorMsg
 }) => {
-  const [rating, setRating] = useState(numStar)
+  const [rating, setRating] = useState(value)
   const [hover, setHover] = useState(null)
 
   return (

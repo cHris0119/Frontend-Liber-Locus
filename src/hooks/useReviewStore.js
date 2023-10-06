@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import booksApi from '../api/booksApi'
-import { onAddReview, onDeleteReview, onLoadReview } from '../store/review/reviewSlice'
+import { onAddReview, onDeleteReview, onLoadReview, onUpdateReview } from '../store/review/reviewSlice'
 import Swal from 'sweetalert2'
 
 export const useReviewStore = () => {
@@ -30,7 +30,7 @@ export const useReviewStore = () => {
       config)
 
       console.log(response)
-      dispatch(onAddReview(response.data))
+      dispatch(onAddReview(response.data.reviewData))
       Swal.fire({
         icon: 'success',
         title: 'Reseña agregada con exito.',
@@ -41,6 +41,35 @@ export const useReviewStore = () => {
       console.log(error)
     }
   }
+  //* EDITAR REVIEW
+  const startUpdateReview = async (review) => {
+    const { description, id, image, title, valoration } = review
+    try {
+      console.log(review)
+
+      const response = await booksApi.put(`api/reviews/update/${parseInt(id)}/`, {
+
+        title,
+        description,
+        review_img: image,
+        valoration: parseInt(valoration)
+
+      }, config)
+
+      dispatch(onUpdateReview(response.data))
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Reseña editada con exito.',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   //* ELIMINAR REVIEW POR ID
   const startDeletingReview = async (id) => {
     try {
@@ -84,6 +113,7 @@ export const useReviewStore = () => {
     //* Metodos
     startLoadingReviews,
     startAddReview,
+    startUpdateReview,
     startDeletingReview
   }
 }

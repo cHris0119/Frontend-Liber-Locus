@@ -25,6 +25,15 @@ export const ReviewDetail = () => {
       </div>
     )
   }
+  const fullName = `${review.user.first_name} ${review.user.last_name}`
+
+  const fechaActual = new Date()
+  const fechaReview = new Date(review.created_at)
+  const diferencia = fechaActual - fechaReview
+  const segundos = Math.floor(diferencia / 1000)
+  const minutos = Math.floor(segundos / 60)
+  const horas = Math.floor(minutos / 60)
+  const dias = Math.floor(horas / 24)
 
   return (
     <div className={styles.reviewDetailContainer}>
@@ -37,8 +46,10 @@ export const ReviewDetail = () => {
             <img src="https://a.ltrbxd.com/resized/avatar/upload/1/2/0/3/7/7/7/shard/avtr-0-1000-0-1000-crop.jpg?v=ff62b2f12e" alt="userIMG" />
           </div>
           <div className={styles.userInfo}>
-            <p>Publicada hace 3 horas</p>
-            <p>Por <span>UserName</span></p>
+            <p>Publicada hace
+              {dias < 1 ? '' : ` ${dias} dias`} {horas < 1 ? 'Menos de una hora' : ` ${horas} horas`}
+              </p>
+            <p>Por <span>{fullName}</span></p>
           </div>
 
         </div>

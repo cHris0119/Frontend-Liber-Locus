@@ -80,7 +80,7 @@ export const BooksRoutes = () => {
           <Route path="/editarPerfil" element={<EditAccount />} />
           <Route path="/editarDireccion" element={<EditDirection />} />
           <Route path="/editarPost/:id" element={<EditPost />} />
-          <Route path="/editarReview" element={<EditReview />} />
+          <Route path="/editarReview/:id" element={<EditReview />} />
           {/* FIN PERFIL */}
 
           <Route path="notificaciones" element={<h1>Notificaciones</h1>} />

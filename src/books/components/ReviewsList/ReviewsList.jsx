@@ -10,7 +10,7 @@ export const ReviewsList = ({ reviewList }) => {
       ? (
       <div className={styles.reviewsListContainer}>
         <ReviewCard
-        review = {reviewList}
+        reviews = {reviewList}
         />
       </div>
         )
