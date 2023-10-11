@@ -1,10 +1,11 @@
 import { NavLink, Outlet, Link } from 'react-router-dom'
 
-import styles from '../styles/ReviewsPage.module.css'
 import { useEffect } from 'react'
 import { useReviewStore } from '../../hooks'
 import { useSelector } from 'react-redux'
 import { Loader } from '../components'
+
+import styles from '../styles/ReviewsPage.module.css'
 
 export const ReviewsPage = () => {
   const { startLoadingReviews } = useReviewStore()
@@ -23,6 +24,7 @@ export const ReviewsPage = () => {
   }
   return (
     <div className={styles.reviewPageContainer}>
+      <h1 style={{ color: '#fff', textAlign: 'center', borderBottom: '2px solid #fff', paddingBottom: '20px', display: 'inline-block' }}>RESEÑAS</h1>
 
         <section className={styles.createButton}>
           <Link to={'/crearReseña'}>
@@ -49,7 +51,9 @@ export const ReviewsPage = () => {
 
         </section>
 
-        <Outlet />
+        <div className={styles.forumContent}>
+            <Outlet />
+        </div>
 
     </div>
   )

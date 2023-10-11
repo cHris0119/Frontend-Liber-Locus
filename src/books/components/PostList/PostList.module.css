@@ -1,6 +1,6 @@
 .postListContainer{
-    width: 80%;
-    
+    width: 70%;
+    background-color: #eee;
     border-radius: 10px;
     margin: 0 auto;
     display: grid;

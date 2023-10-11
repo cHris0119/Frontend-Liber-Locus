@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { Home, Marketplace, PaymentSelection, PostDetail, ShippingDetail, AccountPage, EditAccount, EditDirection, EditPost, ForumPage, ForumMain, CreateDiscussionPage, DiscussionDetail, ReviewsPage, ReviewDetail, CreateReview } from '../pages'
+import { Home, Marketplace, PaymentSelection, PostDetail, ShippingDetail, AccountPage, EditAccount, EditDirection, EditPost, ForumPage, ForumMain, CreateDiscussionPage, DiscussionDetail, ReviewsPage, ReviewDetail, CreateReview, CreateForum } from '../pages'
 import { DiscussionList, ForumList, MyAuction, MyDiscussion, MyPost, MyReview, PublishBookForm, ReviewsList, Sidebar } from '../components'
 import useModalOpen from '../hooks/useModalOpen'
 import ScrollToTop from '../services/ScrollToTop'
@@ -46,6 +46,8 @@ export const BooksRoutes = () => {
             <Route path="ultimasDiscusiones" element={<DiscussionList />} />
             <Route path="misDiscusiones" element={<MyDiscussion />} />
           </Route>
+          <Route path="/crearForo" element={<CreateForum />} />
+
           {/* FIN DISCUSION FORO */}
 
           {/* RESEÑAS */}

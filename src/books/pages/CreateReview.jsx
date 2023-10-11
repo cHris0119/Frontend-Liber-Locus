@@ -2,10 +2,11 @@ import { useNavigate } from 'react-router-dom'
 import { Input } from '../components/Input/Input'
 
 import { StarRating } from '../components/StarRating/StarRating'
-import styles from '../styles/CreateReview.module.css'
 import { useForm, useReviewStore } from '../../hooks'
 import { useState } from 'react'
 import { TextAreaForm } from '../components'
+
+import styles from '../styles/CreateReview.module.css'
 
 const initialForm = {
   img: '',

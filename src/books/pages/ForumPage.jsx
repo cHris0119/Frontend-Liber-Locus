@@ -6,8 +6,8 @@ import styles from '../styles/ForumPage.module.css'
 export const ForumPage = () => {
   return (
     <div className={styles.forumContainer}>
+      <h1 style={{ color: '#fff', textAlign: 'center', borderBottom: '2px solid #fff', paddingBottom: '20px', display: 'inline-block' }}>FOROS</h1>
         <ForumHeader />
-        <div className={styles.forumMain}>
 
         <section className={styles.selectSection}>
 
@@ -32,7 +32,6 @@ export const ForumPage = () => {
             <Outlet />
           </div>
 
-        </div>
     </div>
   )
 }

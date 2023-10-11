@@ -5,7 +5,7 @@
     display: flex;
     gap: 1rem;
     margin: 0 auto;
-    width: 80%;
+    width: 70%;
     justify-content: space-evenly;
     flex-wrap: wrap;
 }

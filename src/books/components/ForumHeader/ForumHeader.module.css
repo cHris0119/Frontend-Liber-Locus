@@ -1,8 +1,6 @@
 .forumHeaderContainer {
-  padding: 1rem;
-  
-  margin: 1rem auto;
-  width: 80%;
+  margin: 0 auto;
+  width: 70%;
   border-radius: 10px;
   display: flex;
   flex-flow: row wrap;
@@ -12,7 +10,7 @@
 }
 
 .formForumHeader {
-  width: 90%;
+  width: 100%;
 }
 
 .formInput {
