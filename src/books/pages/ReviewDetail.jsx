@@ -56,16 +56,18 @@ export const ReviewDetail = () => {
       id: user.id,
       review_id: id
     }
-    const websocket = new WebSocket('ws://localhost:8000/LB_API/consumer/likes')
+    const websocket = new WebSocket('ws://localhost:8000/ws/consumer/likes/')
 
     websocket.onopen = () => {
+      console.log('wb abierto')
       websocket.send(JSON.stringify(dataToSend))
     }
 
     websocket.onmessage = (event) => {
-      const data = JSON.parse(event.data)
-      console.log('Received data from server:', data)
-      setLikes(data.likes)
+      console.log(event)
+      // const data = JSON.parse(event.data)
+      // console.log('Received data from server:', data)
+      // setLikes(data.likes)
       websocket.close()
     }
 
