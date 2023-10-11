@@ -89,6 +89,10 @@
     background-color: #524644eb;
 }
 
+.likeButton span{
+    font-weight: 600;
+}
+
 @media (max-width: 1265px) {
     .container{
         width: 80%;

@@ -11,7 +11,7 @@ import booksApi from '../../api/booksApi'
 export const ReviewDetail = () => {
   const { reviewList, isLoadingReview } = useSelector(state => state.review)
   const { user } = useSelector(state => state.auth)
-  const [likes, setLikes] = useState(0)
+  const [likes, setLikes] = useState({})
   const { id } = useParams()
   const { startLoadingReviews } = useReviewStore()
 
@@ -63,11 +63,10 @@ export const ReviewDetail = () => {
       websocket.send(JSON.stringify(dataToSend))
     }
 
-    websocket.onmessage = (event) => {
-      console.log(event)
-      // const data = JSON.parse(event.data)
-      // console.log('Received data from server:', data)
-      // setLikes(data.likes)
+    websocket.onmessage = async (event) => {
+      const data = await JSON.parse(event.data)
+      console.log(likes)
+      setLikes(data)
       websocket.close()
     }
 
@@ -126,8 +125,20 @@ export const ReviewDetail = () => {
           <p className={styles.description}>{review.description}</p>
 
           <div className={styles.likeButton}>
-          <button onClick={handleLike}>Like</button>
-          <span>{likes.likes} likes</span>
+
+          <button onClick={handleLike}>
+            {likes.user_like ? 'Ya no me gusta' : 'Me gusta'}
+          </button>
+
+          <span>
+            { Object.entries(likes).length === 0
+
+              ? 'Cargando'
+              : `${likes.likes > 0 ? likes.likes : 0} me gusta`
+
+            }
+          </span>
+
           </div>
         </div>
 
