@@ -1,17 +1,20 @@
-import { useParams } from 'react-router-dom'
-import { BackButton, Loader, StarRatingWithoutChange } from '../components'
-
+import { useLocation, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useReviewStore } from '../../hooks'
 import { useEffect, useState } from 'react'
+import { RiUserVoiceFill } from 'react-icons/ri'
 
-import styles from '../styles/ReviewDetail.module.css'
+import { BackButton, Loader, StarRatingWithoutChange } from '../components'
 import booksApi from '../../api/booksApi'
 
+import styles from '../styles/ReviewDetail.module.css'
+
 export const ReviewDetail = () => {
+  const location = useLocation()
   const { reviewList, isLoadingReview } = useSelector(state => state.review)
   const { user } = useSelector(state => state.auth)
   const [likes, setLikes] = useState({})
+  const [voiceOn, setVoiceOn] = useState(false)
   const { id } = useParams()
   const { startLoadingReviews } = useReviewStore()
 
@@ -38,8 +41,22 @@ export const ReviewDetail = () => {
   }, [])
 
   useEffect(() => {
+    const unlisten = () => {
+      if (voiceOn) {
+        const synthesis = window.speechSynthesis
+        synthesis.cancel()
+        setVoiceOn(false)
+      }
+    }
+
+    return () => {
+      unlisten()
+    }
+  }, [location, voiceOn])
+
+  useEffect(() => {
     startLoadingReviews()
-  }, [])
+  }, [location.pathname])
 
   if (isLoadingReview === true) {
     return (
@@ -78,6 +95,34 @@ export const ReviewDetail = () => {
       console.log('WebSocket closed')
     }
   }
+
+  //* Voice
+  const handleVoice = () => {
+    if ('speechSynthesis' in window) {
+      const synthesis = window.speechSynthesis
+
+      if (synthesis.speaking && voiceOn) {
+        synthesis.cancel()
+        setVoiceOn(false)
+      } else {
+        const mensaje = new SpeechSynthesisUtterance()
+        mensaje.text = review.description
+        mensaje.lang = 'es-ES'
+        mensaje.rate = 1.0
+
+        synthesis.speak(mensaje)
+        setVoiceOn(true)
+
+        window.addEventListener('beforeunload', () => {
+          synthesis.cancel()
+          setVoiceOn(false)
+        })
+      }
+    } else {
+      console.log('Tu navegador no admite sintesis de voz')
+    }
+  }
+
   const fullName = `${review.user.first_name} ${review.user.last_name}`
 
   const fechaActual = new Date()
@@ -122,7 +167,11 @@ export const ReviewDetail = () => {
 
           </div>
 
-          <p className={styles.description}>{review.description}</p>
+          <p className={styles.description}>
+            {review.description}
+          </p>
+
+          <div className={styles.footer}>
 
           <div className={styles.likeButton}>
 
@@ -140,6 +189,24 @@ export const ReviewDetail = () => {
           </span>
 
           </div>
+
+          <div className={styles.voiceButtonContainer}>
+            <>
+            <button
+            onClick={handleVoice}
+            className={styles.voiceButton}>
+              <RiUserVoiceFill />
+            </button>
+
+            <span>
+              { voiceOn ? 'Cancelar' : 'Escuchar reseña'}
+            </span>
+
+              </>
+          </div>
+
+          </div>
+
         </div>
 
         </div>
