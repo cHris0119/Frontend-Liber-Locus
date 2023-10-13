@@ -1,10 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { Input } from '../components/Input/Input'
 
-import styles from '../styles/EditAccount.module.css'
 import { useSelector } from 'react-redux'
 import { useAuthStore, useForm } from '../../hooks'
 import { useState } from 'react'
+
+import styles from '../styles/EditAccount.module.css'
 
 const formValidations = {
   firstName: [(value) => value.length >= 1, 'Debe ser un nombre valido'],

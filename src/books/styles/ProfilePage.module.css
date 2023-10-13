@@ -1,0 +1,52 @@
+.accountPage {
+    width: 100%;
+    padding: 2rem;
+  
+  }
+  
+  .accountBottom {
+    width: 60%;
+    margin: 5rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .selectSection {
+    margin: 0 auto;
+    background-color: #fff;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .selectSection a {
+    padding: 5px 0;
+    color: #000;
+    width: 50%;
+    text-align: center;
+  }
+  
+  .active {
+    border-top: 4px solid #000000;
+  }
+  
+  .accountContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  @media screen and (max-width: 1265px) {
+    .accountBottom {
+      width: 80%;
+    }
+  }
+  
+  @media screen and (max-width: 767px) {
+    .accountBottom {
+      width: 100%;
+    }
+  }
+  

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { onAddForum, onLoadForum } from '../store/forum/forumSlice'
+import { onAddForum, onDeleteForum, onLoadForum, onUpdateForum } from '../store/forum/forumSlice'
 import Swal from 'sweetalert2'
 import booksApi from '../api/booksApi'
 
@@ -17,17 +17,61 @@ export const useForumStore = () => {
   const startAddForum = async (forum) => {
     const { name, img, category } = forum
     try {
+      console.log(name, img || 'foroImg', category)
+
       const response = await booksApi.post('api/create_forum/', {
         name,
-        forum_img: img,
-        forum_category: category
+        forum_img: img || 'forumImg',
+        forum_category: parseInt(category)
       },
       config)
-      console.log(response)
-      dispatch(onAddForum(response.data.reviewData))
+      dispatch(onAddForum(response.data.ForumData))
       Swal.fire({
         icon: 'success',
-        title: 'Reseña agregada con exito.',
+        title: 'Foro creado con exito.',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  //* EDITAR FORO
+  const startEditingForum = async (forum, id) => {
+    try {
+      console.log('sdas', forum)
+      console.log(id)
+
+      const { name, category, img } = forum
+
+      const response = await booksApi.put(`api/forums/update/${parseInt(id)}/`, {
+        name,
+        forum_category: parseInt(category),
+        forum_img: img || 'forumImg'
+      }, config)
+      const { data } = response
+
+      dispatch(onUpdateForum(data.UpdatedForumData))
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Foro editado con exito.',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  //* ELIMINAR FORO
+  const startDeletingForum = async (id) => {
+    try {
+      await booksApi.delete(`api/books/delete/${id}/`, config)
+
+      dispatch(onDeleteForum(id))
+      Swal.fire({
+        icon: 'success',
+        title: 'Foro eliminado con exito.',
         showConfirmButton: false,
         timer: 1500
       })
@@ -57,6 +101,8 @@ export const useForumStore = () => {
     forumList,
     //* METODOS
     startAddForum,
+    startDeletingForum,
+    startEditingForum,
     startLoadingForums
   }
 }

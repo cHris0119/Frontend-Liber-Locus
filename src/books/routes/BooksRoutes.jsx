@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { Home, Marketplace, PaymentSelection, PostDetail, ShippingDetail, AccountPage, EditAccount, EditDirection, EditPost, ForumPage, ForumMain, CreateDiscussionPage, DiscussionDetail, ReviewsPage, ReviewDetail, CreateReview, CreateForum } from '../pages'
+import { Home, Marketplace, PaymentSelection, PostDetail, ShippingDetail, AccountPage, EditAccount, EditDirection, EditPost, ForumPage, ForumMain, CreateDiscussionPage, DiscussionDetail, ReviewsPage, ReviewDetail, CreateReview, CreateForum, EditForumPage, MembersForumPage, ProfilePage } from '../pages'
 import { DiscussionList, ForumList, MyAuction, MyDiscussion, MyPost, MyReview, PublishBookForm, ReviewsList, Sidebar } from '../components'
 import useModalOpen from '../hooks/useModalOpen'
 import ScrollToTop from '../services/ScrollToTop'
@@ -35,6 +35,8 @@ export const BooksRoutes = () => {
             <Route path="listaForos" element={<ForumList />} />
             <Route path="/foro/" element={<Navigate to='/foro/ultimosPost' />} />
           </Route>
+          <Route path="/miembros/:id" element={<MembersForumPage />} />
+
           {/* FIN FORO */}
 
           {/* DISCUSION FORO */}
@@ -42,10 +44,12 @@ export const BooksRoutes = () => {
           <Route path="/DiscussionDetail/:id" element={<DiscussionDetail />} />
           <Route path="/editarDiscusion/:id" element={<EditDiscussionPage />} />
 
-          <Route path="/foro/:nombre" element={<ForumMain />}>
+          <Route path="/foro/:id" element={<ForumMain />}>
             <Route path="ultimasDiscusiones" element={<DiscussionList />} />
             <Route path="misDiscusiones" element={<MyDiscussion />} />
           </Route>
+
+          <Route path="/editarForo/:id" element={<EditForumPage />} />
           <Route path="/crearForo" element={<CreateForum />} />
 
           {/* FIN DISCUSION FORO */}
@@ -79,6 +83,7 @@ export const BooksRoutes = () => {
             <Route path="/perfil/" element={<Navigate to='/perfil/misPost' />} />
           </Route>
 
+          <Route path="/usuario/:id" element={<ProfilePage />} />
           <Route path="/editarPerfil" element={<EditAccount />} />
           <Route path="/editarDireccion" element={<EditDirection />} />
           <Route path="/editarPost/:id" element={<EditPost />} />

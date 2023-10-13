@@ -1,0 +1,30 @@
+.genreContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+
+
+}
+
+.labelgenre {
+    font-weight: medium;
+    font-size: 16px;
+    color: #7C838A;
+}
+
+.inputgenre {
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #3a4a3f15;
+}
+
+.inputAuth::placeholder {
+    color: #3a4a3f45;
+}
+
+.error{
+    color: red;
+}

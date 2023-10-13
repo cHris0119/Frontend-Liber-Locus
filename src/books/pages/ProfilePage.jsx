@@ -1,16 +1,14 @@
-import { AccountHeader } from '../components/AccountHeader/AccountHeader'
-import { NavLink, Outlet } from 'react-router-dom'
+import { ProfileHeader } from '../components/ProfileHeader/ProfileHeader'
+import styles from '../styles/ProfilePage.module.css'
 
-import styles from '../styles/AccountPage.module.css'
-
-export const AccountPage = () => {
+export const ProfilePage = () => {
   return (
     <div className={styles.accountPage}>
-        <AccountHeader />
+      <ProfileHeader />
 
         <div className={styles.accountBottom}>
 
-          <section className={styles.selectSection}>
+          {/* <section className={styles.selectSection}>
               <NavLink
               to={'misPost'}
               className={({ isActive }) => (isActive ? styles.active : '')}
@@ -31,11 +29,11 @@ export const AccountPage = () => {
               }>
                 Mis reseñas
               </NavLink>
-          </section>
+          </section> */}
 
-          <section className={styles.accountContent}>
+          {/* <section className={styles.accountContent}>
               <Outlet />
-          </section>
+          </section> */}
 
         </div>
     </div>

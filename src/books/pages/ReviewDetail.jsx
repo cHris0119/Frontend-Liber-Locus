@@ -1,4 +1,4 @@
-import { useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useReviewStore } from '../../hooks'
 import { useEffect, useState } from 'react'
@@ -147,7 +147,7 @@ export const ReviewDetail = () => {
             <p>Publicada hace
               {dias < 1 ? '' : ` ${dias} dias`} {horas < 1 ? 'Menos de una hora' : ` ${horas} horas`}
               </p>
-            <p>Por <span>{fullName}</span></p>
+            <p>Por <Link to={`/usuario/${review.user.id}`}>{fullName}</Link></p>
           </div>
 
         </div>

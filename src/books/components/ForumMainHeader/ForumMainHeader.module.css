@@ -34,7 +34,16 @@
     gap: 1rem;
     align-items: center;
     flex-wrap: wrap;
-    
+    justify-content: space-between;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #00000050;
+}
+
+.leftHeader{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .forumDetailsButton{
@@ -50,6 +59,20 @@
 
 .forumDetailsButton:hover{
     background-color: #005ba1e8;
+}
+
+.configButton{
+    background-color: #1e130c;
+    color: #fff;
+    border: none;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: .2rem;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 10px;
 }
 
 .forumDetails span{

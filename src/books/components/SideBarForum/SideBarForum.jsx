@@ -11,6 +11,7 @@ export const SideBarForum = ({ menu }) => {
     ${menu ? styles.isActive : ''}
     `}>
         <h2>Mis foros</h2>
+
         <ul className={styles.forumHeaderUl}>
             {arr.map((foro) => (
                 <li
@@ -18,7 +19,7 @@ export const SideBarForum = ({ menu }) => {
                 className={styles.forumHeaderLi}>
 
                 <Link to={`/foro/${foro}`}>
-                    {foro}
+                    {foro} <span>admin</span>
                 </Link>
 
                 </li>

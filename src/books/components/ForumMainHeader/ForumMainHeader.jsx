@@ -1,6 +1,9 @@
-import styles from './ForumMainHeader.module.css'
+import { AiFillSetting } from 'react-icons/ai'
 
-export const ForumMainHeader = () => {
+import styles from './ForumMainHeader.module.css'
+import { Link } from 'react-router-dom'
+
+export const ForumMainHeader = ({ forum }) => {
   return (
     <header className={styles.header}>
 
@@ -11,10 +14,21 @@ export const ForumMainHeader = () => {
     <div className={styles.forumDetails}>
 
         <div className={styles.forumDetailsTitle}>
-            <h1>Foro 1</h1>
+
+          <div className={styles.leftHeader}>
+            <h1>{forum.name}</h1>
             <button className={styles.forumDetailsButton}>
                 Unirse
             </button>
+          </div>
+
+              <Link to={`/editarForo/${forum.id}`}>
+            <button className={styles.configButton}>
+              <AiFillSetting />
+              Configuración
+            </button>
+              </Link>
+
         </div>
 
         <p><span>1000</span> miembros</p>

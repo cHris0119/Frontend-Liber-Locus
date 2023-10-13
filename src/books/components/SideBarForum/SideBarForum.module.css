@@ -21,9 +21,7 @@
 
 .forumHeaderLi{
     margin: .5rem 0;
-    list-style: none;
-    text-align: center;
-    
+    list-style: none;    
     width: 100%;
     display: flex;
     justify-content: center;
@@ -32,9 +30,16 @@
 .forumHeaderLi a{
     width: 80%;
     border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 1rem;
     background-color: rgba(255, 255, 255, 1);
     color: #000;
+}
+
+.forumHeaderLi a span{
+    color: blue;
 }
 
 .forumHeaderLi a:hover{

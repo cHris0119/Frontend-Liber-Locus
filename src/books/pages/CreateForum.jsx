@@ -1,14 +1,14 @@
-import { InputComboBox, Input } from '../components'
+import { Input, InputComboBoxF } from '../components'
 import { useNavigate } from 'react-router'
 import { useState } from 'react'
-import { useForm } from '../../hooks'
+import { useForm, useForumStore } from '../../hooks'
 
 import styles from '../styles/CreateForum.module.css'
 
 const initialForm = {
   img: '',
   name: '',
-  category: ''
+  category: 'Seleccione'
 }
 
 const formValidations = {
@@ -19,6 +19,7 @@ const formValidations = {
 export const CreateForum = () => {
   const [formSubmitted, setFormSubmitted] = useState(false)
   const navigate = useNavigate()
+  const { startAddForum } = useForumStore()
 
   const {
     handleInputChange,
@@ -42,7 +43,7 @@ export const CreateForum = () => {
       handleResetForm()
       setFormSubmitted(false)
       //*
-
+      await startAddForum(formState)
       navigate('/foro/listaForos')
     }
   }
@@ -75,7 +76,7 @@ export const CreateForum = () => {
         errorMsg = {nameValid}
         />
 
-    <InputComboBox
+    <InputComboBoxF
       label='Categoria'
       name='category'
       value={formState.category}

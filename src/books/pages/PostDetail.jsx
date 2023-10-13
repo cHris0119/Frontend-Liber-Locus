@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { useParams, NavLink } from 'react-router-dom'
+import { useParams, NavLink, Link } from 'react-router-dom'
 import 'animate.css'
 import { useBookStore } from '../../hooks'
 import { useEffect } from 'react'
@@ -41,7 +41,14 @@ export const PostDetail = () => {
             <li className={styles.productCategory}>{selectedBook.book_category.description}</li>
             <li className={styles.productName}>{selectedBook.name}</li>
             <li className={styles.productPrice}>{parseInt(selectedBook.price)} CLP</li>
-            <li className={styles.productSeller}>Vendedor: {selectedBook.seller.first_name} {selectedBook.seller.last_name}</li>
+
+            <li className={styles.productSeller}>
+              Vendedor:
+              <Link to={`/usuario/${selectedBook.seller.id}`}>
+              {selectedBook.seller.first_name} {selectedBook.seller.last_name}
+              </Link>
+              </li>
+
             <li className={styles.productDescription}><p>{selectedBook.description}</p></li>
           </ul>
           <div className={styles.buyButtonContainer}>

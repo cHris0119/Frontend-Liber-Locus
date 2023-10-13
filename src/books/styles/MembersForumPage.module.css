@@ -1,0 +1,119 @@
+.editAccountContainer {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .editAccountForm {
+    width: 50%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+  .listMembersContainer{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .userContainer{
+    background-color: #efefef;
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .left{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+
+  .imgContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+  }
+  .imgContainer img{
+    background-color: #fff;
+    border-radius: 50%;
+    padding: .5rem;
+    max-width: 100%;
+    height: 100%;
+  }
+  .userName{
+    width: max-content;
+    font-size: 18px;
+  }
+
+  .right button{
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem;
+    font-size: 20px;
+    background-color: #402313;
+    border-radius: 10px;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  .right button:hover{
+    color: red;
+  }
+
+  
+  .saveChanges {
+      cursor: pointer;
+      padding: 0.6rem;
+      background-color: #402313;
+      color: white;
+      border: none;
+      width: 45%;
+      height: 50px;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 10px;
+      align-self: flex-end;
+  }
+  
+  .saveChanges:hover {
+      transition-duration: 0.3s;
+      filter: brightness(1.1);
+  }
+  
+  @media (max-width: 1265px) {
+
+    .editAccountContainer{
+      width: 80%;
+    }
+  
+      .editAccountForm {
+          width: 100%; 
+        }
+  
+      .saveChanges {
+          width: 100%;
+      }
+  
+  }
+  
+  @media screen and (max-width: 767px) {
+    .editAccountContainer {
+      padding-bottom: 3.5rem;
+    }
+  }
+  
+  
