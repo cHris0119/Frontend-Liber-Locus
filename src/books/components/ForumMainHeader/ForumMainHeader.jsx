@@ -2,36 +2,64 @@ import { AiFillSetting } from 'react-icons/ai'
 
 import styles from './ForumMainHeader.module.css'
 import { Link, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import booksApi from '../../../api/booksApi'
-import { useSelector } from 'react-redux'
 
-export const ForumMainHeader = ({ forum }) => {
-  const [members, setMembers] = useState([])
+export const ForumMainHeader = ({
+  forum,
+  inForum,
+  members,
+  setMembers
+}) => {
   const { id } = useParams()
-  const { user } = useSelector(state => state.auth)
   const token = JSON.parse(localStorage.getItem('token'))
   const config = {
     headers: {
       Authorization: `Token ${token}`
     }
   }
-  useEffect(() => {
-    const getMembers = async () => {
-      try {
-        const response = await booksApi.get(`api/forums/get_users_one_forum/${id}/`,
-          config)
-        const { data } = response
-        setMembers(data.ForumUsersData)
-        console.log(response)
-      } catch (error) {
-        console.log(error)
-      }
+  const getMembers = async () => {
+    try {
+      const response = await booksApi.get(`api/forums/get_users_one_forum/${id}/`,
+        config)
+      const { data } = response
+      setMembers(data.ForumUsersData)
+      console.log(response)
+    } catch (error) {
+      console.log(error)
     }
+  }
+
+  const handleJoin = async () => {
+    try {
+      await booksApi.post(`api/join_forum/${id}/`, {}, {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      }
+      )
+      getMembers()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const handleLeave = async () => {
+    try {
+      await booksApi.delete(`api/forums/leave_forum/${id}/`, {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      }
+      )
+      getMembers()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
     getMembers()
   }, [])
-
-  const inForum = members.find(member => member.id === user.id)
   return (
     <header className={styles.header}>
 
@@ -45,9 +73,14 @@ export const ForumMainHeader = ({ forum }) => {
 
           <div className={styles.leftHeader}>
             <h1>{forum.name}</h1>
-            <button className={styles.forumDetailsButton}>
+
+            <button
+            onClick={inForum ? handleLeave : handleJoin}
+            className={styles.forumDetailsButton}
+            >
                 { inForum ? 'Salirse' : 'Unirse' }
             </button>
+
           </div>
 
               <Link to={`/editarForo/${forum.id}`}>
