@@ -1,9 +1,37 @@
 import { AiFillSetting } from 'react-icons/ai'
 
 import styles from './ForumMainHeader.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import booksApi from '../../../api/booksApi'
+import { useSelector } from 'react-redux'
 
 export const ForumMainHeader = ({ forum }) => {
+  const [members, setMembers] = useState([])
+  const { id } = useParams()
+  const { user } = useSelector(state => state.auth)
+  const token = JSON.parse(localStorage.getItem('token'))
+  const config = {
+    headers: {
+      Authorization: `Token ${token}`
+    }
+  }
+  useEffect(() => {
+    const getMembers = async () => {
+      try {
+        const response = await booksApi.get(`api/forums/get_users_one_forum/${id}/`,
+          config)
+        const { data } = response
+        setMembers(data.ForumUsersData)
+        console.log(response)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getMembers()
+  }, [])
+
+  const inForum = members.find(member => member.id === user.id)
   return (
     <header className={styles.header}>
 
@@ -18,7 +46,7 @@ export const ForumMainHeader = ({ forum }) => {
           <div className={styles.leftHeader}>
             <h1>{forum.name}</h1>
             <button className={styles.forumDetailsButton}>
-                Unirse
+                { inForum ? 'Salirse' : 'Unirse' }
             </button>
           </div>
 
@@ -31,7 +59,7 @@ export const ForumMainHeader = ({ forum }) => {
 
         </div>
 
-        <p><span>1000</span> miembros</p>
+        <p><span>{ members.length }</span> miembro(s)</p>
 
     </div>
 

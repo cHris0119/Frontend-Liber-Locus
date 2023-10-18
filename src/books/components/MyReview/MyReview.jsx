@@ -71,7 +71,7 @@ export const MyReview = () => {
 
           )
         }))
-      : (<h2 className={styles.noFound}>No tienes reviews</h2>)}
+      : (<h2 className={styles.noFound}>No tienes reseñas</h2>)}
 
   </>
   )

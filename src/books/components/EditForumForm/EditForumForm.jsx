@@ -52,10 +52,11 @@ export const EditForumForm = ({ forumList }) => {
     }
   }
 
-  const handleDelete = async () => {
+  const handleDelete = async (e) => {
+    e.preventDefault()
     const confirmacion = confirm('Estas seguro que deseas eliminar el foro?')
     if (confirmacion) {
-      await startDeletingForum(parseInt(id))
+      startDeletingForum(parseInt(id))
       navigate('/foro/listaForos')
     }
   }
@@ -98,7 +99,7 @@ export const EditForumForm = ({ forumList }) => {
         <div className={styles.editOthers}>
 
             <span className={styles.link}>
-                <Link to='/miembros/1'>
+                <Link to={`/miembros/${id}`}>
                     Miembros del foro
                 </Link>
             </span>

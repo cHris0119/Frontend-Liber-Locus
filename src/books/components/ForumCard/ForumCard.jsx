@@ -13,7 +13,6 @@ export const ForumCard = ({ foro }) => {
 
             <div className={styles.foroInfo}>
                 <h2><Link to={`/foro/${foro.id}`}>{foro.name}</Link></h2>
-                <p><span>0</span> Miembros</p>
             </div>
 
         </div>

@@ -102,11 +102,11 @@ export const EditAccount = () => {
 
             <div className={styles.editOthers}>
 
-            <span className={styles.link}>
+            {/* <span className={styles.link}>
                     <Link to='/editarDireccion'>
                         Editar contraseña
                     </Link>
-                </span>
+                </span> */}
 
                 <span className={styles.link}>
                     <Link to='/editarDireccion'>
@@ -114,11 +114,11 @@ export const EditAccount = () => {
                     </Link>
                 </span>
 
-                <span className={styles.link}>
+                {/* <span className={styles.link}>
                     <Link>
                         Editar Metodo de pago
                     </Link>
-                </span>
+                </span> */}
 
             </div>
 

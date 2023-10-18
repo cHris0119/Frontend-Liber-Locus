@@ -17,8 +17,6 @@ export const useForumStore = () => {
   const startAddForum = async (forum) => {
     const { name, img, category } = forum
     try {
-      console.log(name, img || 'foroImg', category)
-
       const response = await booksApi.post('api/create_forum/', {
         name,
         forum_img: img || 'forumImg',
@@ -39,9 +37,6 @@ export const useForumStore = () => {
   //* EDITAR FORO
   const startEditingForum = async (forum, id) => {
     try {
-      console.log('sdas', forum)
-      console.log(id)
-
       const { name, category, img } = forum
 
       const response = await booksApi.put(`api/forums/update/${parseInt(id)}/`, {
@@ -66,7 +61,8 @@ export const useForumStore = () => {
   //* ELIMINAR FORO
   const startDeletingForum = async (id) => {
     try {
-      await booksApi.delete(`api/books/delete/${id}/`, config)
+      const res = await booksApi.delete(`api/forums/delete/${id}/`, config)
+      console.log(res)
 
       dispatch(onDeleteForum(id))
       Swal.fire({
@@ -76,6 +72,14 @@ export const useForumStore = () => {
         timer: 1500
       })
     } catch (error) {
+      const { response } = error
+
+      Swal.fire({
+        icon: 'error',
+        title: response.data.error,
+        showConfirmButton: false,
+        timer: 1500
+      })
       console.log(error)
     }
   }
@@ -84,7 +88,7 @@ export const useForumStore = () => {
   const startLoadingForums = async () => {
     try {
       const { data } = await booksApi.get('api/forums/get_all_forums/', config)
-      console.log('dataR', data)
+
       dispatch(onLoadForum(data.ForumsData))
     } catch (error) {
       Swal.fire({

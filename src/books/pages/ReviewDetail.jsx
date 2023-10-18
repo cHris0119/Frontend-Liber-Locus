@@ -110,6 +110,10 @@ export const ReviewDetail = () => {
         mensaje.lang = 'es-ES'
         mensaje.rate = 1.0
 
+        mensaje.onend = () => {
+          setVoiceOn(false)
+        }
+
         synthesis.speak(mensaje)
         setVoiceOn(true)
 

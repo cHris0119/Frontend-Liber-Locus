@@ -142,7 +142,7 @@ export const useAuthStore = () => {
       // console.log(direction)
       const { id, ...rest } = direction
 
-      const response = await booksApi.post(`api/editDirection/${id}/`, rest)
+      const response = await booksApi.put(`api/editDirection/${id}/`, rest)
       const { data } = response
       console.log(data)
 
