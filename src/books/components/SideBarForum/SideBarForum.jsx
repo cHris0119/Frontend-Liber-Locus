@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 import styles from './SideBarForum.module.css'
 
-export const SideBarForum = ({ menu }) => {
+export const SideBarForum = ({ menu, myForums }) => {
   const arr = ['foro1', 'foro2']
   return (
     <div

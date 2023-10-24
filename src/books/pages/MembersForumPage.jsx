@@ -4,10 +4,12 @@ import styles from '../styles/MembersForumPage.module.css'
 import { useEffect, useState } from 'react'
 import booksApi from '../../api/booksApi'
 import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 export const MembersForumPage = () => {
   const [members, setMembers] = useState([])
   const { id } = useParams()
+  const { user } = useSelector(state => state.auth)
   const token = JSON.parse(localStorage.getItem('token'))
   const config = {
     headers: {
@@ -29,10 +31,15 @@ export const MembersForumPage = () => {
     getMembers()
   }, [])
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     e.preventDefault()
-    confirm('Estas seguro que deseas eliminar al usario?')
+    // const confirmacion = confirm('Estas seguro que deseas eliminar al usario?')
+    // if (confirmacion) {
+    //   const response = await booksApi.get(`api/forums/get_users_one_forum/${id}/`,
+    //     config)
+    // }
   }
+
   return (
     <div className={styles.editAccountContainer}>
     <BackButton />
@@ -45,7 +52,8 @@ export const MembersForumPage = () => {
 
         <div className={styles.listMembersContainer}>
           { members.length > 0
-            ? (members.map((member) => (
+            ? (members.map((member) => member.id !== user.id
+                ? (
 
             <article
               key={member.id}
@@ -71,7 +79,8 @@ export const MembersForumPage = () => {
             </div>
 
           </article>
-              ))
+                  )
+                : null)
               )
             : <h3>No se encuentran miembros</h3> }
 

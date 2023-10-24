@@ -1,13 +1,14 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import styles from './CreateDiscussion.module.css'
 
 export const CreateDiscussion = () => {
   const navigate = useNavigate()
+  const { id } = useParams()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    navigate('/crearDiscusion')
+    navigate(`/crearDiscusion/${id}`)
   }
 
   return (

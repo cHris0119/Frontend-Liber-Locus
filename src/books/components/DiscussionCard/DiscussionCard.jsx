@@ -2,20 +2,20 @@ import { Link } from 'react-router-dom'
 
 import styles from './DiscussionCard.module.css'
 
-export const DiscussionCard = () => {
+export const DiscussionCard = ({ discussion }) => {
   return (
     <>
     <article className={styles.discussionCardContainer}>
         <Link to='/DiscussionDetail/1'>
 
         <p className={styles.postedBy}>
-            <span><Link>Foro1</Link></span> Subido por usuario1
+            Subido por {discussion.created_by}
         </p>
 
-        <h2 className={styles.title}>Titulo discusion</h2>
+        <h2 className={styles.title}>{discussion.title}</h2>
 
         <p className={styles.description}>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam, quis aut incidunt optio neque maxime repudiandae minima, perferendis voluptatem aliquid, quidem similique magni? Nostrum aliquam architecto optio
+            {discussion.description}
         </p>
 
         </Link>

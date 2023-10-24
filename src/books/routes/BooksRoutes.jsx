@@ -40,7 +40,7 @@ export const BooksRoutes = () => {
           {/* FIN FORO */}
 
           {/* DISCUSION FORO */}
-          <Route path="/crearDiscusion" element={<CreateDiscussionPage />} />
+          <Route path="/crearDiscusion/:id" element={<CreateDiscussionPage />} />
           <Route path="/DiscussionDetail/:id" element={<DiscussionDetail />} />
           <Route path="/editarDiscusion/:id" element={<EditDiscussionPage />} />
 

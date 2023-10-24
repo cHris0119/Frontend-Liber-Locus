@@ -64,6 +64,10 @@
     .createButton{
       width: 70%;
     }
+    .forumContent{
+      margin: 0 auto;
+      width: 70%;
+    }
   
 }
 
@@ -72,6 +76,11 @@
     width: 90%;
   }
   .createButton{
+    width: 90%;
+  }
+
+  .forumContent{
+    margin: 0 auto;
     width: 90%;
   }
 }

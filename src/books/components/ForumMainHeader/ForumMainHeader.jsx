@@ -4,6 +4,7 @@ import styles from './ForumMainHeader.module.css'
 import { Link, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import booksApi from '../../../api/booksApi'
+import { useSelector } from 'react-redux'
 
 export const ForumMainHeader = ({
   forum,
@@ -18,6 +19,10 @@ export const ForumMainHeader = ({
       Authorization: `Token ${token}`
     }
   }
+  const { user } = useSelector(state => state.auth)
+  const isAdmin = user.id === forum.user
+  console.log(forum)
+
   const getMembers = async () => {
     try {
       const response = await booksApi.get(`api/forums/get_users_one_forum/${id}/`,
@@ -43,6 +48,7 @@ export const ForumMainHeader = ({
       console.log(error)
     }
   }
+
   const handleLeave = async () => {
     try {
       await booksApi.delete(`api/forums/leave_forum/${id}/`, {
@@ -60,6 +66,7 @@ export const ForumMainHeader = ({
   useEffect(() => {
     getMembers()
   }, [])
+
   return (
     <header className={styles.header}>
 
@@ -83,12 +90,18 @@ export const ForumMainHeader = ({
 
           </div>
 
+          {
+            isAdmin
+              ? (
               <Link to={`/editarForo/${forum.id}`}>
             <button className={styles.configButton}>
               <AiFillSetting />
               Configuración
             </button>
               </Link>
+                )
+              : null
+              }
 
         </div>
 
