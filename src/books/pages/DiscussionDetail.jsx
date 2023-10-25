@@ -40,6 +40,10 @@ export const DiscussionDetail = () => {
     fetchData()
   }, [])
 
+  const hasAnswers = answers > 0
+
+  console.log(discussion)
+
   return (
     <div className={styles.discussionDetailContainer}>
         <BackButton />
@@ -58,6 +62,7 @@ export const DiscussionDetail = () => {
         <DiscussionListAnswer
         isLoading={isLoading}
         answers={answers}
+        hasAnswers={hasAnswers}
          />
 
           </>

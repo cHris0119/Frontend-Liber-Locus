@@ -24,7 +24,6 @@ export const MembersForumPage = () => {
           config)
         const { data } = response
         setMembers(data.ForumUsersData)
-        console.log(response)
       } catch (error) {
         console.log(error)
       }
@@ -47,6 +46,12 @@ export const MembersForumPage = () => {
     }
   }
 
+  const handleBack = (id) => {
+    navigate(`/foro/${id}/ultimasDiscusiones`)
+  }
+
+  console.log(members.length)
+
   return (
     <div className={styles.editAccountContainer}>
     <BackButton />
@@ -58,7 +63,7 @@ export const MembersForumPage = () => {
         <h1>Miembros del foro</h1>
 
         <div className={styles.listMembersContainer}>
-          { members.length > 0
+          { members.length > 1
             ? (members.map((member) => member.id !== user.id
                 ? (
 
@@ -95,7 +100,7 @@ export const MembersForumPage = () => {
 
         <button
         className={styles.saveChanges}
-        onClick={navigate(`/foro/${id}/ultimasDiscusiones`)}
+        onClick={() => handleBack(id)}
         >
             Guardar cambios
         </button>

@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Home, Marketplace, PaymentSelection, PostDetail, ShippingDetail, AccountPage, EditAccount, EditDirection, EditPost, ForumPage, ForumMain, CreateDiscussionPage, DiscussionDetail, ReviewsPage, ReviewDetail, CreateReview, CreateForum, EditForumPage, MembersForumPage, ProfilePage } from '../pages'
-import { DiscussionList, ForumList, MyAuction, MyDiscussion, MyPost, MyReview, PublishBookForm, ReviewsList, Sidebar } from '../components'
+import { DiscussionList, ForumLastPost, ForumList, MyAuction, MyDiscussion, MyPost, MyReview, PublishBookForm, ReviewsList, Sidebar } from '../components'
 import useModalOpen from '../hooks/useModalOpen'
 import ScrollToTop from '../services/ScrollToTop'
 import { EditDiscussionPage } from '../pages/EditDiscussionPage'
@@ -30,7 +30,7 @@ export const BooksRoutes = () => {
 
           {/* FORO */}
           <Route path="foro" element={<ForumPage />}>
-            <Route path="ultimosPost" element={<DiscussionList />} />
+            <Route path="ultimosPost" element={<ForumLastPost />} />
             <Route path="paraTi" element={<DiscussionList />} />
             <Route path="listaForos" element={<ForumList />} />
             <Route path="/foro/" element={<Navigate to='/foro/ultimosPost' />} />
