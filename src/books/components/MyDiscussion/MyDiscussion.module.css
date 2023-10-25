@@ -1,5 +1,11 @@
+.discussionListContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .discussionCardContainer{
-    width: 80%;
+    width: 100%;
     background-color: #fff;
     margin: auto;
     border-radius: 10px;

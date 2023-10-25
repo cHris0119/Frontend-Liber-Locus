@@ -1,13 +1,14 @@
 import { Link, useParams } from 'react-router-dom'
 
-import styles from './MyDiscussion.module.css'
 import { useEffect, useState } from 'react'
 import booksApi from '../../../api/booksApi'
-import { useSelector } from 'react-redux'
+import { Loader } from '../'
+
+import styles from './MyDiscussion.module.css'
 
 export const MyDiscussion = () => {
   const [myDiscussion, setMyDiscussion] = useState([])
-  const { user } = useSelector(state => state.auth)
+  const [isLoading, setIsLoading] = useState(true)
   const { id } = useParams()
   const token = JSON.parse(localStorage.getItem('token'))
   const config = {
@@ -20,13 +21,14 @@ export const MyDiscussion = () => {
   useEffect(() => {
     const getMembers = async () => {
       try {
-        const response = await booksApi.get(`api/user_forum_discussions/${user.id}/${id}/`,
+        const response = await booksApi.get(`api/get_user_forum_discussions/${id}/`,
           config)
+        setIsLoading(false)
         const { data } = response
-        console.log(data)
         setMyDiscussion(data.UserForumDiscussionsData)
       } catch (error) {
         console.log(error)
+        setIsLoading(false)
       }
     }
     getMembers()
@@ -47,9 +49,13 @@ export const MyDiscussion = () => {
   }
 
   return (
-    <>
-    {hasDiscussion
-      ? (myDiscussion.map((discussion) => (
+    <div className={styles.discussionListContainer}>
+    { isLoading
+      ? <Loader />
+      : (
+
+          hasDiscussion
+            ? (myDiscussion.map((discussion) => (
         <article
         key={discussion.id}
         className={styles.discussionCardContainer}>
@@ -76,10 +82,10 @@ export const MyDiscussion = () => {
                 </Link>
             </article>
 
-        )))
-      : <h3>No hay discusiones</h3>
-}
+              )))
+            : <h3>No hay discusiones</h3>
+        ) }
 
-</>
+</div>
   )
 }

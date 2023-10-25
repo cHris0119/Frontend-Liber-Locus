@@ -3,13 +3,14 @@ import { BackButton } from '../components'
 import styles from '../styles/MembersForumPage.module.css'
 import { useEffect, useState } from 'react'
 import booksApi from '../../api/booksApi'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 export const MembersForumPage = () => {
   const [members, setMembers] = useState([])
   const { id } = useParams()
   const { user } = useSelector(state => state.auth)
+  const navigate = useNavigate()
   const token = JSON.parse(localStorage.getItem('token'))
   const config = {
     headers: {
@@ -31,13 +32,19 @@ export const MembersForumPage = () => {
     getMembers()
   }, [])
 
-  const handleDelete = async (e) => {
+  const handleDelete = async (e, memberId) => {
     e.preventDefault()
-    // const confirmacion = confirm('Estas seguro que deseas eliminar al usario?')
-    // if (confirmacion) {
-    //   const response = await booksApi.get(`api/forums/get_users_one_forum/${id}/`,
-    //     config)
-    // }
+    const confirmacion = confirm('Estas seguro que deseas eliminar al usario?')
+    if (confirmacion) {
+      try {
+        await booksApi.delete(`api/remove_user_from_forum/${id}/${user.id}/${memberId}/`,
+          config)
+        const newMembers = members.filter(member => member.id !== memberId)
+        setMembers(newMembers)
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
 
   return (
@@ -73,7 +80,7 @@ export const MembersForumPage = () => {
             </div>
 
             <div className={styles.right}>
-              <button onClick={handleDelete}>
+              <button onClick={(e) => handleDelete(e, member.id)}>
                 <AiFillDelete />
               </button>
             </div>
@@ -88,6 +95,7 @@ export const MembersForumPage = () => {
 
         <button
         className={styles.saveChanges}
+        onClick={navigate(`/foro/${id}/ultimasDiscusiones`)}
         >
             Guardar cambios
         </button>

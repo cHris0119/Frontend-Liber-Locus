@@ -21,7 +21,6 @@ export const ForumMainHeader = ({
   }
   const { user } = useSelector(state => state.auth)
   const isAdmin = user.id === forum.user
-  console.log(forum)
 
   const getMembers = async () => {
     try {
@@ -29,7 +28,6 @@ export const ForumMainHeader = ({
         config)
       const { data } = response
       setMembers(data.ForumUsersData)
-      console.log(response)
     } catch (error) {
       console.log(error)
     }

@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 
 import styles from './SideBarForum.module.css'
 
-export const SideBarForum = ({ menu, myForums }) => {
-  const arr = ['foro1', 'foro2']
+export const SideBarForum = ({ menu, userForum }) => {
+  console.log(userForum)
   return (
     <div
     className={`
@@ -13,13 +13,14 @@ export const SideBarForum = ({ menu, myForums }) => {
         <h2>Mis foros</h2>
 
         <ul className={styles.forumHeaderUl}>
-            {arr.map((foro) => (
+            {userForum?.map((foro) => (
                 <li
-                key={foro}
+                key={foro.forum__id}
                 className={styles.forumHeaderLi}>
 
-                <Link to={`/foro/${foro}`}>
-                    {foro} <span>admin</span>
+                <Link
+                to={`/foro/${foro.forum__id}`}>
+                    {foro.forum__name}
                 </Link>
 
                 </li>

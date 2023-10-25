@@ -1,13 +1,21 @@
 import { DiscussionAnswer } from '../DiscussionAnswer/DiscussionAnswer'
+
 import styles from './DiscussionListAnswer.module.css'
 
-export const DiscussionListAnswer = () => {
-  const answers = [1, 2, 3, 4]
+export const DiscussionListAnswer = ({ isLoading, answers }) => {
   return (
     <div className={styles.listAnswerContainer}>
-      {answers.map((answer) => (
-        <DiscussionAnswer key={answer} />
-      ))}
+      {isLoading
+        ? <h3>Cargando...</h3>
+        : (
+
+            answers.map((answer) => (
+          <DiscussionAnswer
+          answer={answer}
+          key={answer.id} />
+            ))
+
+          )}
     </div>
   )
 }

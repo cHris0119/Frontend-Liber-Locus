@@ -37,14 +37,15 @@ export const ForumMain = () => {
       members = {members}
       inForum = {inForum}
       forum={forum} />
-      { inForum
-        ? (
 
         <div className={styles.ForumMainContent}>
 
-       <CreateDiscussion />
+      { inForum
+        ? (
+          <>
+          <CreateDiscussion />
 
-       <div className={styles.ForumMainFilter}>
+          <div className={styles.ForumMainFilter}>
           <NavLink
           to='ultimasDiscusiones'
           className={({ isActive }) => isActive ? styles.active : ''}>Ultimas discusiones</NavLink>
@@ -53,17 +54,18 @@ export const ForumMain = () => {
           className={({ isActive }) => isActive ? styles.active : ''}>Mis Discusiones</NavLink>
        </div>
 
-       <div>
+        <div>
           <Outlet />
        </div>
-
-      </div>
+          </>
           )
 
         : <h3 className={styles.notInForum}>
-          Necesitas unirte al foro para poder ver el contenido
-          </h3>
-          }
+         Necesitas unirte al foro para poder ver el contenido
+         </h3>
+         }
+      </div>
+
     </div>
   )
 }

@@ -12,12 +12,12 @@ export const ForumCard = ({ foro }) => {
             </div>
 
             <div className={styles.foroInfo}>
-                <h2><Link to={`/foro/${foro.id}`}>{foro.name}</Link></h2>
+                <h2><Link to={`/foro/${foro.id}/ultimasDiscusiones`}>{foro.name}</Link></h2>
             </div>
 
         </div>
 
-        <button className={styles.unirseButton}>Unirse</button>
+        {/* <button className={styles.unirseButton}>Unirse</button> */}
 
     </article>
   )
