@@ -1,8 +1,13 @@
 import { NavLink } from 'react-router-dom'
 
 import styles from './SelectDirection.module.css'
+import { useSelector } from 'react-redux'
 
 export const SelectDirection = () => {
+  const { user } = useSelector(state => state.auth)
+  const direction = user.direction
+  const nameDirection = `${direction.calle.toUpperCase()}. ${direction.numero}`
+
   return (
 
     <div className={styles.selectDirectionContainer}>
@@ -16,8 +21,8 @@ export const SelectDirection = () => {
             <p>Enviar a domicilio</p>
             <p>$ 3.000 <span>{'>'}</span></p>
           </header>
-          <main className={styles.directionMain}>
-            <p>Dirección falsa 1234</p>
+          <main className={styles.main}>
+            <p>{ nameDirection }</p>
           </main>
         </div>
 

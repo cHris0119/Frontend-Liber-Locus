@@ -1,10 +1,28 @@
 import { useParams, NavLink } from 'react-router-dom'
-import { SelectDirection, BackButton, SummaryProduct } from '../components/'
+import { SelectDirection, BackButton, SummaryProduct, Loader } from '../components/'
 
 import styles from '../styles/ShippingDetail.module.css'
+import { useBookStore } from '../../hooks'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
 export const ShippingDetail = () => {
   const { postId } = useParams()
+
+  const { startLoadingEvents } = useBookStore()
+  const { isLoadingBooks } = useSelector(state => state.book)
+
+  useEffect(() => {
+    startLoadingEvents()
+  }, [])
+
+  if (isLoadingBooks === true) {
+    return (
+      <div style={{ height: '100vh' }}>
+      <Loader />
+      </div>
+    )
+  }
 
   return (
 

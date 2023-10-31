@@ -1,18 +1,16 @@
-import lastQuestions from '../../mocks/lastQuestions.json'
-
 import styles from './AnswerPost.module.css'
 
-const RenderQuestions = () => {
-  const lastTenQuestions = lastQuestions.Questions.slice(1, 4)
-
+const RenderQuestions = ({ answers }) => {
+  console.log(answers)
   return (
-    lastTenQuestions.map((question) => (
+    answers.map((question) => (
       <div className={styles.lastAnswer} key={question.id}>
-        <p className={styles.lastAnswerQuestion}>{question.question}</p>
-        {question.answer
+        <p className={styles.lastAnswerQuestion}>{question.description}</p>
+        {question.answer__description
           ? <div className={styles.lastAnswerContainer}>
-            <p className={styles.lastAnswerP}>{question.answer} ·</p><span className={styles.lastAnswerDate}>{question.created_at}</span>
+            <p className={styles.lastAnswerP}>{question.answer__description} ·</p>
           </div>
+
           : <form className={styles.formAnswer}>
             <input type="text" placeholder='...' />
             <input type="submit" value='Responder' />
@@ -23,11 +21,11 @@ const RenderQuestions = () => {
   )
 }
 
-export const AnswerPost = () => {
+export const AnswerPost = ({ answers }) => {
   return (
     <div className={styles.answerContainer}>
       <h3 style={{ color: '#000' }} >Ultimas respuestas</h3>
-      <RenderQuestions />
+      <RenderQuestions answers={answers} />
     </div>
   )
 }

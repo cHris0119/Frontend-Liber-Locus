@@ -59,7 +59,7 @@ export const useAuthStore = () => {
     lastname,
     email,
     password,
-    imgUser
+    imgUser = 'img'
   }) => {
     try {
       const response = await booksApi.post('api/registerUser/', {
@@ -74,11 +74,15 @@ export const useAuthStore = () => {
         photo_dir: imgUser
       })
 
+      // const confirmEmail = await booksApi.post(`api/user/send_mail/${email}/`)
+
       console.log(response)
+      // console.log(confirmEmail)
+
       Swal.fire({
         icon: 'success',
-        title: 'Registro completado.',
-        showConfirmButton: false,
+        title: 'Registro completado. Confirme su email',
+        showConfirmButton: true,
         timer: 1500
       })
     } catch (error) {

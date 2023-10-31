@@ -4,13 +4,12 @@ import { MarketplaceHeader, PostList } from '../'
 export const MarketplaceMain = ({ bookList }) => {
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('Todos')
-  const [price, setPrice] = useState('seleccione')
+  const [price, setPrice] = useState('menor')
   const [filteredBook, setFilteredBook] = useState(bookList)
 
   const handleSearch = (e) => {
     const newSearch = e.target.value
     setSearch(newSearch)
-    setPrice('seleccione')
 
     const result = bookList.filter(book => {
       return (
@@ -37,6 +36,7 @@ export const MarketplaceMain = ({ bookList }) => {
   }
 
   const handlePrice = ({ target }) => {
+    console.log(target.value)
     const newPrice = target.value
     setPrice(newPrice)
 

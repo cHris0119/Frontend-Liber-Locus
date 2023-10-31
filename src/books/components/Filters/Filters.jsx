@@ -40,7 +40,6 @@ export const Filters = ({
       value={price}
       className={styles.filter}>
 
-        <option value="seleccione">Seleccione</option>
         <option value="menor">Menor a mayor</option>
         <option value="mayor">Mayor a menor</option>
       </select>

@@ -45,11 +45,6 @@ export const linksModal = [
     icon: <BiSolidUser />
   },
   {
-    label: 'Configuracion',
-    to: '/configuracion',
-    icon: <AiFillSetting />
-  },
-  {
     label: 'Mis compras',
     to: '/compras',
     icon: <AiFillShopping />
