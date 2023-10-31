@@ -26,6 +26,20 @@
 .lastAnswerQuestion{
     font-weight: 500;
     color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deleteQuestion{ 
+    cursor: pointer;
+    border: none;
+    padding: 6px;
+    border-radius: 10px;
+}
+
+.deleteQuestion:hover{
+    background-color: #efefef;
 }
 
 .lastAnswerP{

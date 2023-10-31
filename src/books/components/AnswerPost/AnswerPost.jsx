@@ -1,37 +1,41 @@
-import { useSelector } from 'react-redux'
 import styles from './AnswerPost.module.css'
-import { useParams } from 'react-router-dom'
-import { useBookStore } from '../../../hooks'
-import { useEffect } from 'react'
-import { Loader } from '../Loader/Loader'
+
 import { FormAnswer } from '../FormAnswer/FormAnswer'
+import booksApi from '../../../api/booksApi'
 
-const RenderQuestions = ({ answers }) => {
-  const { user } = useSelector(state => state.auth)
-  const { bookList } = useSelector(state => state.book)
-  const { postId } = useParams()
-  const { startLoadingEvents } = useBookStore()
-  const { isLoadingBooks } = useSelector(state => state.book)
-
-  const selectedBook = bookList.find(book => book.id === Number(postId))
-  const isSeller = selectedBook.seller.id === user.id
-
-  useEffect(() => {
-    startLoadingEvents()
-  }, [])
-
-  if (isLoadingBooks === true) {
-    return (
-      <div style={{ height: '100vh' }}>
-      <Loader />
-      </div>
-    )
+const RenderQuestions = ({ answers, isSeller, setAnswers }) => {
+  const token = JSON.parse(localStorage.getItem('token'))
+  const config = {
+    headers: {
+      Authorization: `Token ${token}`
+    }
   }
+  const handleDelete = async (id) => {
+    const confirmacion = confirm('Estas seguro de querer eliminar tu pregunta?')
+    if (confirmacion) {
+      try {
+        await booksApi.delete(`api/questions/delete/${id}/`,
+          config)
 
+        setAnswers(prevAnswers => {
+          return prevAnswers.filter(currentAnswer => currentAnswer.id !== id)
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
   return (
     answers.map((question) => (
       <div className={styles.lastAnswer} key={question.id}>
-        <p className={styles.lastAnswerQuestion}>{question.description}</p>
+        <p className={styles.lastAnswerQuestion}>
+
+        {question.description}
+        <button
+        onClick={() => handleDelete(question.id)}
+        className={styles.deleteQuestion}>Eliminar</button>
+
+        </p>
 
         {question.answer__description
           ? <div className={styles.lastAnswerContainer}>
@@ -47,11 +51,14 @@ const RenderQuestions = ({ answers }) => {
   )
 }
 
-export const AnswerPost = ({ answers }) => {
+export const AnswerPost = ({ answers, isSeller, setAnswers }) => {
   return (
     <div className={styles.answerContainer}>
       <h3 style={{ color: '#000' }} >Ultimas respuestas</h3>
-      <RenderQuestions answers={answers} />
+      <RenderQuestions
+      answers={answers}
+      setAnswers={setAnswers}
+      isSeller={isSeller} />
     </div>
   )
 }
