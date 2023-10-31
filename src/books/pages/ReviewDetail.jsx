@@ -17,6 +17,7 @@ export const ReviewDetail = () => {
   const [voiceOn, setVoiceOn] = useState(false)
   const { id } = useParams()
   const { startLoadingReviews } = useReviewStore()
+  const [websocket, setWebsocket] = useState(null)
 
   const review = reviewList.find(review => review.id === Number(id))
 
@@ -38,6 +39,20 @@ export const ReviewDetail = () => {
       }
     }
     getLikes()
+
+    const websocket = new WebSocket('ws://localhost:8000/ws/consumer/likes/')
+
+    websocket.onmessage = async (event) => {
+      const data = await JSON.parse(event.data)
+      console.log(likes)
+      setLikes(data)
+    }
+
+    websocket.onerror = (error) => {
+      console.error('WebSocket error:', error)
+    }
+
+    setWebsocket(websocket)
   }, [])
 
   useEffect(() => {
@@ -73,26 +88,9 @@ export const ReviewDetail = () => {
       id: user.id,
       review_id: id
     }
-    const websocket = new WebSocket('ws://localhost:8000/ws/consumer/likes/')
 
-    websocket.onopen = () => {
-      console.log('wb abierto')
+    if (websocket.readyState === WebSocket.OPEN) {
       websocket.send(JSON.stringify(dataToSend))
-    }
-
-    websocket.onmessage = async (event) => {
-      const data = await JSON.parse(event.data)
-      console.log(likes)
-      setLikes(data)
-      websocket.close()
-    }
-
-    websocket.onerror = (error) => {
-      console.error('WebSocket error:', error)
-    }
-
-    websocket.onclose = () => {
-      console.log('WebSocket closed')
     }
   }
 
@@ -127,15 +125,9 @@ export const ReviewDetail = () => {
     }
   }
 
-  const fullName = `${review.user.first_name} ${review.user.last_name}`
+  window.addEventListener('beforeunload', () => websocket.close())
 
-  const fechaActual = new Date()
-  const fechaReview = new Date(review.created_at)
-  const diferencia = fechaActual - fechaReview
-  const segundos = Math.floor(diferencia / 1000)
-  const minutos = Math.floor(segundos / 60)
-  const horas = Math.floor(minutos / 60)
-  const dias = Math.floor(horas / 24)
+  const fullName = `${review.user.first_name} ${review.user.last_name}`
 
   return (
     <div className={styles.reviewDetailContainer}>
@@ -148,9 +140,7 @@ export const ReviewDetail = () => {
             <img src="https://a.ltrbxd.com/resized/avatar/upload/1/2/0/3/7/7/7/shard/avtr-0-1000-0-1000-crop.jpg?v=ff62b2f12e" alt="userIMG" />
           </div>
           <div className={styles.userInfo}>
-            <p>Publicada hace
-              {dias < 1 ? '' : ` ${dias} dias`} {horas < 1 ? 'Menos de una hora' : ` ${horas} horas`}
-              </p>
+
             <p>Por <Link to={`/usuario/${review.user.id}`}>{fullName}</Link></p>
           </div>
 
