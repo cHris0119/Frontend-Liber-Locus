@@ -1,0 +1,28 @@
+.formAnswer > input{
+    outline: none;
+    border: none;
+    padding: 8px;
+    background-color: #eee;
+    color: #000;
+}
+
+.formAnswer > input:first-child{
+    font-weight: 500;
+    width: 70%;
+    border-radius: 5px 0 0 5px;
+    
+}
+
+.formAnswer > input:last-child{
+    background-color: #322528;
+    color: #fff;
+    font-weight: 500;
+    width: 30%;
+    border-radius: 0 5px 5px 0;
+
+}
+
+.formAnswer > input:last-child:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.8);
+}
