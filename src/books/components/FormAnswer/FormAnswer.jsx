@@ -1,7 +1,7 @@
 import booksApi from '../../../api/booksApi'
 import styles from './FormAnswer.module.css'
 
-export const FormAnswer = ({ questionID }) => {
+export const FormAnswer = ({ questionID, setAnswers }) => {
   const token = JSON.parse(localStorage.getItem('token'))
   const config = {
     headers: {
@@ -19,6 +19,22 @@ export const FormAnswer = ({ questionID }) => {
         description: respuesta
       },
       config)
+
+      setAnswers(prevAnswers => {
+        const copyAnswers = [...prevAnswers]
+
+        const newAnswers = copyAnswers.map(answer => {
+          if (answer.id === questionID) {
+            return {
+              ...answer,
+              answer__description: respuesta
+            }
+          }
+          return answer
+        })
+
+        return newAnswers
+      })
       console.log(response)
     } catch (error) {
       console.log(error)
