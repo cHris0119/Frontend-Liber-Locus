@@ -22,6 +22,7 @@ export const ForumLastPost = () => {
         const response = await booksApi.get(`api/latest_discussions/${user.id}/`,
           config)
         setIsLoading(false)
+        console.log(response)
         const { data } = response
         setDiscussion(data.LatestDiscussions)
       } catch (error) {

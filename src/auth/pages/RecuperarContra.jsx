@@ -1,10 +1,12 @@
 import { Input, Button } from '../components'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styles from '../styles/Login.module.css'
 
 export const RecuperarContra = () => {
+  const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault()
+    navigate('/auth/nuevaContra')
   }
   return (
     <div className={styles.authPage}>

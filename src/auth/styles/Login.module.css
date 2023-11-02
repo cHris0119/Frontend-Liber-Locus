@@ -55,6 +55,15 @@ a {
   font-weight: bold;
 }
 
+.errorPass{
+  color: red;
+  font-weight: 600;
+}
+
+.none {
+  display: none;
+}
+
 @media (max-width: 1265px) {
   .title {
     margin-bottom: 0px;
