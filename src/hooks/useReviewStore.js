@@ -92,8 +92,10 @@ export const useReviewStore = () => {
   //* CARGAR REVIEWS
   const startLoadingReviews = async () => {
     try {
-      const { data } = await booksApi.get('api/getReviews', config)
-      dispatch(onLoadReview(data))
+      const response = await booksApi.get('api/getReviews', config)
+      console.log(response)
+
+      dispatch(onLoadReview(response.data))
     } catch (error) {
       console.log('Error cargando reseñas')
       Swal.fire({

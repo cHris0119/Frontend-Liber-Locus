@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { Input, Button, TermsButton } from '../components'
+import { Input, Button, TermsButton, ModalTerms } from '../components'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { useForm } from '../../hooks/'
@@ -28,6 +28,11 @@ const formValidations = {
 
 export const Register = () => {
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleModal = () => {
+    setIsModalOpen(!isModalOpen)
+  }
 
   const {
     handleInputChange,
@@ -99,6 +104,7 @@ export const Register = () => {
               errorMsg ={lastnameValid}
             />
           </div>
+
           <Input
             placeholder="Ingresa un correo..."
             label="Correo"
@@ -133,6 +139,7 @@ export const Register = () => {
               onChange={handleCheckboxChange}
               error={termsValid && formSubmitted}
               errorMsg = {termsValid}
+              handleModal={handleModal}
           />
 
           <Button
@@ -143,6 +150,12 @@ export const Register = () => {
           <span className={styles.link}>
             Ya tienes cuenta? <Link to="/auth/login">Inicia Sesión</Link>
           </span>
+
+          <ModalTerms
+          isModalOpen={isModalOpen}
+          handleModal={handleModal}
+           />
+
         </form>
       </div>
       <div className={styles.backgroundDark}>

@@ -4,7 +4,8 @@ export const TermsButton = ({
   onChange,
   check = false,
   error,
-  errorMsg
+  errorMsg,
+  handleModal
 }) => {
   return (
     <>
@@ -19,7 +20,9 @@ export const TermsButton = ({
           />
           <label>
               Aceptas
-              <span className={styles.terms}> terminos </span>
+              <span
+              onClick={handleModal}
+              className={styles.terms}> terminos </span>
               y condiciones?
           </label>
         </div>
