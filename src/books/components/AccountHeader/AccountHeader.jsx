@@ -12,13 +12,17 @@ export const AccountHeader = () => {
     navigate('/editarPerfil')
   }
 
+  const photo = 'data:image/jpeg;base64,'.concat(user.userPhoto)
+
+  console.log(photo)
+
   return (
     <header className={styles.accountHeader}>
 
             <section className={styles.headerLeft}>
                 <div className={styles.headerContainerImg}>
                     <img
-                    src={`http://127.0.0.1:8000/LB_API/staticfiles${user.userPhoto}`} alt="img-user" />
+                    src={photo} alt="img-user" />
                 </div>
             </section>
 
