@@ -21,13 +21,13 @@ export const Input = ({
         </label>
 
         <input
+        id={name}
         type={type}
         name={name}
-        placeholder={placeholder}
-        id={name}
-        onChange={onChange}
         value={value}
+        placeholder={placeholder}
         className={styles.input}
+        onChange={onChange}
         />
       {error && <span className={styles.error}>{errorMsg}</span>}
     </div>

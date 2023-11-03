@@ -9,6 +9,8 @@ import Swal from 'sweetalert2'
 import styles from './PublishBookForm.module.css'
 
 const initialForm = {
+  imgBook: '',
+  imgName: '',
   nameBook: '',
   nameAuthor: '',
   price: '',
@@ -34,6 +36,7 @@ export const PublishBookForm = () => {
   const {
     handleInputChange,
     handleResetForm,
+    handleFileChange,
     formState,
     nameBook,
     price,
@@ -53,6 +56,8 @@ export const PublishBookForm = () => {
     formValidations
   })
 
+  console.log(formState)
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -67,7 +72,8 @@ export const PublishBookForm = () => {
         description,
         nameAuthor,
         genre: parseInt(genre),
-        uid: user.id
+        uid: user.id,
+        bookImg: formState.imgBook
       })
       navigate('/marketplace')
     }
@@ -121,6 +127,13 @@ export const PublishBookForm = () => {
           onChange={handleInputChange}
           error={priceValid && formSubmitted}
           errorMsg = {priceValid}
+          />
+
+          <Input
+            label="Imagen"
+            name="imgBook"
+            type="file"
+            onChange={handleFileChange}
           />
 
           <InputComboBox

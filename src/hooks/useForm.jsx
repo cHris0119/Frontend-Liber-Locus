@@ -59,7 +59,8 @@ export const useForm = ({ initialForm = {}, formValidations = {} }) => {
         const base64 = reader.result
         setFormState({
           ...formState,
-          [name]: base64
+          [name]: base64,
+          imgName: selectedFile.name
         })
       }
     }

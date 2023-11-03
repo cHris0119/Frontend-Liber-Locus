@@ -6,7 +6,7 @@ import { useForm, useForumStore } from '../../hooks'
 import styles from '../styles/CreateForum.module.css'
 
 const initialForm = {
-  img: '',
+  imgForum: '',
   name: '',
   category: 'Seleccione'
 }
@@ -35,6 +35,7 @@ export const CreateForum = () => {
     initialForm,
     formValidations
   })
+  console.log(formState)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -60,9 +61,8 @@ export const CreateForum = () => {
         <Input
         label='Imagen'
         type='file'
-        name='img'
-        onChange={handleFileChange
-        }
+        name='imgForum'
+        onChange={handleFileChange}
 
         />
 

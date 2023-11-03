@@ -15,11 +15,11 @@ export const useForumStore = () => {
   }
   //* AGREGAR FORO
   const startAddForum = async (forum) => {
-    const { name, img, category } = forum
+    const { name, imgForum, category } = forum
     try {
       const response = await booksApi.post('api/create_forum/', {
         name,
-        forum_img: img || 'forumImg',
+        forum_img: imgForum,
         forum_category: parseInt(category)
       },
       config)

@@ -25,12 +25,14 @@ export const EditPostForm = ({ bookList }) => {
     nameAuthor: bookToEdit.author,
     price: bookToEdit.price,
     description: bookToEdit.description,
-    genre: bookToEdit.book_category.id
+    genre: bookToEdit.book_category.id,
+    imgBook: null
   }
 
   const {
     handleInputChange,
     handleResetForm,
+    handleFileChange,
     formState,
     nameBook,
     price,
@@ -109,6 +111,13 @@ export const EditPostForm = ({ bookList }) => {
       error={priceValid && formSubmitted}
       errorMsg={priceValid}
       />
+
+    <Input
+        label="Imagen"
+          name="imgBook"
+          type="file"
+          onChange={handleFileChange}
+        />
 
     <InputComboBox
       label='Genero'

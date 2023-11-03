@@ -9,8 +9,7 @@ import styles from '../styles/EditAccount.module.css'
 
 const formValidations = {
   firstName: [(value) => value.length >= 1, 'Debe ser un nombre valido'],
-  lastName: [(value) => value.length >= 1, 'Debe ser un apellido valido'],
-  userPhoto: [(value) => value.length >= 1, 'Debe ser una foto valida valido']
+  lastName: [(value) => value.length >= 1, 'Debe ser un apellido valido']
 
 }
 
@@ -30,6 +29,7 @@ export const EditAccount = () => {
   const {
     handleInputChange,
     handleResetForm,
+    handleFileChange,
     formState,
 
     firstName,
@@ -37,7 +37,6 @@ export const EditAccount = () => {
     userPhoto,
     firstNameValid,
     lastNameValid,
-    userPhotoValid,
     isFormValid
 
   } = useForm({
@@ -72,12 +71,9 @@ export const EditAccount = () => {
 
             <Input
             label='Image'
-            type='text'
-            value={formState.userPhoto}
+            type='file'
             name='userPhoto'
-            onChange={handleInputChange}
-            error={userPhotoValid && formSubmitted}
-            errorMsg = {userPhotoValid}
+            onChange={handleFileChange}
             />
 
             <Input

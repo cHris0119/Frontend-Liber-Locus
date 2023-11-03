@@ -22,7 +22,8 @@ export const useBookStore = () => {
       description,
       nameAuthor,
       genre,
-      uid
+      uid,
+      bookImg
     } = newBook
 
     try {
@@ -31,7 +32,7 @@ export const useBookStore = () => {
         price,
         description,
         author: nameAuthor,
-        book_img: 'bookIMG',
+        book_img: bookImg,
         seller: uid,
         book_state: 2,
         book_category: genre

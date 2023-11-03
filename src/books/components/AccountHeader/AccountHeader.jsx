@@ -14,8 +14,6 @@ export const AccountHeader = () => {
 
   const photo = 'data:image/jpeg;base64,'.concat(user.userPhoto)
 
-  console.log(photo)
-
   return (
     <header className={styles.accountHeader}>
 

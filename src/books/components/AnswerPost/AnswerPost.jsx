@@ -62,7 +62,7 @@ const RenderQuestions = ({ answers, isSeller, setAnswers }) => {
 export const AnswerPost = ({ answers, isSeller, setAnswers }) => {
   return (
     <div className={styles.answerContainer}>
-      <h3 style={{ color: '#000' }} >Ultimas respuestas</h3>
+      <h3 style={{ color: '#000' }} >Ultimas preguntas</h3>
       <RenderQuestions
       answers={answers}
       setAnswers={setAnswers}

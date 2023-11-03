@@ -8,6 +8,7 @@ import styles from '../styles/Login.module.css'
 
 const initialForm = {
   imgUser: '',
+  imgName: '',
   firstname: '',
   lastname: '',
   email: '',
@@ -46,6 +47,8 @@ export const Register = () => {
     initialForm,
     formValidations
   })
+
+  console.log(formState)
 
   const navigate = useNavigate()
 
@@ -119,11 +122,11 @@ export const Register = () => {
           />
 
           <Input
-              label="Imagen"
-              name="imgUser"
-              type="file"
-              onChange={handleFileChange}
-            />
+            label="Imagen"
+            name="imgUser"
+            type="file"
+            onChange={handleFileChange}
+          />
 
           <TermsButton
               check={formState.terms}

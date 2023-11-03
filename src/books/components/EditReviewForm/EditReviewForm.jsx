@@ -22,7 +22,7 @@ export const EditReviewForm = ({ reviews }) => {
 
   const initialForm = {
     title: reviewToEdit.title,
-    image: reviewToEdit.review_img,
+    image: null,
     valoration: reviewToEdit.valoration,
     description: reviewToEdit.description
   }
@@ -30,6 +30,7 @@ export const EditReviewForm = ({ reviews }) => {
   const {
     handleInputChange,
     handleResetForm,
+    handleFileChange,
     formState,
 
     titleValid,
@@ -66,6 +67,7 @@ export const EditReviewForm = ({ reviews }) => {
         label='Imagen'
         type='file'
         name='image'
+        onChange={handleFileChange}
         />
 
         <Input

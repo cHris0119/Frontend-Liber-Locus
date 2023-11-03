@@ -3,7 +3,7 @@ import styles from './Input.module.css'
 export const Input = ({
   label,
   type,
-  value = '',
+  value,
   placeholder,
   error,
   errorMsg,

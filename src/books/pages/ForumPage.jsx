@@ -17,11 +17,6 @@ export const ForumPage = () => {
               >Ultimas publicaciones</NavLink>
 
               <NavLink
-              to={'paraTi'}
-              className={({ isActive }) => (isActive ? styles.active : '')
-              }>Para ti</NavLink>
-
-              <NavLink
               to={'listaForos'}
               className={({ isActive }) => (isActive ? styles.active : '')
               }>Foros</NavLink>
