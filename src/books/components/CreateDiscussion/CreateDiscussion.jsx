@@ -1,10 +1,12 @@
 import { useNavigate, useParams } from 'react-router-dom'
 
 import styles from './CreateDiscussion.module.css'
+import { useSelector } from 'react-redux'
 
 export const CreateDiscussion = () => {
   const navigate = useNavigate()
   const { id } = useParams()
+  const { user } = useSelector(state => state.auth)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -20,7 +22,7 @@ export const CreateDiscussion = () => {
 
     <div className={styles.userImgContainer}>
       <img
-      src="https://styles.redditmedia.com/t5_2rer8/styles/communityIcon_pv6qe0p0bera1.png?width=256&s=7f7b9b4fdaabad7139aa9a359bb2a22ac473b849"
+      src={user.userPhoto ? `data:image/${user.format};base64,${user.userPhoto}` : '/public/not-found.jpg'}
       alt="userImg"
       className={styles.userImg} />
     </div>

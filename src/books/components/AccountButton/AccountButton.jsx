@@ -14,7 +14,12 @@ export const AccountButton = ({ NavOpen, modalOpen, handleModal }) => {
     >
 
       <div className={styles.Account}>
-        <div className={styles['Account-img']}></div>
+        <div className={styles['Account-img']}>
+          <img
+          className={styles.userImg}
+          src={user.userPhoto ? `data:image/${user.format};base64,${user.userPhoto}` : '/public/not-found.jpg'}
+          alt="img_user" />
+        </div>
         {NavOpen
           ? (<p className={styles.Username}>{ user.firstName }</p>)
           : undefined

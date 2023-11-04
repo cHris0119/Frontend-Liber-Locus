@@ -20,7 +20,8 @@ export const AccountHeader = () => {
             <section className={styles.headerLeft}>
                 <div className={styles.headerContainerImg}>
                     <img
-                    src={photo} alt="img-user" />
+                    src={photo}
+                    alt="img-user" />
                 </div>
             </section>
 

@@ -36,6 +36,8 @@ export const MyPost = () => {
     )
   }
 
+  console.log(myBooks)
+
   return (
     <>
     {hasPost
@@ -60,7 +62,9 @@ export const MyPost = () => {
         <article className={styles.myPost} key={book.id}>
 
           <div className={styles.articleImgContainer}>
-            <img src="" alt="img-post" />
+            <img
+            src={book.book_img ? `data:image/${book.format};base64,${book.book_img}` : '/public/not-found.jpg'}
+            alt="img-post" />
           </div>
 
           <div className={styles.articleContent}>

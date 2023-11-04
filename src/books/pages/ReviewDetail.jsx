@@ -137,7 +137,9 @@ export const ReviewDetail = () => {
         <div className={styles.userContainer}>
 
           <div className={styles.imgContainer}>
-            <img src="https://a.ltrbxd.com/resized/avatar/upload/1/2/0/3/7/7/7/shard/avtr-0-1000-0-1000-crop.jpg?v=ff62b2f12e" alt="userIMG" />
+            <img
+            src="https://a.ltrbxd.com/resized/avatar/upload/1/2/0/3/7/7/7/shard/avtr-0-1000-0-1000-crop.jpg?v=ff62b2f12e"
+            alt="userIMG" />
           </div>
           <div className={styles.userInfo}>
 
@@ -151,7 +153,9 @@ export const ReviewDetail = () => {
           <div className={styles.bookDetails}>
 
             <div className={styles.bookImg}>
-              <img src="https://images.cdn3.buscalibre.com/fit-in/360x360/6f/b4/6fb45c30bd70046fc578acd09cda2c42.jpg" alt="bookImg" />
+              <img
+              src={review.review_img ? `data:image/${review.format};base64,${review.review_img}` : '/public/not-found.jpg'}
+              alt="bookImg" />
             </div>
             <div className={styles.bookInfo}>
               <h1>{review.title}</h1>

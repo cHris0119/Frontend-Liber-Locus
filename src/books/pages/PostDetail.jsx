@@ -32,7 +32,10 @@ export const PostDetail = () => {
         <BackButton />
       <div className={styles.productDetailContainer}>
         <div className={styles.productImgContainer}>
-          <img className={styles.productImg} src="https://prodimage.images-bn.com/pimages/9781435159570_p0_v1_s1200x630.jpg" alt={selectedBook.name} />
+          <img
+          className={styles.productImg}
+          src={selectedBook.book_img ? `data:image/${selectedBook.format};base64,${selectedBook.book_img}` : '/public/not-found.jpg'}
+          alt={selectedBook.name} />
         </div>
 
         {/* Este div tiene que ser un componente. */}

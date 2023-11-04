@@ -8,7 +8,9 @@ export const ForumCard = ({ foro }) => {
         <div className={styles.forumDetails}>
 
             <div className={styles.imgContainer}>
-                <img src="https://styles.redditmedia.com/t5_2qh9i/styles/communityIcon_j68bk74k14o01.png" alt={foro.name} />
+                <img
+                src={foro.forum_img ? `data:image/${foro.format};base64,${foro.forum_img}` : '/public/not-found.jpg'}
+                alt={foro.name} />
             </div>
 
             <div className={styles.foroInfo}>

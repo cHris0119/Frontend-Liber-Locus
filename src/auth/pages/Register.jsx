@@ -53,8 +53,6 @@ export const Register = () => {
     formValidations
   })
 
-  console.log(formState)
-
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
@@ -63,7 +61,6 @@ export const Register = () => {
     setFormSubmitted(true)
     if (isFormValid) {
       const { terms, ...rest } = formState
-      console.log(rest)
       const user = { ...rest }
       localStorage.setItem('userRegister', JSON.stringify(user))
       handleResetForm()

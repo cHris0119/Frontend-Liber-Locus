@@ -30,7 +30,6 @@ export const QuestionsPost = () => {
       try {
         const response = await booksApi.get(`api/questions/getBookQuestions/${postId}`,
           config)
-        console.log(response)
         setIsLoading(false)
         setAnswers(response.data.Data)
       } catch (error) {
@@ -54,8 +53,6 @@ export const QuestionsPost = () => {
       </div>
     )
   }
-
-  console.log(isSeller)
 
   return (
 

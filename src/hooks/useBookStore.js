@@ -113,9 +113,11 @@ export const useBookStore = () => {
   //* CARGAR LIBROS
   const startLoadingEvents = async () => {
     try {
-      const { data } = await booksApi.get('api/books/get_all_books/', config)
+      const response = await booksApi.get('api/books/get_all_books/', config)
 
-      dispatch(onLoadBook(data))
+      console.log(response)
+
+      dispatch(onLoadBook(response.data.books))
     } catch (error) {
       console.log('Error cargando libros')
       Swal.fire({

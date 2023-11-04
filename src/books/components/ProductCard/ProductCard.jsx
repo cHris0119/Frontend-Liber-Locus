@@ -11,7 +11,10 @@ export const ProductCard = ({ books }) => {
             <div className={styles.cardInfo}>
 
               <div className={styles.cardImgContainer}>
-                <img className={styles.cardImg} src='https://prodimage.images-bn.com/pimages/9781435159570_p0_v1_s1200x630.jpg' alt={book.name} />
+                <img
+                className={styles.cardImg}
+                src={book.book_img ? `data:image/${book.format};base64,${book.book_img}` : '/public/not-found.jpg'}
+                alt={book.name} />
               </div>
 
               <div className={styles.cardDetails}>
