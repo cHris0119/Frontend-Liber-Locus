@@ -35,7 +35,6 @@ export const CreateForum = () => {
     initialForm,
     formValidations
   })
-  console.log(formState)
 
   const handleSubmit = async (e) => {
     e.preventDefault()

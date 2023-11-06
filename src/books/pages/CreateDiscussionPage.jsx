@@ -53,13 +53,12 @@ export const CreateDiscussionPage = () => {
       setFormSubmitted(false)
       console.log(formState)
       try {
-        const response = await booksApi.post('api/create_discussion/', {
+        await booksApi.post('api/create_discussion/', {
           forum_id: id,
           title: formState.title,
           description: formState.description
         },
         config)
-        console.log(response)
       } catch (error) {
         console.log(error)
       }

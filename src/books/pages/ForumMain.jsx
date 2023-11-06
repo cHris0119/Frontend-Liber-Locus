@@ -17,7 +17,6 @@ export const ForumMain = () => {
   const { isLoadingForums, forumList } = useSelector(state => state.forum)
 
   const forum = forumList.find(forum => forum.id === Number(id))
-  console.log(forum)
 
   useEffect(() => {
     startLoadingForums()

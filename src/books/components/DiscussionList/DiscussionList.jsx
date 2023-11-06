@@ -34,8 +34,6 @@ export const DiscussionList = () => {
 
   const hasDiscussion = discussion.length > 0
 
-  console.log(hasDiscussion)
-
   return (
 
     <div className={styles.discussionListContainer}>

@@ -21,7 +21,6 @@ export const ForumMainHeader = ({
   }
   const { user } = useSelector(state => state.auth)
   const isAdmin = user.id === forum.user.id
-  console.log(isAdmin)
 
   const getMembers = async () => {
     try {
