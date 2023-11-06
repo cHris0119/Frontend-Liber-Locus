@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import styles from './DiscussionCard.module.css'
 
 export const DiscussionCard = ({ discussion }) => {
-  console.log(discussion)
   return (
     <>
     <article className={styles.discussionCardContainer}>

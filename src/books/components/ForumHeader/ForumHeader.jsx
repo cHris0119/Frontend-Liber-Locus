@@ -26,7 +26,6 @@ export const ForumHeader = () => {
         const response = await booksApi.get(`api/forums/get_user_forums/${user.id}/`,
           config)
         const { data } = response
-        console.log(data)
         setUserForum(data.UserForumsData)
       } catch (error) {
         console.log(error)

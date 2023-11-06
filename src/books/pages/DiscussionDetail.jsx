@@ -40,9 +40,7 @@ export const DiscussionDetail = () => {
     fetchData()
   }, [])
 
-  const hasAnswers = answers > 0
-
-  console.log(discussion)
+  const hasAnswers = answers?.length >= 0
 
   return (
     <div className={styles.discussionDetailContainer}>
