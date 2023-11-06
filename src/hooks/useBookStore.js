@@ -39,11 +39,13 @@ export const useBookStore = () => {
       },
       config)
 
-      const { BookData } = response.data
+      console.log(response.data)
 
-      console.log('BookData', BookData)
+      const { book_img: bookIMG, ...rest } = response.data.BookData
+      const newData = { ...rest, format: response.data.format, review_img: response.data.img }
 
-      dispatch(onAddBook(BookData))
+      dispatch(onAddBook(newData))
+
       Swal.fire({
         icon: 'success',
         title: 'Libro agregado con exito.',

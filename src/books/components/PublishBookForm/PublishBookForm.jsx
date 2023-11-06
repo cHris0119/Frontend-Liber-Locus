@@ -56,8 +56,6 @@ export const PublishBookForm = () => {
     formValidations
   })
 
-  console.log(formState)
-
   const handleSubmit = async (e) => {
     e.preventDefault()
 

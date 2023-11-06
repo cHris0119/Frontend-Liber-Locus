@@ -23,7 +23,13 @@ export const useForumStore = () => {
         forum_category: parseInt(category)
       },
       config)
-      dispatch(onAddForum(response.data.ForumData))
+      console.log(response)
+
+      const { forum_img: bookIMG, ...rest } = response.data.ForumData
+      const newData = { ...rest, format: response.data.format, forum_img: response.data.img }
+      console.log(newData)
+
+      dispatch(onAddForum(newData))
       Swal.fire({
         icon: 'success',
         title: 'Foro creado con exito.',
