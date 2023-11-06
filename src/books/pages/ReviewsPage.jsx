@@ -39,7 +39,7 @@ export const ReviewsPage = () => {
             className={({ isActive }) => (isActive ? styles.active : '')}
             >Populares</NavLink>
 
-            <NavLink
+            {/* <NavLink
             to={'recientes'}
             className={({ isActive }) => (isActive ? styles.active : '')
             }>Recientes</NavLink>
@@ -47,7 +47,7 @@ export const ReviewsPage = () => {
             <NavLink
             to={'paraTi'}
             className={({ isActive }) => (isActive ? styles.active : '')
-            }>Para ti</NavLink>
+            }>Para ti</NavLink> */}
 
         </section>
 
