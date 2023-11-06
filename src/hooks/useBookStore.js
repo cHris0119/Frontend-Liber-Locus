@@ -42,7 +42,7 @@ export const useBookStore = () => {
       console.log(response.data)
 
       const { book_img: bookIMG, ...rest } = response.data.BookData
-      const newData = { ...rest, format: response.data.format, review_img: response.data.img }
+      const newData = { ...rest, format: response.data.format, book_img: response.data.img }
 
       dispatch(onAddBook(newData))
 

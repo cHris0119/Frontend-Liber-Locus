@@ -34,7 +34,7 @@
     padding: 1rem;
     width: 100%; /* Establece el ancho deseado */
     height: 250px; /* Establece la altura deseada */
-    object-fit: cover; /* Ajusta el comportamiento de escalado (puedes personalizar esto) */
+    object-fit: contain; /* Ajusta el comportamiento de escalado (puedes personalizar esto) */
   }
 
 .cardDetails{
