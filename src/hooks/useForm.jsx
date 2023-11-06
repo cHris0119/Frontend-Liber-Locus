@@ -64,8 +64,6 @@ export const useForm = ({ initialForm = {}, formValidations = {} }) => {
         })
       }
     }
-
-    console.log('file', selectedFile)
   }
 
   const handleResetForm = () => {

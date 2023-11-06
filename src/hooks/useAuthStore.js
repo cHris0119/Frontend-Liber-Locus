@@ -38,7 +38,7 @@ export const useAuthStore = () => {
       //
     } catch (error) {
       console.log('errorLog: ', error)
-      dispatch(onLogout('Credenciales incorrectas'))
+      dispatch(onLogout('Credenciales incorrectas o no has activado tu cuenta'))
       setTimeout(() => {
         dispatch(clearErrorMessage())
       }, 10)
@@ -66,7 +66,7 @@ export const useAuthStore = () => {
     lastname,
     email,
     password,
-    imgUser = 'img'
+    imgUser
   }) => {
     try {
       const response = await booksApi.post('api/registerUser/', {
@@ -81,10 +81,7 @@ export const useAuthStore = () => {
         photo_dir: imgUser
       })
 
-      // const confirmEmail = await booksApi.post(`api/user/send_mail/${email}/`)
-
       console.log(response)
-      // console.log(confirmEmail)
 
       Swal.fire({
         icon: 'success',
