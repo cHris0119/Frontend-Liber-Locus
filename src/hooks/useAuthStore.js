@@ -6,6 +6,13 @@ import Swal from 'sweetalert2'
 export const useAuthStore = () => {
   const { status, user, errorMessage } = useSelector(state => state.auth)
   const dispatch = useDispatch()
+  const token = JSON.parse(localStorage.getItem('token'))
+
+  const config = {
+    headers: {
+      Authorization: `Token ${token}`
+    }
+  }
 
   //* LOGIN
   const startLogin = async ({ email, password }) => {
@@ -126,12 +133,20 @@ export const useAuthStore = () => {
 
   //* Editar usuario
   const startEditUser = async ({ firstName, lastName, userPhoto, id }) => {
+    console.log(firstName, lastName, userPhoto, id)
+
     try {
-      const response = await booksApi.put(`api/editUser/${id}/`, {
+      const requestData = {
         first_name: firstName,
-        last_name: lastName,
-        photo_dir: userPhoto
-      })
+        last_name: lastName
+      }
+
+      if (userPhoto !== null) {
+        requestData.user_photo = userPhoto
+      }
+      const response = await booksApi.put(`api/editUser/${id}/`, {
+        ...requestData
+      }, config)
       console.log(response)
       dispatch(onEditUser({ id, firstName, lastName, userPhoto }))
       //

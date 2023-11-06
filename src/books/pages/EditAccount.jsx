@@ -19,7 +19,7 @@ export const EditAccount = () => {
   const { startEditUser } = useAuthStore()
 
   const initialForm = {
-    userPhoto: user.userPhoto,
+    userPhoto: null,
     firstName: user.firstName,
     lastName: user.lastName
   }
@@ -43,6 +43,8 @@ export const EditAccount = () => {
     initialForm,
     formValidations
   })
+
+  console.log(formState)
 
   const handleSubmit = async (e) => {
     e.preventDefault()

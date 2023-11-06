@@ -20,7 +20,7 @@ export const ForumMainHeader = ({
     }
   }
   const { user } = useSelector(state => state.auth)
-  const isAdmin = user.id === forum.user
+  const isAdmin = user.id === forum.user.id
 
   const getMembers = async () => {
     try {

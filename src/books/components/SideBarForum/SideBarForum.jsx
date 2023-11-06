@@ -15,11 +15,11 @@ export const SideBarForum = ({ menu, userForum }) => {
         <ul className={styles.forumHeaderUl}>
             {userForum?.map((foro) => (
                 <li
-                key={foro.forum_id}
+                key={foro.id}
                 className={styles.forumHeaderLi}>
 
                 <Link
-                to={`/foro/${foro.forum_id}`}>
+                to={`/foro/${foro.id}`}>
                     {foro.name}
                 </Link>
 

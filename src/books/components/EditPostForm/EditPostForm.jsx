@@ -34,11 +34,6 @@ export const EditPostForm = ({ bookList }) => {
     handleResetForm,
     handleFileChange,
     formState,
-    nameBook,
-    price,
-    genre,
-    description,
-    nameAuthor,
 
     nameBookValid,
     priceValid,
@@ -52,6 +47,8 @@ export const EditPostForm = ({ bookList }) => {
     formValidations
   })
 
+  console.log(formState)
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setFormSubmitted(true)
@@ -62,12 +59,12 @@ export const EditPostForm = ({ bookList }) => {
 
       const book = {
         id: parseInt(id),
-        name: nameBook,
-        price,
-        description,
-        author: nameAuthor,
-        book_img: 'aaa',
-        book_category: parseInt(genre),
+        name: formState.nameBook,
+        price: formState.price,
+        description: formState.description,
+        author: formState.nameAuthor,
+        book_img: formState.imgBook,
+        book_category: parseInt(formState.genre),
         seller: bookToEdit.seller
       }
       await startUpdateBook(book)

@@ -66,15 +66,21 @@ export const useBookStore = () => {
     const { id, name, price, description, author, book_img: bookImg, book_category: bookCategory } = book
     try {
       console.log('book', book)
-
-      //
-      const response = await booksApi.put(`api/books/update/${id}/`, {
+      const requestData = {
         name,
         price,
         description,
         author,
-        book_img: bookImg,
         book_category: bookCategory
+      }
+
+      if (bookImg !== null) {
+        requestData.book_img = bookImg
+      }
+
+      //
+      const response = await booksApi.put(`api/books/update/${id}/`, {
+        ...requestData
       }, config)
       const { data } = response
       dispatch(onUpdateBook(data))

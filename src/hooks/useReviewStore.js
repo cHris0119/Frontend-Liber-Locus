@@ -30,7 +30,11 @@ export const useReviewStore = () => {
       config)
 
       console.log(response)
-      dispatch(onAddReview(response.data.reviewData))
+      const { review_img: reviewIMG, ...rest } = response.data.reviewData
+      const newData = { ...rest, format: response.data.format, review_img: response.data.img }
+      console.log(newData)
+
+      dispatch(onAddReview(newData))
       Swal.fire({
         icon: 'success',
         title: 'Reseña agregada con exito.',

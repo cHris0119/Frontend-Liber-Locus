@@ -32,7 +32,9 @@ export const ShippingDetail = () => {
       <div className={styles.shippingDirectionContainer}>
         <SelectDirection />
         <div className={styles.continuarBtnContainer}>
-          <NavLink to={`/seleccionPago/${postId}`}>
+          <NavLink
+          // to={`/seleccionPago/${postId}`}
+          >
             <button className={styles.continuarBtn}>
               Continuar
             </button>

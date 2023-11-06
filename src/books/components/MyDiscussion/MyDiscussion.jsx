@@ -18,6 +18,8 @@ export const MyDiscussion = () => {
   }
   const hasDiscussion = myDiscussion.length > 0
 
+  console.log(myDiscussion)
+
   useEffect(() => {
     const getMembers = async () => {
       try {
