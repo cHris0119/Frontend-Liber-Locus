@@ -4,6 +4,7 @@ import 'animate.css'
 import { useBookStore } from '../../hooks'
 import { useEffect } from 'react'
 import { BackButton, Loader, QuestionsPost } from '../components/'
+import { formatearPeso } from '../../helpers'
 
 import styles from '../styles/PostDetail.module.css'
 
@@ -14,6 +15,7 @@ export const PostDetail = () => {
   const { isLoadingBooks } = useSelector(state => state.book)
 
   const selectedBook = bookList.find(book => book.id === Number(postId))
+  const formatPrice = formatearPeso(parseInt(selectedBook.price))
 
   useEffect(() => {
     startLoadingEvents()
@@ -43,12 +45,11 @@ export const PostDetail = () => {
           <ul className={styles.productInfoNames}>
             <li className={styles.productCategory}>{selectedBook.book_category.description}</li>
             <li className={styles.productName}>{selectedBook.name}</li>
-            <li className={styles.productPrice}>{parseInt(selectedBook.price)} CLP</li>
+            <li className={styles.productPrice}>{formatPrice} CLP</li>
 
             <li className={styles.productSeller}>
               Vendedor:
-              <Link to={`/usuario/${selectedBook.seller.id}`}>
-              {selectedBook.seller.first_name} {selectedBook.seller.last_name}
+              <Link to={`/usuario/${selectedBook.seller.id}`}> {selectedBook.seller.first_name} {selectedBook.seller.last_name}
               </Link>
               </li>
 

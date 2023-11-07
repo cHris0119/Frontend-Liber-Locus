@@ -3,9 +3,11 @@ import { useState } from 'react'
 import styles from './QuestionForm.module.css'
 import booksApi from '../../../api/booksApi'
 import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 export const QuestionForm = ({ setAnswers }) => {
   const { postId } = useParams()
+  const { user } = useSelector(state => state.auth)
   const [question, setQuestion] = useState('')
   const token = JSON.parse(localStorage.getItem('token'))
   const config = {
@@ -27,7 +29,8 @@ export const QuestionForm = ({ setAnswers }) => {
       },
       config)
       const { data } = response
-      const newAnswer = { ...data.Question, answer__description: null }
+      const newAnswer = { ...data.Question, answer__description: null, user_id: user.id }
+      console.log(newAnswer)
       setAnswers(answers => [...answers, newAnswer])
       setQuestion('')
     } catch (error) {

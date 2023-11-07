@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router-dom'
+import { formatearPeso } from '../../../helpers'
+
 import styles from './ProductCard.module.css'
 
 export const ProductCard = ({ books }) => {
@@ -23,7 +25,7 @@ export const ProductCard = ({ books }) => {
                 </div>
 
                 <div className={styles.cardDescription}>
-                  <p>{parseInt(book.price)} CLP</p>
+                  <p>{formatearPeso(parseInt(book.price))} CLP</p>
                   <span>{book.book_category.description}</span>
                 </div>
               </div>
