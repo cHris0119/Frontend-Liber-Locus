@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { Home, Marketplace, PaymentSelection, PostDetail, ShippingDetail, AccountPage, EditAccount, EditDirection, EditPost, ForumPage, ForumMain, CreateDiscussionPage, DiscussionDetail, ReviewsPage, ReviewDetail, CreateReview, CreateForum, EditForumPage, MembersForumPage, ProfilePage } from '../pages'
+import { Home, Marketplace, PostDetail, ShippingDetail, AccountPage, EditAccount, EditDirection, EditPost, ForumPage, ForumMain, CreateDiscussionPage, DiscussionDetail, ReviewsPage, ReviewDetail, CreateReview, CreateForum, EditForumPage, MembersForumPage, ProfilePage, ResultCorrect, ResultIncorrect } from '../pages'
 import { DiscussionList, ForumLastPost, ForumList, MyAuction, MyDiscussion, MyPost, MyReview, PublishBookForm, ReviewsList, Sidebar } from '../components'
 import useModalOpen from '../hooks/useModalOpen'
 import ScrollToTop from '../services/ScrollToTop'
@@ -7,6 +7,7 @@ import { EditDiscussionPage } from '../pages/EditDiscussionPage'
 import 'animate.css'
 import { EditReview } from '../pages/EditReview'
 import { useSelector } from 'react-redux'
+import { MyShopping } from '../pages/MyShopping'
 
 export const BooksRoutes = () => {
   const [modalOpen, handleModal] = useModalOpen()
@@ -72,7 +73,8 @@ export const BooksRoutes = () => {
           <Route path="publicarLibro" element={<PublishBookForm />} />
           <Route path="/detallePost/:postId" element={<PostDetail />} />
           <Route path="/detalleEnvio/:postId" element={<ShippingDetail />} />
-          <Route path="/seleccionPago/:postId" element={<PaymentSelection />} />
+          <Route path="/detalleEnvio/correct" element={<ResultCorrect />} />
+          <Route path="/detalleEnvio/incorrect" element={<ResultIncorrect />} />
           {/* FIN MARKETPLACE */}
 
           {/* PERFIL */}
@@ -82,6 +84,7 @@ export const BooksRoutes = () => {
             <Route path="misReseñas" element={<MyReview/>} />
             <Route path="/perfil/" element={<Navigate to='/perfil/misPost' />} />
           </Route>
+          <Route path="misCompras" element={<MyShopping/>} />
 
           <Route path="/usuario/:id" element={<ProfilePage />} />
           <Route path="/editarPerfil" element={<EditAccount />} />

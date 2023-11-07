@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 export const SelectDirection = () => {
   const { user } = useSelector(state => state.auth)
   const direction = user.direction
-  const nameDirection = `${direction.calle.toUpperCase()}. ${direction.numero}`
+  const nameDirection = `${direction.calle.toUpperCase()} - ${direction.numero}`
 
   return (
 

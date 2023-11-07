@@ -4,6 +4,7 @@ import { useBookStore } from '../../../hooks'
 import { useEffect } from 'react'
 
 import { Loader } from '../Loader/Loader'
+
 import styles from './MyPost.module.css'
 
 export const MyPost = () => {

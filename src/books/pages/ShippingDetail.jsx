@@ -33,7 +33,7 @@ export const ShippingDetail = () => {
         <SelectDirection />
         <div className={styles.continuarBtnContainer}>
           <NavLink
-          // to={`/seleccionPago/${postId}`}
+          to={'/detalleEnvio/correct'}
           >
             <button className={styles.continuarBtn}>
               Continuar

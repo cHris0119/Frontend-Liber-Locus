@@ -2,7 +2,6 @@ import {
   AiFillHome,
   AiFillShop,
   AiFillNotification,
-  AiFillSetting,
   AiFillShopping
 } from 'react-icons/ai'
 import { BsFillPeopleFill } from 'react-icons/bs'
@@ -46,7 +45,7 @@ export const linksModal = [
   },
   {
     label: 'Mis compras',
-    to: '/compras',
+    to: '/misCompras',
     icon: <AiFillShopping />
   }
   // {
