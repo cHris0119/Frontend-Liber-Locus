@@ -8,6 +8,7 @@ import 'animate.css'
 import { EditReview } from '../pages/EditReview'
 import { useSelector } from 'react-redux'
 import { MyShopping } from '../pages/MyShopping'
+import { ContactarVendedor } from '../pages/ContactarVendedor'
 
 export const BooksRoutes = () => {
   const [modalOpen, handleModal] = useModalOpen()
@@ -85,6 +86,7 @@ export const BooksRoutes = () => {
             <Route path="/perfil/" element={<Navigate to='/perfil/misPost' />} />
           </Route>
           <Route path="misCompras" element={<MyShopping/>} />
+          <Route path="/contactar/:id" element={<ContactarVendedor/>} />
 
           <Route path="/usuario/:id" element={<ProfilePage />} />
           <Route path="/editarPerfil" element={<EditAccount />} />

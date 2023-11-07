@@ -1,0 +1,40 @@
+.messagesContainer{
+    height: 90%;
+}
+
+.header{
+    background-color: #ccc;
+    padding: .5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.containerImg{
+    background-color: lightblue;
+    width: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerImg img{
+    max-width: 100%;
+    height: auto;    
+}
+
+.listMessages{
+    height: 90%;
+    padding: 0 1rem;
+    overflow: scroll;
+}
+
+.listMessages::-webkit-scrollbar{
+    width: 7px;
+    cursor: pointer;
+}
+
+.listMessages::-webkit-scrollbar-thumb{
+    background-color: #2d181d;
+    border-radius: 10px;
+}

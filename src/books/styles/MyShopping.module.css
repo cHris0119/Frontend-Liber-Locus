@@ -14,12 +14,12 @@
     gap: 1rem;
     margin: 10px auto;
     padding: 10px;
-    background-color: #bbb;
+    background-color: #fff;
 }
 
 .card{
     width: 100%;
-    background-color: #fff;
+    background-color: #ddd;
     border-radius: 10px;
     display: flex;
     align-items: center;

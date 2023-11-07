@@ -1,0 +1,32 @@
+.container{
+    background-color: lightblue;
+    max-width: 40%;
+    padding: 10px;
+    border-radius: 10px;
+    overflow-y: scroll;
+    max-height: 60%;
+    margin-left: auto;
+    margin-top: 1rem;
+}
+
+.container::-webkit-scrollbar{
+    width: 7px;
+    cursor: pointer;
+}
+
+.container::-webkit-scrollbar-thumb{
+    background-color: #2d181d;
+    border-radius: 10px;
+}
+
+.content{
+    overflow-wrap: break-word;
+}
+
+
+.seller{
+    background-color: #1c1e21b2;
+    color: #fff;
+    margin-left: 0;
+    margin-right: auto;
+}
