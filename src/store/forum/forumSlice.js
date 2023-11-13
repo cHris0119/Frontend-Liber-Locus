@@ -47,6 +47,5 @@ export const {
   onAddForum,
   onDeleteForum,
   onUpdateForum,
-  onLoadForum,
-  clearMessage
+  onLoadForum
 } = forumSlice.actions

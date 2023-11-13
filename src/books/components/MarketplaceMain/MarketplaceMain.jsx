@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MarketplaceHeader, PostList } from '../'
+import { MarketSelector, MarketplaceHeader, PostList } from '../'
 
 export const MarketplaceMain = ({ bookList }) => {
   const [search, setSearch] = useState('')
@@ -54,6 +54,7 @@ export const MarketplaceMain = ({ bookList }) => {
 
   return (
     <>
+    <MarketSelector />
      <MarketplaceHeader
       search = {search}
 

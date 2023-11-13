@@ -15,7 +15,7 @@ export const PostList = ({ bookList }) => {
 
         : (<div className={styles.NoFoundContainer}>
           {/* (<Loader />) */}
-          <h2 className={styles.noFound}>No se encuentran libros...</h2>
+          <h2 className={styles.noFound}>No se encuentran libros.</h2>
         </div>)
 
       }

@@ -1,0 +1,39 @@
+.formAuction{
+    width: 100%;
+    display: flex;
+    align-items: start;
+}
+
+.formAuction input{
+    padding: 4px 8px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+}
+
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: start;
+}
+
+.inputContainer span{
+    color: red;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+.inputText{
+    background-color: #efefef;
+    width: 100%;
+}
+
+.inputSubmit{
+    background-color: #4c2931;
+    color: #fff;
+    font-weight: 600;
+    width: 30%;
+    cursor: pointer;
+}

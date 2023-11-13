@@ -1,0 +1,50 @@
+.container{
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.buttonPublicar{
+    margin-right: auto;
+    padding: .8rem;
+    border-radius: 10px;
+    border: none;
+    font-size: 18px;
+}
+
+.listContainer{
+    width: 100%;
+    background-color: #eee;
+    border-radius: 10px;
+    margin: 0 auto;
+    display: grid;
+    gap: 2rem;
+    padding: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+}
+
+.NoFoundContainer{
+    margin-top: 1rem;
+    text-align: center;
+    color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+    .container{
+        width: 90%;
+    }
+
+    .listContainer{
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+
+        gap: 1rem;
+
+    }
+  
+  }

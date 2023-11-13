@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { Home, Marketplace, PostDetail, ShippingDetail, AccountPage, EditAccount, EditDirection, EditPost, ForumPage, ForumMain, CreateDiscussionPage, DiscussionDetail, ReviewsPage, ReviewDetail, CreateReview, CreateForum, EditForumPage, MembersForumPage, ProfilePage, ResultCorrect, ResultIncorrect } from '../pages'
+import { Home, Marketplace, PostDetail, ShippingDetail, AccountPage, EditAccount, EditDirection, EditPost, ForumPage, ForumMain, CreateDiscussionPage, DiscussionDetail, ReviewsPage, ReviewDetail, CreateReview, CreateForum, EditForumPage, MembersForumPage, ProfilePage, ResultCorrect, ResultIncorrect, AuctionPage, AuctionDetail } from '../pages'
 import { DiscussionList, ForumLastPost, ForumList, MyAuction, MyDiscussion, MyPost, MyReview, PublishBookForm, ReviewsList, Sidebar } from '../components'
 import useModalOpen from '../hooks/useModalOpen'
 import ScrollToTop from '../services/ScrollToTop'
@@ -77,6 +77,12 @@ export const BooksRoutes = () => {
           <Route path="/detalleEnvio/correct" element={<ResultCorrect />} />
           <Route path="/detalleEnvio/incorrect" element={<ResultIncorrect />} />
           {/* FIN MARKETPLACE */}
+
+          {/* SUBASTAS */}
+          <Route path="/subastas" element={<AuctionPage />} />
+          <Route path="/detalleSubasta/:id" element={<AuctionDetail />} />
+
+          {/* FIN SUBASTAS */}
 
           {/* PERFIL */}
           <Route path="/perfil/" element={<AccountPage />}>

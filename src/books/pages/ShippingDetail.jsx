@@ -1,16 +1,19 @@
-import { useParams, NavLink } from 'react-router-dom'
+import { useParams, NavLink, useNavigate } from 'react-router-dom'
 import { SelectDirection, BackButton, SummaryProduct, Loader } from '../components/'
 
 import styles from '../styles/ShippingDetail.module.css'
 import { useBookStore } from '../../hooks'
 import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import booksApi from '../../api/booksApi'
 
 export const ShippingDetail = () => {
   const { postId } = useParams()
 
   const { startLoadingEvents } = useBookStore()
   const { isLoadingBooks } = useSelector(state => state.book)
+  const [dataUrl, setDataUrl] = useState('')
+  const [dataToken, setDataToken] = useState('')
 
   useEffect(() => {
     startLoadingEvents()
@@ -24,6 +27,26 @@ export const ShippingDetail = () => {
     )
   }
 
+  const handlePay = async () => {
+    try {
+      const response = await booksApi.post('api/transbank/iniciar_pago', {
+        monto: 1000,
+        orden_compra: 123
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      setDataToken(response.data.token)
+      setDataUrl(response.data.url)
+
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
 
     <div className={styles.shippingDetailContainer}>
@@ -32,13 +55,26 @@ export const ShippingDetail = () => {
       <div className={styles.shippingDirectionContainer}>
         <SelectDirection />
         <div className={styles.continuarBtnContainer}>
-          <NavLink
+          {/* <NavLink
           to={'/detalleEnvio/correct'}
-          >
-            <button className={styles.continuarBtn}>
+          > */}
+            <button
+            onClick={handlePay}
+            className={styles.continuarBtn}>
               Continuar
             </button>
-          </NavLink>
+
+            { dataUrl && dataToken
+              ? (
+              <form method="post" action={dataUrl}>
+              <input type="hidden" name="token_ws" value={dataToken} />
+              <input type="submit" value="Ir a pagar" />
+            </form>
+                )
+              : <h2>No hay data aun</h2>
+            }
+
+          {/* </NavLink> */}
 
         </div>
       </div>

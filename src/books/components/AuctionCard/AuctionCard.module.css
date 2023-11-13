@@ -1,0 +1,128 @@
+.customNavlink,
+.customNavlink:link,
+.customNavlink:visited,
+.customNavlink:hover,
+.customNavlink:focus,
+.customNavlink:active {
+
+  color: inherit;
+  text-decoration: none;
+
+}
+
+.cardInfo{
+    box-shadow: 0px 4px 11px 0px rgba(0, 0, 0, 0.25);
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: .5rem;
+    border-radius: 10px 10px 5px 5px;
+    cursor: pointer;
+    gap: 10px;
+    
+}
+
+
+.cardImgContainer{
+    width: 80%;
+    text-align: center;
+    object-fit: cover;
+}
+
+.cardImg {
+    padding: 1rem;
+    width: 100%; /* Establece el ancho deseado */
+    height: 250px; /* Establece la altura deseada */
+    object-fit: contain; /* Ajusta el comportamiento de escalado (puedes personalizar esto) */
+  }
+
+.cardDetails{
+    border-top: 2px solid #00000050;
+    padding: 1rem;
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.cardDescription{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items:start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .5rem;
+
+}
+
+.cardDetails h3{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.cardDescription p {
+    font-weight: bold;
+    color: #E16A00;
+    font-size: 1.2rem;
+}
+
+.cardDescription span{
+    border: 2px solid #000;
+    padding: 4px;
+    border-radius: 5px; 
+    font-weight: bold;
+    width: max-content;
+}
+
+@media screen and (max-width: 767px) {
+
+    .cardInfo{
+        flex-direction: row;
+        padding: .5rem;
+        gap: 10px;        
+    }
+
+    .cardImgContainer{
+        width: 50%;
+        text-align: center;
+        padding: 1rem;
+    }
+  
+    .cardDetails{
+        width: 60%;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        border: none;
+        border-left: 2px solid #00000050;
+    }
+
+ 
+    .cardDetails h3{
+        font-size: 1rem;
+        margin: 0 auto;
+    }
+
+
+    .cardDescription{
+        display: flex;        
+        gap: 10px;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cardDescription span{
+        padding: .2rem 1rem;
+        border-radius: 5px; 
+        font-weight: bold;
+        width: max-content;
+    }
+    
+  }

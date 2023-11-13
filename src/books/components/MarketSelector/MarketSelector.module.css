@@ -1,0 +1,26 @@
+.container{
+    margin: 0 auto;
+    display: flex;
+    padding: .5rem;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.link{
+    font-size: 22px;
+    padding: 10px;
+    color: #000000;
+
+}
+
+.link:first-child{
+    border-right: 1px solid #00000050;
+}
+
+.link:hover{
+    color: #00000080;
+}
+
+.isActive{
+    color: #00000080;
+}
