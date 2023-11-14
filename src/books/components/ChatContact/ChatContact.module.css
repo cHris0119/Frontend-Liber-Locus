@@ -11,7 +11,7 @@
 
 .sendMessage{
     border-radius: 0 0 10px 10px;
-    background-color: #efefef;
+    background-color: #524644;
     height: 15%;
     padding: 12px;
     display: flex;
@@ -37,6 +37,7 @@
     color: #fff;
     width: 20%;
     font-weight: 500;
+    font-size: 16px;
     border: none;
     cursor: pointer;
 }

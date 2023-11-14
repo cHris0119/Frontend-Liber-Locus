@@ -15,7 +15,7 @@ export const MisVentas = () => {
                 <div className={styles.details}>
                     <p>Nombre: NameProducto</p>
                     <p>Precio: 5000 CLP</p>
-                    <p>Vendedor: Juan Lopez</p>
+                    <p>Comprador: Juan perez</p>
                     <p>Estado: en revision</p>
                 </div>
 

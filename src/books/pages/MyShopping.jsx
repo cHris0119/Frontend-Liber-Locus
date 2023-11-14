@@ -6,15 +6,17 @@ export const MyShopping = () => {
     <div className={styles.container}>
 
         <div className={styles.misVentasContainer}>
-            <NavLink
-            to={'misVentas'}
-            >Mis ventas
-            </NavLink>
 
             <NavLink
             to={'misCompras'}
             >Mis compras
             </NavLink>
+
+            <NavLink
+            to={'misVentas'}
+            >Mis ventas
+            </NavLink>
+
         </div>
 
         <Outlet />

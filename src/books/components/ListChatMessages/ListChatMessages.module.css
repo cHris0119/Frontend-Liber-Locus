@@ -3,7 +3,8 @@
 }
 
 .header{
-    background-color: #ccc;
+    background-color: #524644;
+    border-radius: 10px 10px 0 0;
     padding: .5rem;
     display: flex;
     gap: 1rem;

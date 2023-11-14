@@ -32,7 +32,7 @@ export const ShippingDetail = () => {
     try {
       const response = await booksApi.post('api/transbank/iniciar_pago', {
         monto: 1000,
-        orden_compra: 123,
+        orden_compra: postId,
         user_id: user.id
       }, {
         headers: {

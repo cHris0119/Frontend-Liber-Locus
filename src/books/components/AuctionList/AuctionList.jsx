@@ -13,7 +13,7 @@ export const AuctionList = () => {
       ? (
         <div className={styles.container}>
           <button className={styles.buttonPublicar}>
-            <Link>Publicar subasta</Link>
+            <Link to={'/crearSubasta'}>Publicar subasta</Link>
           </button>
 
           <div className={styles.listContainer}>
