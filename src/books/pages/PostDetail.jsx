@@ -10,12 +10,16 @@ import styles from '../styles/PostDetail.module.css'
 
 export const PostDetail = () => {
   const { bookList } = useSelector(state => state.book)
+  const { user } = useSelector(state => state.auth)
   const { postId } = useParams()
   const { startLoadingEvents } = useBookStore()
   const { isLoadingBooks } = useSelector(state => state.book)
 
   const selectedBook = bookList.find(book => book.id === Number(postId))
   const formatPrice = formatearPeso(parseInt(selectedBook.price))
+  const myBook = selectedBook.seller.id === user.id
+
+  console.log(selectedBook)
 
   useEffect(() => {
     startLoadingEvents()
@@ -55,9 +59,13 @@ export const PostDetail = () => {
 
             <li className={styles.productDescription}><p>{selectedBook.description}</p></li>
           </ul>
+          {!myBook
+            ? (
           <div className={styles.buyButtonContainer}>
             <NavLink className={styles.linkBuyButton} to={`/detalleEnvio/${postId}`}><button className={styles.buyButton} >Comprar</button></NavLink>
           </div>
+              )
+            : null}
         </div>
       </div>
 

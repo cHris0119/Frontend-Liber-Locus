@@ -22,6 +22,7 @@ export const MisCompras = () => {
         setIsLoading(false)
         const { data } = response
         setMisCompras(data.mis_compras)
+        console.log(response)
       } catch (error) {
         setIsLoading(false)
         console.log(error)
