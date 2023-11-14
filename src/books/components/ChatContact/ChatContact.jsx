@@ -3,12 +3,14 @@ import { ListChatMessages } from '../ListChatMessages/ListChatMessages'
 
 import styles from './ChatContact.module.css'
 import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
 export const ChatContact = () => {
+  const { id } = useParams()
   const { user } = useSelector(state => state.auth)
   const [chatMessage, setChatMessage] = useState('')
 
-  const chatSocket = new WebSocket('ws://localhost:8000/ws/chat/(?P<chatroom_id>\d+)/$')
+  const chatSocket = new WebSocket(`ws://localhost:8000/ws/chat/${id}/`)
 
   const handleSubmit = (e) => {
     e.preventDefault()

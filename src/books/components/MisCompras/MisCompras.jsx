@@ -1,35 +1,56 @@
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import booksApi from '../../../api/booksApi'
+
 import styles from './MisCompras.module.css'
+import { Loader } from '../Loader/Loader'
+import { ComprasCard } from '../ComprasCard/ComprasCard'
 
 export const MisCompras = () => {
+  const [misCompras, setMisCompras] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const token = JSON.parse(localStorage.getItem('token'))
+  const config = {
+    headers: {
+      Authorization: `Token ${token}`
+    }
+  }
+  useEffect(() => {
+    const getMisCompras = async () => {
+      try {
+        const response = await booksApi.get('api/mis_compras/',
+          config)
+        setIsLoading(false)
+        const { data } = response
+        setMisCompras(data.mis_compras)
+      } catch (error) {
+        setIsLoading(false)
+        console.log(error)
+      }
+    }
+    getMisCompras()
+  }, [])
+
+  const hasCompras = misCompras.length > 0
+
   return (
     <>
     <h1>Mis compras</h1>
     <div className={styles.cardList}>
+    { isLoading
+      ? <Loader />
+      : (hasCompras
+          ? (
+              misCompras?.map((compra) => (
+              <ComprasCard
+              key={compra.id}
+              compra={compra}
+              />
+              ))
+            )
+          : <h3>No se encuentran compras</h3>
+        ) }
 
-            <article className={styles.card}>
-                <div className={styles.imgContainer}>
-                    <img src="" alt="productImg" />
-                </div>
-
-                <div className={styles.details}>
-                    <p>Nombre: NameProducto</p>
-                    <p>Precio: 5000 CLP</p>
-                    <p>Vendedor: Juan Lopez</p>
-                    <p>Estado: en revision</p>
-                </div>
-
-                <div className={styles.actionsContainer}>
-                    <button>
-                        <Link to={`/contactar/${123}`}>
-                            Contactar al vendedor
-                        </Link>
-                    </button>
-                    <button>Cancelar compra</button>
-                </div>
-            </article>
-
-        </div>
+    </div>
     </>
   )
 }

@@ -10,9 +10,13 @@ import booksApi from '../../api/booksApi'
 export const ShippingDetail = () => {
   const { postId } = useParams()
   const { user } = useSelector(state => state.auth)
+  const { bookList } = useSelector(state => state.book)
+
+  const selectedBook = bookList.find(book => book.id === Number(postId))
 
   const { startLoadingEvents } = useBookStore()
   const { isLoadingBooks } = useSelector(state => state.book)
+
   const [dataUrl, setDataUrl] = useState('')
   const [dataToken, setDataToken] = useState('')
 
@@ -31,7 +35,7 @@ export const ShippingDetail = () => {
   const handlePay = async () => {
     try {
       const response = await booksApi.post('api/transbank/iniciar_pago', {
-        monto: 1000,
+        monto: selectedBook.price,
         orden_compra: postId,
         user_id: user.id
       }, {
@@ -81,7 +85,7 @@ export const ShippingDetail = () => {
         </div>
       </div>
 
-      <SummaryProduct bookId={postId} />
+      <SummaryProduct selectedBook={selectedBook} />
 
     </div>
   )

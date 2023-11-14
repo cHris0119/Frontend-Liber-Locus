@@ -1,12 +1,8 @@
-import { useSelector } from 'react-redux'
-import styles from './SummaryProduct.module.css'
 import { formatearPeso } from '../../../helpers'
 
-export const SummaryProduct = ({ bookId }) => {
-  const { bookList } = useSelector(state => state.book)
+import styles from './SummaryProduct.module.css'
 
-  const selectedBook = bookList.find(book => book.id === Number(bookId))
-
+export const SummaryProduct = ({ selectedBook }) => {
   const sellerName = `${selectedBook.seller.first_name} ${selectedBook.seller.last_name}`
   const formatPrice = formatearPeso(parseInt(selectedBook.price))
 
