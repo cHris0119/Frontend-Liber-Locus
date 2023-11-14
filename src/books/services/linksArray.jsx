@@ -45,7 +45,7 @@ export const linksModal = [
   },
   {
     label: 'Mis compras',
-    to: '/misCompras',
+    to: '/myShopping/misCompras',
     icon: <AiFillShopping />
   }
   // {

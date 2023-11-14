@@ -1,4 +1,4 @@
-import { useParams, NavLink, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { SelectDirection, BackButton, SummaryProduct, Loader } from '../components/'
 
 import styles from '../styles/ShippingDetail.module.css'
@@ -9,6 +9,7 @@ import booksApi from '../../api/booksApi'
 
 export const ShippingDetail = () => {
   const { postId } = useParams()
+  const { user } = useSelector(state => state.auth)
 
   const { startLoadingEvents } = useBookStore()
   const { isLoadingBooks } = useSelector(state => state.book)
@@ -31,7 +32,8 @@ export const ShippingDetail = () => {
     try {
       const response = await booksApi.post('api/transbank/iniciar_pago', {
         monto: 1000,
-        orden_compra: 123
+        orden_compra: 123,
+        user_id: user.id
       }, {
         headers: {
           'Content-Type': 'application/json'

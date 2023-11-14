@@ -4,7 +4,7 @@
     padding: 1rem 1rem 4.5rem 1rem;
     align-items: center;
     height: 100vh;
-    justify-content: space-evenly;
+    gap: 2rem;
     position: relative;
 }
 

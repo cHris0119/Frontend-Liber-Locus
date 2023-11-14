@@ -2,7 +2,7 @@
     background-color: #efefef;
     border-radius: 10px;
     width: 100%;
-    height: 60%;
+    height: 70%;
     display: flex;
     flex-direction: column;
 }
@@ -43,10 +43,18 @@
 
 @media screen and (min-width: 767px) {
     .chatContainer{
-
+        height: 70%;
         width: 90%;
-        max-width: 50%;
+        max-width: 90%;
 
     }
   
 }
+
+@media screen and (min-width: 1265px) {
+    .chatContainer{
+        height: 80%;
+        width: 90%;
+        max-width: 50%;
+    }
+  }

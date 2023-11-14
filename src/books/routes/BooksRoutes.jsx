@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Home, Marketplace, PostDetail, ShippingDetail, AccountPage, EditAccount, EditDirection, EditPost, ForumPage, ForumMain, CreateDiscussionPage, DiscussionDetail, ReviewsPage, ReviewDetail, CreateReview, CreateForum, EditForumPage, MembersForumPage, ProfilePage, ResultCorrect, ResultIncorrect, AuctionPage, AuctionDetail } from '../pages'
-import { DiscussionList, ForumLastPost, ForumList, MyAuction, MyDiscussion, MyPost, MyReview, PublishBookForm, ReviewsList, Sidebar } from '../components'
+import { DiscussionList, ForumLastPost, ForumList, MisCompras, MisVentas, MyAuction, MyDiscussion, MyPost, MyReview, PublishBookForm, ReviewsList, Sidebar } from '../components'
 import useModalOpen from '../hooks/useModalOpen'
 import ScrollToTop from '../services/ScrollToTop'
 import { EditDiscussionPage } from '../pages/EditDiscussionPage'
@@ -91,7 +91,12 @@ export const BooksRoutes = () => {
             <Route path="misReseñas" element={<MyReview/>} />
             <Route path="/perfil/" element={<Navigate to='/perfil/misPost' />} />
           </Route>
-          <Route path="misCompras" element={<MyShopping/>} />
+
+          <Route path="/myShopping/" element={<MyShopping/>}>
+            <Route path="misCompras" element={<MisCompras />} />
+            <Route path="misVentas" element={<MisVentas/>} />
+          </Route>
+
           <Route path="/contactar/:id" element={<ContactarVendedor/>} />
 
           <Route path="/usuario/:id" element={<ProfilePage />} />
