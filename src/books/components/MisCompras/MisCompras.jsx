@@ -19,10 +19,10 @@ export const MisCompras = () => {
       try {
         const response = await booksApi.get('api/mis_compras/',
           config)
+
         setIsLoading(false)
         const { data } = response
-        setMisCompras(data.mis_compras)
-        console.log(response)
+        setMisCompras(data.compras)
       } catch (error) {
         setIsLoading(false)
         console.log(error)

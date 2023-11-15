@@ -22,7 +22,7 @@ export const MisVentas = () => {
           config)
         setIsLoading(false)
         const { data } = response
-        setMisVentas(data.mis_ventas)
+        setMisVentas(data.ventas)
         console.log(response)
       } catch (error) {
         setIsLoading(false)
