@@ -22,6 +22,7 @@ export const ChatContact = () => {
         type: 'chat_message',
         message: chat,
         username: user.id,
+        chat_room: id,
         timestamp: Date.now()
       }
 
