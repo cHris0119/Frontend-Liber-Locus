@@ -33,13 +33,23 @@
 }
 
 .inputSubmit{
-    background-color: #aaa;
+    background-color: #3d312f;
     color: #fff;
     width: 20%;
     font-weight: 500;
     font-size: 16px;
     border: none;
     cursor: pointer;
+}
+
+.inputDisabled{
+    background-color: #aaa;
+    color: #fff;
+    width: 20%;
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+    cursor: default;
 }
 
 @media screen and (min-width: 767px) {

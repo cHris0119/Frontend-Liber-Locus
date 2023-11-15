@@ -4,7 +4,6 @@ import { ChatMessage } from '../ChatMessage/ChatMessage'
 import styles from './ListChatMessages.module.css'
 
 export const ListChatMessages = () => {
-  console.log(Chat)
   return (
     <div className={styles.messagesContainer}>
 

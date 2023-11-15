@@ -1,32 +1,34 @@
 import { useEffect, useState } from 'react'
 import { ListChatMessages } from '../ListChatMessages/ListChatMessages'
 
-import styles from './ChatContact.module.css'
-import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import styles from './ChatContact.module.css'
 
 export const ChatContact = () => {
   const { id } = useParams()
-  const { user } = useSelector(state => state.auth)
   const [chatMessage, setChatMessage] = useState('')
-
-  const chatSocket = new WebSocket(`ws://localhost:8000/ws/chat/${id}/`)
+  const [chatSocket, setChatSocket] = useState(null)
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const { chatMsg } = Object.fromEntries(
-      new FormData(e.target)
-    )
-    setChatMessage('')
-    const message = {
-      type: 'chat.message',
-      message: chatMsg,
-      username: user.email,
-      timestamp: Date.now()
-    }
+    if (chatSocket && chatSocket.readyState === WebSocket.OPEN) {
+      const { chat } = Object.fromEntries(new FormData(e.target))
+      setChatMessage('')
 
-    chatSocket.send(JSON.stringify(message))
+      const message = {
+        type: 'chat_message',
+        message: chat,
+        timestamp: Date.now()
+      }
+
+      console.log(message)
+
+      chatSocket.send(JSON.stringify(message))
+    } else {
+      console.error('WebSocket connection not open.')
+      // Puedes implementar lógica adicional, como intentar reconectar o mostrar un mensaje de error.
+    }
   }
 
   const handleChatMessageChange = (e) => {
@@ -34,16 +36,22 @@ export const ChatContact = () => {
   }
 
   useEffect(() => {
-    chatSocket.onopen = () => {
+    const socket = new WebSocket(`ws://localhost:8000/ws/chat/${id}/`)
+
+    socket.onopen = (msg) => {
+      console.log(msg)
       console.log('ws conectado')
     }
-    chatSocket.onclose = () => {
+    socket.onclose = () => {
       console.log('ws desconectado')
     }
-    chatSocket.onmessage = (msg) => {
+    socket.onmessage = (msg) => {
+
       const dataServer = JSON.parse(msg.data)
       console.log(dataServer)
     }
+
+    setChatSocket(socket)
   }, [])
 
   return (
@@ -64,7 +72,8 @@ export const ChatContact = () => {
         type="text" />
 
         <input
-        className={styles.inputSubmit}
+        className={chatSocket && chatSocket.readyState === WebSocket.OPEN ? styles.inputSubmit : styles.inputDisabled}
+        disabled = {!(chatSocket && chatSocket.readyState === WebSocket.OPEN)}
         type="submit" />
 
       </form>
