@@ -3,9 +3,11 @@ import { ListChatMessages } from '../ListChatMessages/ListChatMessages'
 
 import { useParams } from 'react-router-dom'
 import styles from './ChatContact.module.css'
+import { useSelector } from 'react-redux'
 
 export const ChatContact = () => {
   const { id } = useParams()
+  const { user } = useSelector(state => state.auth)
   const [chatMessage, setChatMessage] = useState('')
   const [chatSocket, setChatSocket] = useState(null)
 
@@ -19,6 +21,7 @@ export const ChatContact = () => {
       const message = {
         type: 'chat_message',
         message: chat,
+        username: user.id,
         timestamp: Date.now()
       }
 
@@ -46,7 +49,6 @@ export const ChatContact = () => {
       console.log('ws desconectado')
     }
     socket.onmessage = (msg) => {
-
       const dataServer = JSON.parse(msg.data)
       console.log(dataServer)
     }
