@@ -123,8 +123,6 @@ export const useBookStore = () => {
     try {
       const response = await booksApi.get('api/books/get_all_books/', config)
 
-      console.log(response)
-
       dispatch(onLoadBook(response.data.books))
     } catch (error) {
       console.log('Error cargando libros')

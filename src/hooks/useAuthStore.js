@@ -49,8 +49,7 @@ export const useAuthStore = () => {
   const startLogout = async (uid) => {
     console.log(uid)
 
-    const response = await booksApi.post(`api/logout/${uid}/`)
-    console.log(response)
+    await booksApi.post(`api/logout/${uid}/`)
 
     localStorage.clear('token')
     dispatch(onLogout())
@@ -69,7 +68,7 @@ export const useAuthStore = () => {
     imgUser
   }) => {
     try {
-      const response = await booksApi.post('api/registerUser/', {
+      await booksApi.post('api/registerUser/', {
         nombre_dir: nameDir,
         calle,
         numero,
@@ -80,8 +79,6 @@ export const useAuthStore = () => {
         password,
         photo_dir: imgUser
       })
-
-      console.log(response)
 
       Swal.fire({
         icon: 'success',
@@ -129,23 +126,29 @@ export const useAuthStore = () => {
   }
 
   //* Editar usuario
-  const startEditUser = async ({ firstName, lastName, userPhoto, id }) => {
-    console.log(firstName, lastName, userPhoto, id)
-
+  const startEditUser = async ({ firstNameU, lastNameU, userPhotoU, id: idUser }) => {
     try {
       const requestData = {
-        first_name: firstName,
-        last_name: lastName
+        first_name: firstNameU,
+        last_name: lastNameU
       }
 
-      if (userPhoto !== null) {
-        requestData.user_photo = userPhoto
+      if (userPhotoU !== null) {
+        requestData.user_photo = userPhotoU
       }
-      const response = await booksApi.put(`api/editUser/${id}/`, {
+      const response = await booksApi.put(`api/editUser/${idUser}/`, {
         ...requestData
       }, config)
-      console.log(response)
-      dispatch(onEditUser({ id, firstName, lastName, userPhoto }))
+
+      const { id, first_name: firstName, last_name: lastName, user_photo: userPhoto, format } = response.data.userData
+      dispatch(onEditUser({
+        id,
+        firstName,
+        lastName,
+        userPhoto,
+        format
+      }))
+
       //
     } catch (error) {
       console.log(error)
@@ -161,7 +164,6 @@ export const useAuthStore = () => {
 
       const response = await booksApi.put(`api/editDirection/${id}/`, rest)
       const { data } = response
-      console.log(data)
 
       dispatch(onEditDirection(data.dirData))
       Swal.fire({

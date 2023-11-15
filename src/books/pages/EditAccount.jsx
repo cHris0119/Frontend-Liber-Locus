@@ -44,8 +44,6 @@ export const EditAccount = () => {
     formValidations
   })
 
-  console.log(formState)
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     setFormSubmitted(true)
@@ -53,9 +51,9 @@ export const EditAccount = () => {
       handleResetForm()
       setFormSubmitted(false)
       await startEditUser({
-        firstName,
-        lastName,
-        userPhoto,
+        firstNameU: firstName,
+        lastNameU: lastName,
+        userPhotoU: userPhoto,
         id: user.id
       })
       navigate('/perfil/misPost')

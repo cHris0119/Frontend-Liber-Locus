@@ -39,8 +39,6 @@ export const MyPost = () => {
     )
   }
 
-  console.log(myBooks)
-
   return (
     <>
     {hasPost
