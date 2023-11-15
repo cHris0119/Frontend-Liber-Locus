@@ -12,7 +12,9 @@ export const MyPost = () => {
   const { bookList, isLoadingBooks } = useSelector(state => state.book)
   const { startLoadingEvents, startDeletingBook } = useBookStore()
 
-  const myBooks = bookList.filter((book) => book.seller.id === user.id)
+  const availableBooks = bookList.filter(book => book.book_state.id === 2)
+
+  const myBooks = availableBooks.filter((book) => book.seller.id === user.id)
   const hasPost = myBooks.length > 0
 
   const handleDelete = (id) => {

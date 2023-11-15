@@ -10,6 +10,8 @@ export const Marketplace = () => {
   const { startLoadingEvents } = useBookStore()
   const { isLoadingBooks } = useSelector(state => state.book)
 
+  const availableBooks = bookList.filter(book => book.book_state.id === 2)
+
   useEffect(() => {
     startLoadingEvents()
   }, [])
@@ -30,7 +32,7 @@ export const Marketplace = () => {
 
       <h1 style={{ color: '#fff', textAlign: 'center', borderBottom: '2px solid #fff', paddingBottom: '20px', display: 'inline-block' }}>MARKETPLACE</h1>
 
-      <MarketplaceMain bookList={bookList} />
+      <MarketplaceMain bookList={availableBooks} />
 
     </div>
 

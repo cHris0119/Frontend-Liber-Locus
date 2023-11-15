@@ -1,18 +1,30 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { HomeSection, ProductCard } from '../'
+import { HomeSection, Loader, ProductCard } from '../'
 import { useBookStore } from '../../../hooks'
 
 import styles from './LastPosts.module.css'
 
 export const LastPosts = () => {
-  const { bookList } = useSelector(state => state.book)
   const { startLoadingEvents } = useBookStore()
-  const lastPost = bookList.slice(0, 4)
+  const { isLoadingBooks } = useSelector(state => state.book)
+
+  const { bookList } = useSelector(state => state.book)
+  const availableBooks = bookList?.filter(book => book.book_state.id === 2)
+
+  const lastPost = availableBooks.slice(0, 4)
 
   useEffect(() => {
     startLoadingEvents()
   }, [])
+
+  if (isLoadingBooks === true) {
+    return (
+      <div style={{ height: '100vh' }}>
+      <Loader />
+      </div>
+    )
+  }
 
   return (
     <HomeSection>
