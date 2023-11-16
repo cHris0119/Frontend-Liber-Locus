@@ -6,9 +6,8 @@ import { useEffect } from 'react'
 import { useBookStore } from '../../hooks'
 
 export const Marketplace = () => {
-  const { bookList } = useSelector(state => state.book)
+  const { bookList, isLoadingBooks } = useSelector(state => state.book)
   const { startLoadingEvents } = useBookStore()
-  const { isLoadingBooks } = useSelector(state => state.book)
 
   const availableBooks = bookList.filter(book => book.book_state.id === 2)
 

@@ -20,7 +20,6 @@ export const useAuthStore = () => {
 
     try {
       const response = await booksApi.post('api/login/', { email, password })
-      console.log({ response })
       const { token, userData } = response.data
 
       localStorage.setItem('token', JSON.stringify(token))

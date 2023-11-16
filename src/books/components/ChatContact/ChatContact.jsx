@@ -1,15 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ListChatMessages } from '../ListChatMessages/ListChatMessages'
 
 import { useParams } from 'react-router-dom'
 import styles from './ChatContact.module.css'
 import { useSelector } from 'react-redux'
+import booksApi from '../../../api/booksApi'
 
 export const ChatContact = () => {
   const { id } = useParams()
   const { user } = useSelector(state => state.auth)
   const [chatMessage, setChatMessage] = useState('')
+  const [listChat, setListChat] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const chatContainerRef = useRef()
+
   const [chatSocket, setChatSocket] = useState(null)
+  const token = JSON.parse(localStorage.getItem('token'))
+  const config = {
+    headers: {
+      Authorization: `Token ${token}`
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -26,12 +37,9 @@ export const ChatContact = () => {
         timestamp: Date.now()
       }
 
-      console.log(message)
-
       chatSocket.send(JSON.stringify(message))
     } else {
       console.error('WebSocket connection not open.')
-      // Puedes implementar lógica adicional, como intentar reconectar o mostrar un mensaje de error.
     }
   }
 
@@ -50,17 +58,51 @@ export const ChatContact = () => {
       console.log('ws desconectado')
     }
     socket.onmessage = (msg) => {
-      const dataServer = JSON.parse(msg.data)
-      console.log(dataServer)
+      try {
+        const dataServer = JSON.parse(msg.data)
+        setListChat((prevListChat) => [...prevListChat, dataServer])
+
+        scrollToBottom()
+      } catch (error) {
+        console.error('Error al procesar el mensaje WebSocket:', error)
+      }
     }
 
     setChatSocket(socket)
   }, [])
 
+  useEffect(() => {
+    const getMessages = async () => {
+      try {
+        const response = await booksApi.get(`api/chatroom/get_msg/${id}/`,
+          config)
+        setIsLoading(false)
+        const { data } = response
+        setListChat(data.message)
+
+        scrollToBottom()
+      } catch (error) {
+        setIsLoading(false)
+        console.log(error)
+      }
+    }
+    getMessages()
+  }, [])
+
+  const scrollToBottom = () => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
+    }
+  }
+
   return (
     <div className={styles.chatContainer}>
 
-      <ListChatMessages />
+      <ListChatMessages
+      listChat={listChat}
+      isLoading={isLoading}
+      chatContainerRef={chatContainerRef}
+       />
 
       <form
       onSubmit={handleSubmit}

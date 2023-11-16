@@ -9,11 +9,10 @@ import { formatearPeso } from '../../helpers'
 import styles from '../styles/PostDetail.module.css'
 
 export const PostDetail = () => {
-  const { bookList } = useSelector(state => state.book)
   const { user } = useSelector(state => state.auth)
   const { postId } = useParams()
   const { startLoadingEvents } = useBookStore()
-  const { isLoadingBooks } = useSelector(state => state.book)
+  const { isLoadingBooks, bookList } = useSelector(state => state.book)
 
   const selectedBook = bookList.find(book => book.id === Number(postId))
   const formatPrice = formatearPeso(parseInt(selectedBook.price))

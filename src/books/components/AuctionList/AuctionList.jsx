@@ -3,9 +3,7 @@ import { AuctionCard } from '../AuctionCard/AuctionCard'
 
 import styles from './AuctionList.module.css'
 
-export const AuctionList = () => {
-  const auctions = [1, 2]
-
+export const AuctionList = ({ auctions }) => {
   const hasAuction = auctions.length > 0
   return (
     <>

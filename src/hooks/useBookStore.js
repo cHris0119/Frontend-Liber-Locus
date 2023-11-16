@@ -125,7 +125,6 @@ export const useBookStore = () => {
 
       dispatch(onLoadBook(response.data.books))
     } catch (error) {
-      console.log('Error cargando libros')
       Swal.fire({
         icon: 'error',
         title: 'Error al cargar libros.',

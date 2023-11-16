@@ -1,13 +1,14 @@
 import { NavLink } from 'react-router-dom'
 import styles from './AuctionCard.module.css'
+import { formatearPeso } from '../../../helpers'
 
 export const AuctionCard = ({ auctions }) => {
   return (
     <>
-      {auctions?.map((auction, index) => (
+      {auctions?.map((auction) => (
         <NavLink
-        key={index}
-        to={'/detalleSubasta/123'} className={styles.customNavlink}>
+        key={auction.id}
+        to={`/detalleSubasta/${auction.id}`} className={styles.customNavlink}>
           <article className={styles.lastPostCard}>
 
             <div className={styles.cardInfo}>
@@ -15,18 +16,20 @@ export const AuctionCard = ({ auctions }) => {
               <div className={styles.cardImgContainer}>
                 <img
                 className={styles.cardImg}
-                src='https://images.cdn1.buscalibre.com/fit-in/360x360/53/7b/537b90749923beaafc8f4553a951edb6.jpg'
-                alt='aaa' />
+                src={auction.book_img ? `data:image/${auction.format};base64,${auction.book_img}` : '/public/not-found.jpg'}
+                alt={auction.book.name} />
               </div>
 
               <div className={styles.cardDetails}>
                 <div>
-                  <h3>Harry potter coleccionista</h3>
+                  <h3>{auction.book.name}</h3>
                 </div>
 
                 <div className={styles.cardDescription}>
-                  <p>Puja actual: 10.000 CLP</p>
-                  <p>Finaliza en 4 dias.</p>
+                  <p>Puja actual: { auction.final_price
+                    ? formatearPeso(parseInt(auction.final_price))
+                    : formatearPeso(parseInt(auction.initial_price)) } CLP</p>
+                  <p>{ auction.created_at }</p>
                 </div>
               </div>
 
