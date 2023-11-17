@@ -8,6 +8,9 @@ export const AuctionPage = () => {
   const { startLoadingAuction } = useAuctionStore()
   const { auctionList, isLoadingAuction } = useSelector(state => state.auction)
 
+  //* Subastas que no esten canceladas o finalizadas.
+  const availableAuction = auctionList.filter((auction) => auction.auction_state.id === 2)
+
   useEffect(() => {
     startLoadingAuction()
   }, [])
@@ -25,7 +28,7 @@ export const AuctionPage = () => {
       <MarketSelector />
 
       <AuctionList
-      auctions={auctionList}
+      auctions={availableAuction}
        />
     </div>
   )

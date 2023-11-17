@@ -18,8 +18,8 @@ export const useAuctionStore = () => {
     const { bookID, durationDays, initialPrice } = newAuction
     try {
       const response = await booksApi.post(`api/create_subasta/${bookID}/`, {
-        initial_price: initialPrice,
-        duration_days: durationDays
+        initial_price: parseInt(initialPrice),
+        duration_days: parseInt(durationDays)
       },
       config)
 

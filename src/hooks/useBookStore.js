@@ -85,6 +85,8 @@ export const useBookStore = () => {
         ...requestData
       }, config)
       const { data } = response
+      console.log(data)
+
       dispatch(onUpdateBook(data))
 
       Swal.fire({

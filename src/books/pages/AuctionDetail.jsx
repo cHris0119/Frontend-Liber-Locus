@@ -1,11 +1,10 @@
-import { Link, useParams } from 'react-router-dom'
-import { BackButton, FormAuction, Loader } from '../components'
+import { useParams } from 'react-router-dom'
+import { AuctionDetailsInfo, BackButton, Loader } from '../components'
 
-import styles from '../styles/AuctionDetail.module.css'
 import { useAuctionStore } from '../../hooks'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { formatearPeso } from '../../helpers'
+import styles from '../styles/AuctionDetail.module.css'
 
 export const AuctionDetail = () => {
   const { user } = useSelector(state => state.auth)
@@ -23,7 +22,6 @@ export const AuctionDetail = () => {
     const socket = new WebSocket(`ws://localhost:8000/ws/auction/${id}/`)
 
     socket.onopen = (msg) => {
-      console.log(msg)
       console.log('ws conectado')
     }
     socket.onclose = () => {
@@ -49,7 +47,7 @@ export const AuctionDetail = () => {
       const puja = {
         type: 'Pujar',
         subasta_id: id,
-        user_email: user.id,
+        user_id: user.id,
         amount: parseInt(newPuja)
       }
       console.log(puja)
@@ -73,46 +71,13 @@ export const AuctionDetail = () => {
   return (
     <div className={`${styles.container} animate__animated animate__fadeIn animate__faster`}>
     <BackButton />
-  <div className={styles.productDetailContainer}>
-    <div className={styles.productImgContainer}>
-      <img
-      className={styles.productImg}
-      src={auctionD.book_img ? `data:image/${auctionD.format};base64,${auctionD.book_img}` : '/public/not-found.jpg'}
-      alt={auctionD.book.name} />
-    </div>
 
-    {/* Este div tiene que ser un componente. */}
-    <div className={styles.productInfo}>
-      <ul className={styles.productInfoNames}>
-        <li className={styles.productCategory}>Finaliza en 3d</li>
-        <li className={styles.productName}>{auctionD.book.name}</li>
-        <li className={styles.productPrice}>Puja actual: { auctionD.final_price
-          ? formatearPeso(parseInt(auctionD.final_price))
-          : formatearPeso(parseInt(finalPrice)) } CLP</li>
-
-        <li className={styles.productSeller}>
-          Vendedor:
-          <Link to=''> {`${auctionD.book.seller.first_name} ${auctionD.book.seller.last_name}`}
-          </Link>
-          </li>
-
-        <li className={styles.productDescription}>
-          <p>
-            {auctionD.book.description}
-          </p>
-          </li>
-      </ul>
-
-      <div className={styles.buyButtonContainer}>
-        {myAuction
-          ? null
-          : (<FormAuction
-            finalPrice2={finalPrice}
-            auctionD={auctionD}
-            handlePuja={handlePuja} />)}
-      </div>
-    </div>
-  </div>
+    <AuctionDetailsInfo
+    auctionD={auctionD}
+    myAuction={myAuction}
+    handlePuja={handlePuja}
+    finalPrice={finalPrice}
+     />
 
 </div>
   )

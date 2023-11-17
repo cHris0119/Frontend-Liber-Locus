@@ -20,8 +20,6 @@ export const InputComboBoxB = ({
 
   const myBooks = bookList.filter((book) => book.seller.id === user.id)
 
-  console.log(myBooks)
-
   useEffect(() => {
     startLoadingEvents()
   }, [])

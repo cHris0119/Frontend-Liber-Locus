@@ -47,8 +47,6 @@ export const EditPostForm = ({ bookList }) => {
     formValidations
   })
 
-  console.log(formState)
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     setFormSubmitted(true)

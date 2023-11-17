@@ -2,23 +2,24 @@ import { useNavigate } from 'react-router-dom'
 import { Input, InputComboBoxB } from '../components'
 import styles from '../styles/CreateAuction.module.css'
 import { useState } from 'react'
-import { useForm } from '../../hooks'
+import { useAuctionStore, useForm } from '../../hooks'
 
 const initialForm = {
   book: 'Seleccione',
-  initalPrice: '',
+  initialPrice: '',
   durationDays: ''
 }
 
 const formValidations = {
   book: [(value) => value !== 'Seleccione', 'Debes ingresar una categoria'],
-  initalPrice: [(value) => value >= 1 && !isNaN(parseInt(value)), 'Debe ser un numero'],
+  initialPrice: [(value) => value >= 1 && !isNaN(parseInt(value)), 'Debe ser un numero'],
   durationDays: [(value) => value >= 1 && value <= 5 && !isNaN(parseInt(value)), 'Debe ser un numero max 5.']
 }
 
 export const CreateAuction = () => {
   const [formSubmitted, setFormSubmitted] = useState(false)
   const navigate = useNavigate()
+  const { startAddAuction } = useAuctionStore()
 
   const {
     handleInputChange,
@@ -27,7 +28,7 @@ export const CreateAuction = () => {
 
     bookValid,
     durationDaysValid,
-    initalPriceValid,
+    initialPriceValid,
     isFormValid
 
   } = useForm({
@@ -39,10 +40,18 @@ export const CreateAuction = () => {
     e.preventDefault()
     setFormSubmitted(true)
     if (isFormValid) {
-      handleResetForm()
       setFormSubmitted(false)
+      const newAuction = {
+        bookID: formState.book,
+        durationDays: formState.durationDays,
+        initialPrice: formState.initialPrice
+
+      }
+
       //*
-      // navigate('/subasta')
+      await startAddAuction(newAuction)
+      navigate('/subastas')
+      handleResetForm()
     }
   }
   return (
@@ -68,11 +77,11 @@ export const CreateAuction = () => {
         placeholder={'1000, 2000...'}
         label={'Precio inicial'}
         type={'text'}
-        name={'initalPrice'}
+        name={'initialPrice'}
         value={formState.initalPrice}
         onChange={handleInputChange}
-        error={initalPriceValid && formSubmitted}
-        errorMsg = {initalPriceValid}
+        error={initialPriceValid && formSubmitted}
+        errorMsg = {initialPriceValid}
         />
 
           <Input

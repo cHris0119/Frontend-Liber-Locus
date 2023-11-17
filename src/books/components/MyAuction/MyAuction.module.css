@@ -3,6 +3,7 @@
     width: 100%;
     display: flex;
     padding: 1rem;
+    align-items: center;
 }
 
 .articleImgContainer{
@@ -13,6 +14,11 @@
     border-right: 2px solid #00000050;
 }
 
+.articleImgContainer img{
+    max-width: 100%;
+    height: auto;
+}
+
 .articleContent{
     flex: 2;
     display: flex;
@@ -21,15 +27,18 @@
     gap: 10px;
 }
 
+.articleDetails p {
+    font-size: 18px;
+    text-transform: capitalize;
+}
 
 .articleActions{
     display: flex;
-    flex-wrap: wrap;
     gap: 10px;
 }
 
 .articleActions button{
-    padding: .5rem;
+    padding: .5rem 1rem;
     border: none;
     background-color: #402313;
     color: white;
@@ -38,6 +47,17 @@
     cursor: pointer;
 }
 
+.articleActions button:hover{
+    background-color: #402313c6;
+}
+
 .articleActions button a{
     color: white;
+}
+
+.noFound{
+    
+    text-align: center;
+    text-transform: uppercase;
+    color: #ffffff;
 }
