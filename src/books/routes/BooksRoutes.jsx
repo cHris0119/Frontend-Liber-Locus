@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { Home, Marketplace, PostDetail, ShippingDetail, AccountPage, EditAccount, EditDirection, EditPost, ForumPage, ForumMain, CreateDiscussionPage, DiscussionDetail, ReviewsPage, ReviewDetail, CreateReview, CreateForum, EditForumPage, MembersForumPage, ProfilePage, ResultCorrect, ResultIncorrect, AuctionPage, AuctionDetail, CreateAuction } from '../pages'
+import { Home, Marketplace, PostDetail, ShippingDetail, AccountPage, EditAccount, EditDirection, EditPost, ForumPage, ForumMain, CreateDiscussionPage, DiscussionDetail, ReviewsPage, ReviewDetail, CreateReview, CreateForum, EditForumPage, MembersForumPage, ProfilePage, ResultCorrect, ResultIncorrect, AuctionPage, AuctionDetail, CreateAuction, NotificationPage } from '../pages'
 import { DiscussionList, ForumLastPost, ForumList, MisCompras, MisVentas, MyAuction, MyDiscussion, MyPost, MyReview, PublishBookForm, ReviewsList, Sidebar } from '../components'
 import useModalOpen from '../hooks/useModalOpen'
 import ScrollToTop from '../services/ScrollToTop'
@@ -107,7 +107,7 @@ export const BooksRoutes = () => {
           <Route path="/editarReview/:id" element={<EditReview />} />
           {/* FIN PERFIL */}
 
-          <Route path="notificaciones" element={<h1>Notificaciones</h1>} />
+          <Route path="notificaciones" element={<NotificationPage />} />
           <Route path="/*" element={<Navigate to='home' />} />
 
         </Routes>

@@ -75,7 +75,7 @@ export const ShippingDetail = () => {
               <form method="post" action={dataUrl}>
               <input type="hidden" name="token_ws" value={dataToken} />
               <input type="submit" value="Ir a pagar" />
-            </form>
+              </form>
                 )
               : <h2>No hay data aun</h2>
             }

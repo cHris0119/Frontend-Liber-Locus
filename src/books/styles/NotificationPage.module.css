@@ -1,0 +1,40 @@
+.container{
+    padding: 1rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.container h1{
+    color: #fff;
+}
+
+.listNotification{
+    background-color: #d5d5d5;
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.notificationCard{
+    padding: .5rem;
+    transition: all .3s;
+    border-radius: 10px;
+}
+
+.notificationCard p{
+    margin-left: 1rem;
+    user-select: none;
+}
+
+.notificationCard:hover{
+    background-color: #b9b9b9;
+}
+
+.pagarAqui{
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.pagarAqui:hover{
+    color: #00000090;
+}

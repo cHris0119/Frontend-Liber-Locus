@@ -5,6 +5,7 @@ import { Loader } from '../Loader/Loader'
 import { useEffect } from 'react'
 
 import styles from './MyAuction.module.css'
+import { getDifferenceDate } from '../../../helpers'
 
 export const MyAuction = () => {
   const { user } = useSelector(state => state.auth)
@@ -13,10 +14,8 @@ export const MyAuction = () => {
 
   //* Subastas que no esten canceladas o finalizadas.
   const availableAuction = auctionList.filter((auction) => auction.auction_state.id === 2)
-  console.log('asdasdasd', availableAuction)
 
   const myAuction = availableAuction.filter(auction => auction.book.seller.id === user.id)
-  console.log('aaa', myAuction)
 
   const hasAuction = myAuction.length > 0
 
@@ -36,6 +35,8 @@ export const MyAuction = () => {
     <>
     {hasAuction
       ? (myAuction.map((auction) => {
+        const timeRemaining = getDifferenceDate(auction.created_at, auction.duration_days)
+
           return (
         <article
         key={auction.id}
@@ -51,7 +52,17 @@ export const MyAuction = () => {
             <div className={styles.articleDetails}>
                 <p>{auction.book.name}</p>
                 <p>5000 CLP</p>
-                <p>Publicado hace: 2d</p>
+                <p>
+                  {timeRemaining.days > 0 && (
+                    <p>{`Finaliza en: ${timeRemaining.days} ${timeRemaining.days === 1 ? 'dia' : 'dias'}`}</p>
+                  )}
+                  {!timeRemaining.days && timeRemaining.hours > 0 && (
+                    <p>{`Finaliza en: ${timeRemaining.hours} ${timeRemaining.hours === 1 ? 'hora' : 'horas'}`}</p>
+                  )}
+                  {!timeRemaining.days && !timeRemaining.hours && timeRemaining.minutes > 0 && (
+                    <p>{`Finaliza en ${timeRemaining.minutes} ${timeRemaining.minutes === 1 ? 'minuto' : 'minutos'}`}</p>
+                  )}
+                  </p>
             </div>
             <div className={styles.articleActions}>
               <button>Eliminar</button>

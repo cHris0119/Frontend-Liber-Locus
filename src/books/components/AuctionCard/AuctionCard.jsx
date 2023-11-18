@@ -1,11 +1,13 @@
 import { NavLink } from 'react-router-dom'
 import styles from './AuctionCard.module.css'
-import { formatearPeso } from '../../../helpers'
+import { formatearPeso, getDifferenceDate } from '../../../helpers'
 
 export const AuctionCard = ({ auctions }) => {
   return (
     <>
-      {auctions?.map((auction) => (
+      {auctions?.map((auction) => {
+        const timeRemaining = getDifferenceDate(auction.created_at, auction.duration_days)
+        return (
         <NavLink
         key={auction.id}
         to={`/detalleSubasta/${auction.id}`} className={styles.customNavlink}>
@@ -29,7 +31,17 @@ export const AuctionCard = ({ auctions }) => {
                   <p>Puja actual: { auction.final_price
                     ? formatearPeso(parseInt(auction.final_price))
                     : formatearPeso(parseInt(auction.initial_price)) } CLP</p>
-                  <p>{ auction.created_at }</p>
+                  <p>
+                  {timeRemaining.days > 0 && (
+                    <p>{`Finaliza en: ${timeRemaining.days} ${timeRemaining.days === 1 ? 'dia' : 'dias'}`}</p>
+                  )}
+                  {!timeRemaining.days && timeRemaining.hours > 0 && (
+                    <p>{`Finaliza en: ${timeRemaining.hours} ${timeRemaining.hours === 1 ? 'hora' : 'horas'}`}</p>
+                  )}
+                  {!timeRemaining.days && !timeRemaining.hours && timeRemaining.minutes > 0 && (
+                    <p>{`Finaliza en ${timeRemaining.minutes} ${timeRemaining.minutes === 1 ? 'minuto' : 'minutos'}`}</p>
+                  )}
+                  </p>
                 </div>
               </div>
 
@@ -37,7 +49,8 @@ export const AuctionCard = ({ auctions }) => {
 
           </article>
         </NavLink>
-      ))}
+        )
+      })}
     </>
   )
 }
