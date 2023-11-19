@@ -1,16 +1,17 @@
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import { useAuctionStore } from '../../../hooks'
+import { getDifferenceDate } from '../../../helpers'
 import { Loader } from '../Loader/Loader'
-import { useEffect } from 'react'
 
 import styles from './MyAuction.module.css'
-import { getDifferenceDate } from '../../../helpers'
 
 export const MyAuction = () => {
+  //
   const { user } = useSelector(state => state.auth)
   const { auctionList, isLoadingAuction } = useSelector(state => state.auction)
-  const { startLoadingAuction } = useAuctionStore()
+  const { startLoadingAuction, startDeletingAuction } = useAuctionStore()
 
   //* Subastas que no esten canceladas o finalizadas.
   const availableAuction = auctionList.filter((auction) => auction.auction_state.id === 2)
@@ -31,46 +32,65 @@ export const MyAuction = () => {
     )
   }
 
+  const handleCancel = (id) => {
+    const confirmacion = confirm('Estas seguro que quieres cancelar la subasta? Volverá a estar disponible en el marketplace')
+    if (confirmacion) {
+      console.log('Eliminado')
+      startDeletingAuction(id)
+    } else {
+      console.log('cancelado')
+    }
+  }
+
   return (
     <>
     {hasAuction
       ? (myAuction.map((auction) => {
-        const timeRemaining = getDifferenceDate(auction.created_at, auction.duration_days)
+          const timeRemaining = getDifferenceDate(auction.created_at, auction.duration_days)
 
           return (
-        <article
-        key={auction.id}
-        className={styles.myPost}>
 
-          <div className={styles.articleImgContainer}>
-            <img
-             src={auction.book_img ? `data:image/${auction.format};base64,${auction.book_img}` : '/public/not-found.jpg'}
-            alt={auction.book.name} />
-          </div>
+            <article
+            key={auction.id}
+            className={styles.myPost}>
 
-          <div className={styles.articleContent}>
-            <div className={styles.articleDetails}>
-                <p>{auction.book.name}</p>
-                <p>5000 CLP</p>
-                <p>
-                  {timeRemaining.days > 0 && (
-                    <p>{`Finaliza en: ${timeRemaining.days} ${timeRemaining.days === 1 ? 'dia' : 'dias'}`}</p>
-                  )}
-                  {!timeRemaining.days && timeRemaining.hours > 0 && (
-                    <p>{`Finaliza en: ${timeRemaining.hours} ${timeRemaining.hours === 1 ? 'hora' : 'horas'}`}</p>
-                  )}
-                  {!timeRemaining.days && !timeRemaining.hours && timeRemaining.minutes > 0 && (
-                    <p>{`Finaliza en ${timeRemaining.minutes} ${timeRemaining.minutes === 1 ? 'minuto' : 'minutos'}`}</p>
-                  )}
-                  </p>
-            </div>
-            <div className={styles.articleActions}>
-              <button>Eliminar</button>
-              <button>Finalizar subasta</button>
-            </div>
-          </div>
+              <div className={styles.articleImgContainer}>
 
-        </article>
+                <img
+                src={auction.book_img ? `data:image/${auction.format};base64,${auction.book_img}` : '/public/not-found.jpg'}
+                alt={auction.book.name} />
+
+              </div>
+
+              <div className={styles.articleContent}>
+                <div className={styles.articleDetails}>
+                    <p>{auction.book.name}</p>
+                    <p>5000 CLP</p>
+
+                      {timeRemaining.days > 0 && (
+                        <p>{`Finaliza en: ${timeRemaining.days} ${timeRemaining.days === 1 ? 'dia' : 'dias'}`}</p>
+                      )}
+                      {!timeRemaining.days && timeRemaining.hours > 0 && (
+                        <p>{`Finaliza en: ${timeRemaining.hours} ${timeRemaining.hours === 1 ? 'hora' : 'horas'}`}</p>
+                      )}
+                      {!timeRemaining.days && !timeRemaining.hours && timeRemaining.minutes > 0 && (
+                        <p>{`Finaliza en ${timeRemaining.minutes} ${timeRemaining.minutes === 1 ? 'minuto' : 'minutos'}`}</p>
+                      )}
+
+                </div>
+
+                <div className={styles.articleActions}>
+                  <button
+                  onClick={() => handleCancel(auction.id)}
+                  >
+                    Cancelar subasta
+                  </button>
+                  <button>Finalizar subasta</button>
+                </div>
+
+              </div>
+
+            </article>
           )
         }))
       : <h2 className={styles.noFound}>No tienes subastas activas</h2>}

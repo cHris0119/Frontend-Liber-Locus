@@ -31,7 +31,7 @@ export const AuctionCard = ({ auctions }) => {
                   <p>Puja actual: { auction.final_price
                     ? formatearPeso(parseInt(auction.final_price))
                     : formatearPeso(parseInt(auction.initial_price)) } CLP</p>
-                  <p>
+
                   {timeRemaining.days > 0 && (
                     <p>{`Finaliza en: ${timeRemaining.days} ${timeRemaining.days === 1 ? 'dia' : 'dias'}`}</p>
                   )}
@@ -41,7 +41,7 @@ export const AuctionCard = ({ auctions }) => {
                   {!timeRemaining.days && !timeRemaining.hours && timeRemaining.minutes > 0 && (
                     <p>{`Finaliza en ${timeRemaining.minutes} ${timeRemaining.minutes === 1 ? 'minuto' : 'minutos'}`}</p>
                   )}
-                  </p>
+
                 </div>
               </div>
 

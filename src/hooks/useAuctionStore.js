@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import booksApi from '../api/booksApi'
 import Swal from 'sweetalert2'
-import { onLoadAuction } from '../store/auction/auctionSlice'
+import { onDeleteAuction, onLoadAuction } from '../store/auction/auctionSlice'
 
 export const useAuctionStore = () => {
   const dispatch = useDispatch()
@@ -36,6 +36,25 @@ export const useAuctionStore = () => {
     }
   }
 
+  //* CANCELAR SUBASTA
+
+  const startDeletingAuction = async (id) => {
+    try {
+      await booksApi.delete(`api/subastas/${id}/cancel/`, config)
+
+      dispatch(onDeleteAuction(id))
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Subasta eliminada. Vuelve al marketplace.',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   //* CARGAR SUBASTAS
   const startLoadingAuction = async () => {
     try {
@@ -60,6 +79,7 @@ export const useAuctionStore = () => {
 
     //* METODOS
     startAddAuction,
+    startDeletingAuction,
     startLoadingAuction
   }
 }

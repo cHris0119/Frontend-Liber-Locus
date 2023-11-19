@@ -8,7 +8,8 @@ export const AuctionDetailsInfo = ({
   auctionD,
   finalPrice,
   myAuction,
-  handlePuja
+  handlePuja,
+  socketAuction
 }) => {
   const timeRemaining = getDifferenceDate(auctionD.created_at, auctionD.duration_days)
   return (
@@ -61,6 +62,7 @@ export const AuctionDetailsInfo = ({
             {myAuction
               ? null
               : (<FormAuction
+                socketAuction={socketAuction}
                 finalPrice2={finalPrice}
                 auctionD={auctionD}
                 handlePuja={handlePuja} />)}

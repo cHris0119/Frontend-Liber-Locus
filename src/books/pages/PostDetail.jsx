@@ -61,7 +61,12 @@ export const PostDetail = () => {
           {!myBook
             ? (
           <div className={styles.buyButtonContainer}>
-            <NavLink className={styles.linkBuyButton} to={`/detalleEnvio/${postId}`}><button className={styles.buyButton} >Comprar</button></NavLink>
+            <NavLink
+            className={styles.linkBuyButton}
+            to={`/detalleEnvio/${postId}`}
+            >
+              <button className={styles.buyButton} >Comprar</button>
+            </NavLink>
           </div>
               )
             : null}

@@ -73,6 +73,7 @@ export const AuctionDetail = () => {
     <BackButton />
 
     <AuctionDetailsInfo
+    socketAuction={socketAuction}
     auctionD={auctionD}
     myAuction={myAuction}
     handlePuja={handlePuja}

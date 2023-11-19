@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { ListChatMessages } from '../ListChatMessages/ListChatMessages'
-
-import { useParams } from 'react-router-dom'
-import styles from './ChatContact.module.css'
 import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+
+import { ListChatMessages } from '../ListChatMessages/ListChatMessages'
 import booksApi from '../../../api/booksApi'
+
+import styles from './ChatContact.module.css'
 
 export const ChatContact = () => {
   const { id } = useParams()

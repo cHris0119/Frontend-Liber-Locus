@@ -1,8 +1,14 @@
 import { useState } from 'react'
-import styles from './FormAuction.module.css'
 import { formatearPeso } from '../../../helpers'
 
-export const FormAuction = ({ handlePuja, auctionD, finalPrice2 }) => {
+import styles from './FormAuction.module.css'
+
+export const FormAuction = ({
+  handlePuja,
+  auctionD,
+  finalPrice2,
+  socketAuction
+}) => {
   const [inputValue, setInputValue] = useState('')
   const [isNumber, setIsNumber] = useState(true)
   const finalPrice = parseInt(finalPrice2)
@@ -52,7 +58,8 @@ export const FormAuction = ({ handlePuja, auctionD, finalPrice2 }) => {
             </div>
 
             <input
-            className={styles.inputSubmit}
+            className={socketAuction && socketAuction.readyState === WebSocket.OPEN ? styles.inputSubmit : styles.inputDisabled}
+            disabled = {!(socketAuction && socketAuction.readyState === WebSocket.OPEN)}
             type="submit"
             value={'Pujar'} />
         </form>
