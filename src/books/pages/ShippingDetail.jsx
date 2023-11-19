@@ -4,13 +4,14 @@ import { SelectDirection, BackButton, SummaryProduct, Loader } from '../componen
 import styles from '../styles/ShippingDetail.module.css'
 import { useBookStore } from '../../hooks'
 import { useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import booksApi from '../../api/booksApi'
 
 export const ShippingDetail = () => {
   const { postId } = useParams()
   const { user } = useSelector(state => state.auth)
   const { bookList } = useSelector(state => state.book)
+  const formRef = useRef()
 
   const selectedBook = bookList.find(book => book.id === Number(postId))
 
@@ -19,6 +20,12 @@ export const ShippingDetail = () => {
 
   const [dataUrl, setDataUrl] = useState('')
   const [dataToken, setDataToken] = useState('')
+
+  useEffect(() => {
+    if (dataUrl && dataToken) {
+      formRef.current.submit()
+    }
+  }, [dataUrl, dataToken])
 
   useEffect(() => {
     startLoadingEvents()
@@ -67,17 +74,21 @@ export const ShippingDetail = () => {
             <button
             onClick={handlePay}
             className={styles.continuarBtn}>
-              Continuar
+              Continuar al pago
             </button>
 
             { dataUrl && dataToken
               ? (
-              <form method="post" action={dataUrl}>
+              <form
+              style={{ display: 'none' }}
+              ref={formRef}
+              method="post"
+              action={dataUrl}>
               <input type="hidden" name="token_ws" value={dataToken} />
               <input type="submit" value="Ir a pagar" />
               </form>
                 )
-              : <h2>No hay data aun</h2>
+              : null
             }
 
           {/* </NavLink> */}
