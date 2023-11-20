@@ -18,7 +18,7 @@ export const VentasCard = ({ venta }) => {
                 <div className={styles.details}>
                     <p>Nombre: {venta.book.name}</p>
                     <p>Precio: {newPrecio} CLP</p>
-                    <p>Vendedor: {nameSeller}</p>
+                    <p>Comprador: {nameSeller}</p>
                     <p>Estado: {venta.book.state}</p>
                 </div>
 

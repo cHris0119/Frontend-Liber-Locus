@@ -15,10 +15,8 @@ export const PostDetail = () => {
   const { isLoadingBooks, bookList } = useSelector(state => state.book)
 
   const selectedBook = bookList.find(book => book.id === Number(postId))
-  const formatPrice = formatearPeso(parseInt(selectedBook.price))
-  const myBook = selectedBook.seller.id === user.id
-
-  console.log(selectedBook)
+  const formatPrice = formatearPeso(parseInt(selectedBook?.price))
+  const myBook = selectedBook?.seller.id === user.id
 
   useEffect(() => {
     startLoadingEvents()
