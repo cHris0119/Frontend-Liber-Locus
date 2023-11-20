@@ -25,7 +25,7 @@ export const VentasCard = ({ venta }) => {
                 <div className={styles.actionsContainer}>
                     <button>
                         <Link to={`/contactar/${venta.chat_room}`}>
-                            Contactar al vendedor
+                            Contactar al comprador
                         </Link>
                     </button>
                     <button>Cancelar venta</button>
