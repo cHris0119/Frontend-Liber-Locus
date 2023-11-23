@@ -9,7 +9,7 @@
 }
 
 .buttonPublicar{
-    margin-right: auto;
+    margin: 0 auto;
     padding: .8rem;
     border-radius: 10px;
     border: none;

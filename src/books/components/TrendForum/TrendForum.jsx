@@ -9,6 +9,7 @@ import styles from './TrendForum.module.css'
 export const TrendForum = () => {
   const [trendForums, setTrendForums] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+
   const token = JSON.parse(localStorage.getItem('token'))
   const config = {
     headers: {
@@ -22,6 +23,7 @@ export const TrendForum = () => {
           config)
         setIsLoading(false)
         const { data } = response
+        console.log(response)
         setTrendForums(data.ForumsData)
       } catch (error) {
         setIsLoading(false)
@@ -31,7 +33,7 @@ export const TrendForum = () => {
     getMembers()
   }, [])
 
-  const hasForum = TrendForum.length > 0
+  const hasForum = trendForums.length > 0
 
   return (
     <HomeSection>

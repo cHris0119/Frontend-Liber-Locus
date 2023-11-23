@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
-import styles from './AuctionCard.module.css'
 import { formatearPeso, getDifferenceDate } from '../../../helpers'
+
+import styles from './AuctionCard.module.css'
 
 export const AuctionCard = ({ auctions }) => {
   return (

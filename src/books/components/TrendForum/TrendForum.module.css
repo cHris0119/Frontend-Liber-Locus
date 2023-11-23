@@ -37,6 +37,13 @@
     background: #FFF;
     box-shadow: 0px 4px 11px 0px rgba(0, 0, 0, 0.25);
     padding: 1rem;
+    gap: 10px;
+}
+
+.forumCard h4{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .forumCard span{

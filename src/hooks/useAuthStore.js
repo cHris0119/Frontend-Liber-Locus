@@ -116,10 +116,11 @@ export const useAuthStore = () => {
         user_photo: userPhoto,
         id,
         format,
-        direction
+        direction,
+        subscription
       } = userData
       dispatch(onLogin({
-        id, firstName, lastName, userPhoto, direction, format
+        id, firstName, lastName, userPhoto, direction, format, subscription
       }))
     } catch (error) {
       localStorage.clear()
