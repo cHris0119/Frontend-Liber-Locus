@@ -1,3 +1,4 @@
+export * from './notification/notiSlice'
 export * from './auction/auctionSlice'
 export * from './forum/forumSlice'
 export * from './review/reviewSlice'

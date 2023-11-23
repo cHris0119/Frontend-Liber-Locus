@@ -16,6 +16,8 @@ export const useAuthStore = () => {
 
   //* LOGIN
   const startLogin = async ({ email, password }) => {
+    console.log(password)
+
     dispatch(onChecking())
 
     try {
@@ -28,10 +30,11 @@ export const useAuthStore = () => {
         first_name: firstName,
         last_name: lastName,
         user_photo: userPhoto,
+        subscription,
         direction
       } = userData
       dispatch(onLogin({
-        id, firstName, lastName, userPhoto, direction
+        id, firstName, lastName, userPhoto, direction, subscription
       }))
 
       //

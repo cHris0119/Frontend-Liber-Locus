@@ -9,6 +9,7 @@ import { Loader } from '../Loader/Loader'
 import styles from './ForumList.module.css'
 
 export const ForumList = () => {
+  const { user } = useSelector(state => state.auth)
   const { startLoadingForums } = useForumStore()
   const { isLoadingForums, forumList } = useSelector(state => state.forum)
 
@@ -26,19 +27,23 @@ export const ForumList = () => {
     )
   }
   return (
-    <div className={styles.forumListContainer}>
-
+    <>
+      {user.subscription !== 1
+        ? (
         <section className={styles.createButton}>
           <Link to={'/crearForo'}>
-            Crear foro
+          Crear foro
           </Link>
         </section>
-
+          )
+        : null}
+    <div className={styles.forumListContainer}>
         <div className={styles.forumList}>
             {forumList.map((foro) => (
               <ForumCard key={foro.id} foro={foro} />
             ))}
         </div>
     </div>
+              </>
   )
 }

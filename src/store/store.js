@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { authSlice, bookSlice, reviewSlice, forumSlice, auctionSlice } from './'
+import { authSlice, bookSlice, reviewSlice, forumSlice, auctionSlice, NotificationSlice } from './'
 
 export const store = configureStore({
   reducer: {
@@ -7,6 +7,7 @@ export const store = configureStore({
     book: bookSlice.reducer,
     review: reviewSlice.reducer,
     forum: forumSlice.reducer,
-    auction: auctionSlice.reducer
+    auction: auctionSlice.reducer,
+    notification: NotificationSlice.reducer
   }
 })
