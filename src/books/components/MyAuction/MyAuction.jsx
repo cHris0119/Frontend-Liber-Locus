@@ -11,7 +11,7 @@ export const MyAuction = () => {
   //
   const { user } = useSelector(state => state.auth)
   const { auctionList, isLoadingAuction } = useSelector(state => state.auction)
-  const { startLoadingAuction, startDeletingAuction } = useAuctionStore()
+  const { startLoadingAuction, startDeletingAuction, startFinishAuction } = useAuctionStore()
 
   //* Subastas que no esten canceladas o finalizadas.
   const availableAuction = auctionList.filter((auction) => auction.auction_state.id === 2)
@@ -37,6 +37,15 @@ export const MyAuction = () => {
     if (confirmacion) {
       console.log('Eliminado')
       startDeletingAuction(id)
+    } else {
+      console.log('cancelado')
+    }
+  }
+
+  const handleFinalizar = (id) => {
+    const confirmacion = confirm('Estas seguro que quieres finalizar la subasta?')
+    if (confirmacion) {
+      startFinishAuction(id)
     } else {
       console.log('cancelado')
     }
@@ -85,7 +94,9 @@ export const MyAuction = () => {
                   >
                     Cancelar subasta
                   </button>
-                  <button>Finalizar subasta</button>
+                  <button
+                  onClick={() => handleFinalizar(auction.id)}
+                  >Finalizar subasta</button>
                 </div>
 
               </div>

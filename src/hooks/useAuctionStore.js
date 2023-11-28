@@ -55,6 +55,22 @@ export const useAuctionStore = () => {
     }
   }
 
+  //* FINALIZAR SUBASTA
+  const startFinishAuction = async (id) => {
+    try {
+      const response = await booksApi.post(`api/finalizar_subasta/${id}/`, config)
+      Swal.fire({
+        icon: 'success',
+        title: 'Subasta finalizada con exito',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   //* CARGAR SUBASTAS
   const startLoadingAuction = async () => {
     try {
@@ -80,6 +96,7 @@ export const useAuctionStore = () => {
     //* METODOS
     startAddAuction,
     startDeletingAuction,
-    startLoadingAuction
+    startLoadingAuction,
+    startFinishAuction
   }
 }

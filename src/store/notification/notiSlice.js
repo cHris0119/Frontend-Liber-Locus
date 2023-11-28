@@ -18,7 +18,7 @@ export const NotificationSlice = createSlice({
     onLoadNotification: (state, { payload = [] }) => {
       state.isLoadingNoti = false
       payload.forEach(noti => {
-        const exists = state.isLoadingNoti.some(dbNoti => dbNoti.id === noti.id)
+        const exists = state.notificationList.some(dbNoti => dbNoti.id === noti.id)
         if (!exists) {
           state.notificationList.push(noti)
         }

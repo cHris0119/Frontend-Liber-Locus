@@ -1,16 +1,17 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { onAddNotification, onLoadNotification } from '../store/notification/notiSlice'
 import booksApi from '../api/booksApi'
+import Swal from 'sweetalert2'
 
 export const useNotiStore = () => {
   const dispatch = useDispatch()
   const token = JSON.parse(localStorage.getItem('token'))
-
   const config = {
     headers: {
       Authorization: `Token ${token}`
     }
   }
+  const { user } = useSelector(state => state.auth)
 
   //* AGREGAR NOTIFICACION
   const startAddNoti = async (newNoti) => {
@@ -41,13 +42,13 @@ export const useNotiStore = () => {
 
   const startLoadingNoti = async () => {
     try {
-      const response = await booksApi.get('api/books/get_all_books/', config)
+      const response = await booksApi.get(`api/notifications/get_user_notifications/${user.id}/`, config)
 
-      dispatch(onLoadNotification(response.data))
+      dispatch(onLoadNotification(response.data.UserNotificationsData))
     } catch (error) {
       Swal.fire({
         icon: 'error',
-        title: 'Error al cargar libros.',
+        title: 'Error al cargar notificaciones.',
         showConfirmButton: false,
         timer: 1500
       })
