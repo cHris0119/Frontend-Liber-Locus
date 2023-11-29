@@ -52,11 +52,8 @@ export const ChatContact = () => {
     const socket = new WebSocket(`ws://localhost:8000/ws/chat/${id}/`)
 
     socket.onopen = (msg) => {
-      console.log(msg)
-      console.log('ws conectado')
     }
     socket.onclose = () => {
-      console.log('ws desconectado')
     }
     socket.onmessage = (msg) => {
       try {

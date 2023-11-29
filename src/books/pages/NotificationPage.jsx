@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
-import styles from '../styles/NotificationPage.module.css'
 import { useSelector } from 'react-redux'
 import { useNotiStore } from '../../hooks'
 import { Loader } from '../components'
+
+import styles from '../styles/NotificationPage.module.css'
 
 export const NotificationPage = () => {
   const { notificationList, isLoadingNoti } = useSelector(state => state.notification)
@@ -32,8 +33,7 @@ export const NotificationPage = () => {
                     className={styles.notificationCard}
                     key={noti.id}>
 
-                        <h3>Marketplace</h3>
-                        <p> - {noti.message}</p>
+                        <h3> - {noti.message}</h3>
 
                     </article>
 

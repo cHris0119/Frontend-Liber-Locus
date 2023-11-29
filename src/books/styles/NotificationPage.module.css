@@ -21,17 +21,13 @@
     border-radius: 10px;
 }
 
-.notificationCard p{
+.notificationCard h3{
     margin-left: 1rem;
     user-select: none;
 }
 
-.notificationCard:hover{
-    background-color: #b9b9b9;
-}
-
 .pagarAqui{
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
 }
 

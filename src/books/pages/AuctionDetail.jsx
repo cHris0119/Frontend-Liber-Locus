@@ -22,10 +22,8 @@ export const AuctionDetail = () => {
     const socket = new WebSocket(`ws://localhost:8000/ws/auction/${id}/`)
 
     socket.onopen = (msg) => {
-      console.log('ws conectado')
     }
     socket.onclose = () => {
-      console.log('ws desconectado')
     }
     socket.onmessage = (msg) => {
       try {

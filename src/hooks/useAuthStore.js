@@ -16,8 +16,6 @@ export const useAuthStore = () => {
 
   //* LOGIN
   const startLogin = async ({ email, password }) => {
-    console.log(password)
-
     dispatch(onChecking())
 
     try {
