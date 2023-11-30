@@ -23,7 +23,6 @@ export const TrendForum = () => {
           config)
         setIsLoading(false)
         const { data } = response
-        console.log(response)
         setTrendForums(data.ForumsData)
       } catch (error) {
         setIsLoading(false)

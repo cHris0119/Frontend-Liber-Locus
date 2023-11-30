@@ -29,11 +29,12 @@ export const Sidebar = ({ handleModal, modalOpen }) => {
         }, 5000)
       }
 
-      socket.onmessage = (event) => {
+      socket.onmessage = (msg) => {
         try {
-          console.log(event)
+          const dataServer = JSON.parse(msg.data.message)
+          console.log(dataServer)
           toast(
-            'Esta es una notificacion de prueba, deberia aparecer que tu libro fue comprado con exito.',
+            dataServer.message,
             {
               duration: 6000
             }
