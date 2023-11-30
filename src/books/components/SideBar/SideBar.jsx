@@ -5,8 +5,10 @@ import { linksNav } from '../../services/linksArray'
 import styles from './SideBar.module.css'
 import { useEffect, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
+import { useSelector } from 'react-redux'
 
 export const Sidebar = ({ handleModal, modalOpen }) => {
+  const { user } = useSelector(state => state.auth)
   const [wsNotification, setWsNotification] = useState(null)
   // console.log(wsNotification)
 
@@ -14,7 +16,7 @@ export const Sidebar = ({ handleModal, modalOpen }) => {
 
   useEffect(() => {
     const connectWebSocket = () => {
-      const socket = new WebSocket('ws://localhost:8000/ws/notifications/')
+      const socket = new WebSocket(`ws://localhost:8000/ws/notifications/${user.id}/`)
 
       socket.onopen = (event) => {
         console.log('WebSocket conectado')
