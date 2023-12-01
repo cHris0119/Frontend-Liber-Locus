@@ -108,6 +108,8 @@ export const useAuthStore = () => {
       const response = await booksApi.get(`api/obtainUser/${tokenSinComillas}`)
 
       const { userData } = response.data
+      console.log(userData)
+
       const {
         first_name: firstName,
         last_name: lastName,

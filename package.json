@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "@agney/react-loading": "^0.1.2",
+    "@nextui-org/react": "^2.2.9",
     "@reduxjs/toolkit": "^1.9.6",
     "animate.css": "^4.1.1",
     "axios": "^1.5.1",
     "date-fns": "^2.30.0",
+    "framer-motion": "^10.16.9",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -29,12 +31,15 @@
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",
+    "autoprefixer": "^10.4.16",
     "eslint": "^8.48.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-n": "^16.0.2",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.33.2",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5",
     "vite": "^4.4.5"
   },
   "eslintConfig": {

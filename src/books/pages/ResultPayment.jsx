@@ -12,7 +12,7 @@ export const ResultIncorrect = () => {
 
         <h1 className={styles.title}> ¡Pago Fracasado! </h1>
         <button className={styles.button}>
-            <Link to={'/'}>Volver al marketplace</Link>
+            <Link to={'/'}>Volver al inicio</Link>
         </button>
 
     </div>
@@ -27,7 +27,7 @@ export const ResultCorrect = () => {
 
     <h1 className={styles.title}> ¡Pago Aceptado! </h1>
     <button className={styles.button}>
-        <Link to={'/'}>Volver al marketplace</Link>
+        <Link to={'/'}>Volver al inicio</Link>
     </button>
 
 </div>

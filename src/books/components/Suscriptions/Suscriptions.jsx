@@ -1,10 +1,46 @@
+import { useEffect, useRef, useState } from 'react'
 import { HomeSection } from '../'
+import booksApi from '../../../api/booksApi'
+
 import SuscriptionsMock from '../../mocks/suscriptionsMock.json'
 
 import styles from './Suscriptions.module.css'
+import { useSelector } from 'react-redux'
 
 export const Suscriptions = () => {
+  const { user } = useSelector(state => state.auth)
+  const [dataUrl, setDataUrl] = useState('')
+  const [dataToken, setDataToken] = useState('')
   const suscriptions = SuscriptionsMock.Suscriptions
+  const formRef = useRef()
+
+  useEffect(() => {
+    if (dataUrl && dataToken) {
+      formRef.current.submit()
+    }
+  }, [dataUrl, dataToken])
+
+  const handlePay = async ({ price, id }) => {
+    console.log(price, id)
+    try {
+      const response = await booksApi.post('api/transbank/iniciar_pago_suscripcion/', {
+        monto: price,
+        orden_compra: parseInt(id),
+        user_id: user.id
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      setDataToken(response.data.token)
+      setDataUrl(response.data.url)
+
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <HomeSection>
 
@@ -26,7 +62,28 @@ export const Suscriptions = () => {
                 </div>
 
               </div>
-              <button className={styles.suscriptionButton}>Comprar ahora</button>
+              {user.subscription !== 2
+                ? <button
+                  onClick={() => handlePay(suscription)}
+                  className={styles.suscriptionButton}>
+                    Comprar ahora
+                  </button>
+                : null
+              }
+
+              { dataUrl && dataToken
+                ? (
+              <form
+              style={{ display: 'none' }}
+              ref={formRef}
+              method="post"
+              action={dataUrl}>
+              <input type="hidden" name="token_ws" value={dataToken} />
+              <input type="submit" value="Ir a pagar" />
+              </form>
+                  )
+                : null
+            }
             </article>
           ))}
         </div>

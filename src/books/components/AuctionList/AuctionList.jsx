@@ -10,7 +10,7 @@ export const AuctionList = ({ auctions }) => {
   const hasAuction = auctions.length > 0
   return (
     <>
-    { user.subscription !== 2
+    { user.subscription !== 1
       ? (
       <button className={styles.buttonPublicar}>
         <Link to={'/crearSubasta'}>Publicar subasta</Link>
