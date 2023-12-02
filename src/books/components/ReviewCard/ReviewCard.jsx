@@ -10,14 +10,6 @@ export const ReviewCard = ({ reviews }) => {
   return (
     <>
       {reviews?.map((review) => {
-        // const fechaActual = new Date()
-        // const fechaReview = new Date(review.created_at)
-        // const diferencia = fechaActual - fechaReview
-        // const segundos = Math.floor(diferencia / 1000)
-        // const minutos = Math.floor(segundos / 60)
-        // const horas = Math.floor(minutos / 60)
-        // const dias = Math.floor(horas / 24)
-
         return (
           <Link key={review.id} to={`/detalleReseña/${review.id}`}>
             <article className={styles.reviewCardContainer}>
@@ -31,10 +23,9 @@ export const ReviewCard = ({ reviews }) => {
 
               <div className={styles.right}>
                 <h2>{review.title}
-                {/* <span>· hace {dias < 1 ? '' : ` ${dias} días`} {horas < 1 ? 'Menos de una hora' : ` ${horas} horas`}</span> */}
+
                 </h2>
                 <p className={styles.user}>
-                  {/* {completeName} */}
                 </p>
                 <StarRatingWithoutChange numStar={review.valoration} />
                 <p className={styles.description}>

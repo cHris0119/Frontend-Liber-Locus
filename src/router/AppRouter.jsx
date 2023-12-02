@@ -7,9 +7,7 @@ import { Loader } from '../books/components'
 import { ContadorPage } from '../books/pages'
 
 const AppRouter = () => {
-  const { status, checkAuthToken } = useAuthStore()
-
-  const role = 'contador'
+  const { status, user, checkAuthToken } = useAuthStore()
 
   useEffect(() => {
     checkAuthToken()
@@ -34,7 +32,7 @@ const AppRouter = () => {
               <Route path="/*" element={ <Navigate to="/auth/login" /> } />
             </>
             )
-          : (role === 'contador')
+          : (user.role)
               ? (
                 <Route path="/*" element={ <ContadorPage /> } />
                 )

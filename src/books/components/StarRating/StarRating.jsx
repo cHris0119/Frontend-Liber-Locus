@@ -57,7 +57,7 @@ export const StarRatingWithoutChange = ({ numStar = 0, size = 30 }) => {
   return (
     <div className={styles.ratingContainer}>
 
-        <div>
+        <div className='flex'>
 
         {[...Array(5)].map((star, index) => {
           const currentRating = index + 1

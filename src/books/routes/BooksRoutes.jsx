@@ -23,8 +23,9 @@ export const BooksRoutes = () => {
       >
 
       <main
+
         onClick={() => modalOpen && handleModal()}
-        className="main"
+        className="main font-poppins"
       >
 
         <Routes>

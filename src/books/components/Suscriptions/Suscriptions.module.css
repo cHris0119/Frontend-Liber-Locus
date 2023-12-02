@@ -34,7 +34,6 @@
     color: #f3f3f3;
     gap: 1rem;
     padding: 2rem 0;
-    height: 400px;
     border-radius: 15px;
 }
 
@@ -66,7 +65,7 @@
 
 .benefits{
     display: flex;
-    gap: .5rem;
+    gap: 1rem;
     align-items: center;
 }
 

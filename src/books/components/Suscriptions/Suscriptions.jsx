@@ -4,8 +4,10 @@ import booksApi from '../../../api/booksApi'
 
 import SuscriptionsMock from '../../mocks/suscriptionsMock.json'
 
-import styles from './Suscriptions.module.css'
 import { useSelector } from 'react-redux'
+
+import styles from './Suscriptions.module.css'
+import { formatearPeso } from '../../../helpers'
 
 export const Suscriptions = () => {
   const { user } = useSelector(state => state.auth)
@@ -52,7 +54,7 @@ export const Suscriptions = () => {
             <article className={styles.suscription} key={suscription.id}>
               <div className={styles.suscriptionDetails}>
                 <h3>{suscription.duration}</h3>
-                <p>{suscription.price} CLP</p>
+                <p>{formatearPeso(parseInt(suscription.price))} CLP</p>
                 <div className={styles.benefitsContainer}>
 
                   <Benefits>+3 Libros a la vez en marketplace</Benefits>
@@ -62,7 +64,7 @@ export const Suscriptions = () => {
                 </div>
 
               </div>
-              {user.subscription !== 2
+              {user.subscription === 1
                 ? <button
                   onClick={() => handlePay(suscription)}
                   className={styles.suscriptionButton}>
