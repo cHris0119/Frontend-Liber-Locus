@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { TableContador, NavBarContador, Loader } from '../components'
 import { useSalesStore } from '../../hooks'
 import { formatearPeso } from '../../helpers'
-import '../index.css'
+import './index.css'
 
 export const ContadorPage = () => {
   const { isLoadingSales, salesList } = useSelector(state => state.sales)

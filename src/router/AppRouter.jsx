@@ -32,7 +32,7 @@ const AppRouter = () => {
               <Route path="/*" element={ <Navigate to="/auth/login" /> } />
             </>
             )
-          : (user.role)
+          : (user.role !== 'None')
               ? (
                 <Route path="/*" element={ <ContadorPage /> } />
                 )
