@@ -19,6 +19,7 @@ export const ComprasCard = ({ compra }) => {
                     <p>Precio: {newPrecio} CLP</p>
                     <p>Vendedor: {nameSeller}</p>
                     <p>Estado: {compra.book.state}</p>
+                    <p>Codigo: 1234</p>
                 </div>
 
                 <div className={styles.actionsContainer}>

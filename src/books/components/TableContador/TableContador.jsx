@@ -94,7 +94,7 @@ export const TableContador = ({ data }) => {
       case 'actions':
         return (
           <div className="relative flex items-center gap-2">
-                {user.estado !== 'CANCELADO'
+                {user.estado !== 'CANCELADO' || user.estado !== 'FINALIZADO'
                   ? <Dropdown>
                     <DropdownTrigger>
                       <Button isIconOnly size="md" variant="ghost">

@@ -10,9 +10,6 @@ export const ListChatMessages = ({ listChat, isLoading, chatContainerRef }) => {
 
         <header className={styles.header}>
 
-            <div className={styles.containerImg}>
-                <img src="" alt="imgSeller" />
-            </div>
             <p>Juan Lopez</p>
 
         </header>

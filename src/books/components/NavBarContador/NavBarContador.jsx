@@ -18,7 +18,7 @@ export const NavBarContador = () => {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem className='flex items-center justify-center'>
-            <h1 className='text-5xl text-black font-bold'>Contador</h1>
+            <h1 className='text-5xl text-white font-bold'>Contador</h1>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">

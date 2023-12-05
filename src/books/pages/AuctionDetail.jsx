@@ -19,7 +19,7 @@ export const AuctionDetail = () => {
   const myAuction = auctionD?.book.seller.id === user.id
 
   useEffect(() => {
-    const socket = new WebSocket(`ws://localhost:8000/ws/auction/${id}/`)
+    const socket = new WebSocket(`ws://192.168.100.23:8000/ws/auction/${id}/`)
 
     socket.onopen = (msg) => {
     }

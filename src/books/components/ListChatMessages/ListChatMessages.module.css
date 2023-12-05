@@ -5,10 +5,14 @@
 .header{
     background-color: #524644;
     border-radius: 10px 10px 0 0;
-    padding: .5rem;
+    padding: .8rem;
     display: flex;
     gap: 1rem;
     align-items: center;
+}
+.header p{ 
+    font-size: 1.1rem;
+    color: #fff;
 }
 
 .containerImg{

@@ -49,7 +49,7 @@ export const ChatContact = () => {
   }
 
   useEffect(() => {
-    const socket = new WebSocket(`ws://localhost:8000/ws/chat/${id}/`)
+    const socket = new WebSocket(`ws://192.168.100.23:8000/ws/chat/${id}/`)
 
     socket.onopen = (msg) => {
     }

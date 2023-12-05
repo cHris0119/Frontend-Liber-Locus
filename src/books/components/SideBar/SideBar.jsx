@@ -13,7 +13,7 @@ export const Sidebar = ({ handleModal, modalOpen }) => {
   const NavOpen = useNavOpen()
 
   useEffect(() => {
-    const socket = new WebSocket(`ws://localhost:8000/ws/notifications/${user.id}/`)
+    const socket = new WebSocket(`ws://192.168.100.23:8000/ws/notifications/${user.id}/`)
 
     socket.onopen = (event) => {
       console.log('WebSocket conectado')

@@ -29,7 +29,7 @@ export const Marketplace = () => {
     className='animate__animated animate__faster'
     style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '2vh', paddingBottom: '4.5rem' }}>
 
-      <h1 style={{ color: '#fff', textAlign: 'center', borderBottom: '2px solid #fff', paddingBottom: '20px', display: 'inline-block' }}>MARKETPLACE</h1>
+      <h1 style={{ color: '#fff', textAlign: 'center', borderBottom: '2px solid #fff', paddingBottom: '20px', display: 'inline-block', fontSize: '2rem' }}>MARKETPLACE</h1>
 
       <MarketplaceMain bookList={availableBooks} />
 

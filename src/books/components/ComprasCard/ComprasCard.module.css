@@ -43,6 +43,8 @@
     border-radius: 10px;
     border: none;
     font-weight: 600;
+    color: #fff;
+    background-color: #21191b !important;
     padding: 10px;
     cursor: pointer;
 }

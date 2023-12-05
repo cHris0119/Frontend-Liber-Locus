@@ -36,7 +36,7 @@ export const ForumHeader = () => {
 
   return (
     <header className={styles.forumHeaderContainer}>
-        <form className={styles.formForumHeader}>
+        {/* <form className={styles.formForumHeader}>
             <input
             type='text'
             placeholder='Buscar foros'
@@ -48,7 +48,7 @@ export const ForumHeader = () => {
             value='Buscar'
             className={styles.formInput}
             />
-        </form>
+        </form> */}
 
         <button
         className={styles.forumHeaderButton}

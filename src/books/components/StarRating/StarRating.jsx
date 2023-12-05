@@ -17,7 +17,7 @@ export const StarRating = ({
     <div className={styles.ratingContainer}>
         <label>Valoración</label>
 
-        <div>
+        <div className='flex flex-row'>
 
         {[...Array(5)].map((star, index) => {
           const currentRating = index + 1

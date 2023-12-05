@@ -63,7 +63,7 @@ export const Login = () => {
     <div className={styles.authPage}>
       <div className={styles.formContainer}>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <h3 className={styles.title}>INICIO DE SESIÓN</h3>
+          <h3 className={`${styles.title}`}>INICIO DE SESIÓN</h3>
           <Input
             placeholder="Ingresa tu correo..."
             label="Correo"

@@ -29,13 +29,16 @@ export const NotificationPage = () => {
 
         <div className={styles.listNotification}>
             {notificationList.map((noti) => (
-                    <article
-                    className={styles.notificationCard}
-                    key={noti.id}>
+              <>
+                <article
+                className={styles.notificationCard}
+                key={noti.id}>
 
-                        <h3> - {noti.message}</h3>
+                    <h3> - {noti.message}</h3>
 
-                    </article>
+                </article>
+                <hr />
+              </>
 
             ))}
         </div>
