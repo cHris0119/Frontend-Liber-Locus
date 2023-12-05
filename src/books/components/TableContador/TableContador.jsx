@@ -94,7 +94,7 @@ export const TableContador = ({ data }) => {
       case 'actions':
         return (
           <div className="relative flex items-center gap-2">
-                {user.estado !== 'APPROVED'
+                {user.estado !== 'CANCELADO'
                   ? <Dropdown>
                     <DropdownTrigger>
                       <Button isIconOnly size="md" variant="ghost">
@@ -102,10 +102,11 @@ export const TableContador = ({ data }) => {
                       </Button>
                     </DropdownTrigger>
                     <DropdownMenu>
-
-                            <DropdownItem>Ir al pago</DropdownItem>
+                            {user.estado === 'PRODUCTO ENTREGRADO'
+                              ? <DropdownItem>Ir al pago</DropdownItem>
+                              : null
+                            }
                             <DropdownItem>Cancelar</DropdownItem>
-
                     </DropdownMenu>
                   </Dropdown>
                   : 'Sin acciones que mostrar'}
