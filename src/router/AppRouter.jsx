@@ -4,7 +4,7 @@ import { BooksRoutes } from '../books/routes/BooksRoutes'
 import { useAuthStore } from '../hooks'
 import { useEffect } from 'react'
 import { Loader } from '../books/components'
-import { ContadorPage } from '../books/pages'
+import { ContadorPage, ResultCorrect } from '../books/pages'
 
 const AppRouter = () => {
   const { status, user, checkAuthToken } = useAuthStore()
@@ -34,7 +34,10 @@ const AppRouter = () => {
             )
           : (user.role !== 'None')
               ? (
+                <>
                 <Route path="/*" element={ <ContadorPage /> } />
+                <Route path="/detalleEnvio/correct" element={<ResultCorrect />} />
+                </>
                 )
               : (<>
                   <Route path="/*" element={<BooksRoutes /> } />

@@ -42,7 +42,9 @@ export const MisVentas = () => {
       : (hasVentas
           ? (
               misVentas?.map((venta) => (
-              <VentasCard
+                venta.book.state === 'FINALIZADO'
+                  ? null
+                  : <VentasCard
               key={venta.id}
               venta={venta}
               />

@@ -19,16 +19,19 @@ export const ComprasCard = ({ compra }) => {
                     <p>Precio: {newPrecio} CLP</p>
                     <p>Vendedor: {nameSeller}</p>
                     <p>Estado: {compra.book.state}</p>
-                    <p>Codigo: 1234</p>
+                    <p>Codigo: {compra.code_verify}</p>
                 </div>
 
                 <div className={styles.actionsContainer}>
-                    <button>
+                    {compra.book.state !== 'EN CAMINO'
+                      ? null
+                      : <button>
                         <Link to={`/contactar/${compra.chat_room}`}>
                             Contactar al vendedor
                         </Link>
                     </button>
-                    <button>Cancelar compra</button>
+                    }
+                    {/* <button>Cancelar compra</button> */}
                 </div>
             </article>
     </>

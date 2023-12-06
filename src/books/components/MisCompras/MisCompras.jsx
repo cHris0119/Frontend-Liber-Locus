@@ -19,6 +19,7 @@ export const MisCompras = () => {
       try {
         const response = await booksApi.get('api/mis_compras/',
           config)
+        console.log(response)
 
         setIsLoading(false)
         const { data } = response
@@ -42,7 +43,9 @@ export const MisCompras = () => {
       : (hasCompras
           ? (
               misCompras?.map((compra) => (
-              <ComprasCard
+                compra.book.state === 'FINALIZADO'
+                  ? null
+                  : <ComprasCard
               key={compra.id}
               compra={compra}
               />

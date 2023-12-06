@@ -28,7 +28,7 @@ export const VentasCard = ({ venta }) => {
                             Contactar al comprador
                         </Link>
                     </button>
-                    <button>Cancelar venta</button>
+                    {/* <button>Cancelar venta</button> */}
                 </div>
             </article>
     </>
