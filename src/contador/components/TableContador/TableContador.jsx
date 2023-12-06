@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import {
   Table,
   TableHeader,
@@ -16,6 +16,7 @@ import {
 } from '@nextui-org/react'
 import { VerticalDotsIcon } from './VerticalDotsIcon'
 import { columns, statusOptions } from './data'
+import booksApi from '../../../api/booksApi'
 
 const statusColorMap = {
   APPROVED: 'success',
@@ -26,6 +27,9 @@ const statusColorMap = {
 const INITIAL_VISIBLE_COLUMNS = ['vendedor', 'libro', 'estado', 'actions', 'precio', 'comprador']
 
 export const TableContador = ({ data }) => {
+  const [dataUrl, setDataUrl] = React.useState('')
+  const formRef = useRef()
+  const [dataToken, setDataToken] = React.useState('')
   const [filterValue] = React.useState('')
   const [selectedKeys, setSelectedKeys] = React.useState(new Set([]))
   const [visibleColumns] = React.useState(new Set(INITIAL_VISIBLE_COLUMNS))
@@ -35,6 +39,37 @@ export const TableContador = ({ data }) => {
     column: 'comprador',
     direction: 'ascending'
   })
+  useEffect(() => {
+    if (dataUrl && dataToken) {
+      formRef.current.submit()
+    }
+  }, [dataUrl, dataToken])
+
+  const handlePay = async (id, monto, ordenCompra) => {
+    try {
+      const numericStr = monto.replace(/[^0-9]/g, '')
+      const numericValue = parseInt(numericStr, 10)
+
+      console.log(id, monto, ordenCompra)
+      const response = await booksApi.post('api/transbank/iniciar_pago_contador/', {
+        monto: numericValue,
+        orden_compra: ordenCompra,
+        user_id: id
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      setDataToken(response.data.token)
+      setDataUrl(response.data.url)
+
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const [page, setPage] = React.useState(1)
 
   const hasSearchFilter = Boolean(filterValue)
@@ -83,7 +118,6 @@ export const TableContador = ({ data }) => {
 
   const renderCell = React.useCallback((user, columnKey) => {
     const cellValue = user[columnKey]
-
     switch (columnKey) {
       case 'estado':
         return (
@@ -94,7 +128,7 @@ export const TableContador = ({ data }) => {
       case 'actions':
         return (
           <div className="relative flex items-center gap-2">
-                {user.estado !== 'APPROVED'
+                {user.estado !== 'CANCELADO' || user.estado !== 'FINALIZADO'
                   ? <Dropdown>
                     <DropdownTrigger>
                       <Button isIconOnly size="md" variant="ghost">
@@ -102,10 +136,11 @@ export const TableContador = ({ data }) => {
                       </Button>
                     </DropdownTrigger>
                     <DropdownMenu>
-
-                            <DropdownItem>Ir al pago</DropdownItem>
+                            {user.estado === 'PRODUCTO ENTREGADO'
+                              ? <DropdownItem onClick={() => handlePay(user.idSeller, user.precio, user.id)}>Ir al pago</DropdownItem>
+                              : null
+                            }
                             <DropdownItem>Cancelar</DropdownItem>
-
                     </DropdownMenu>
                   </Dropdown>
                   : 'Sin acciones que mostrar'}
@@ -154,6 +189,7 @@ export const TableContador = ({ data }) => {
   }, [selectedKeys, items.length, page, pages, hasSearchFilter])
 
   return (
+    <>
     <Table
       aria-label="Example table with custom cells, pagination and sorting"
       isHeaderSticky
@@ -167,13 +203,13 @@ export const TableContador = ({ data }) => {
       topContentPlacement="outside"
       onSelectionChange={setSelectedKeys}
       onSortChange={setSortDescriptor}
-    >
+      >
       <TableHeader columns={headerColumns}>
         {(column) => (
           <TableColumn
-            key={column.uid}
-            align={column.uid === 'actions' ? 'center' : 'start'}
-            allowsSorting={column.sortable}
+          key={column.uid}
+          align={column.uid === 'actions' ? 'center' : 'start'}
+          allowsSorting={column.sortable}
           >
             {column.name}
           </TableColumn>
@@ -186,6 +222,21 @@ export const TableContador = ({ data }) => {
           </TableRow>
         )}
       </TableBody>
+
     </Table>
+    { dataUrl && dataToken
+      ? (
+              <form
+              style={{ display: 'none' }}
+              ref={formRef}
+              method="post"
+              action={dataUrl}>
+              <input type="hidden" name="token_ws" value={dataToken} />
+              <input type="submit" value="Ir a pagar" />
+              </form>
+        )
+      : null
+            }
+        </>
   )
 }

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-import { TableContador, NavBarContador, Loader } from '../components'
+import { TableContador, NavBarContador } from '../components'
+import { Loader } from '../../books/components'
 import { useSalesStore } from '../../hooks'
 import { formatearPeso } from '../../helpers'
-import './index.css'
 
 export const ContadorPage = () => {
   const { isLoadingSales, salesList } = useSelector(state => state.sales)
@@ -15,6 +15,7 @@ export const ContadorPage = () => {
   const mappedSales = salesList?.map(sale => {
     return {
       id: sale.id,
+      idSeller: sale.book.seller.id,
       vendedor: `${sale.book.seller.first_name} ${sale.book.seller.last_name}`,
       libro: sale.book.name,
       precio: formatearPeso(parseInt(sale.book?.price)),
@@ -22,8 +23,6 @@ export const ContadorPage = () => {
       comprador: `${sale.buyer.first_name} ${sale.buyer.last_name}`
     }
   })
-
-  console.log(mappedSales)
 
   useEffect(() => {
     startLoadingSales()

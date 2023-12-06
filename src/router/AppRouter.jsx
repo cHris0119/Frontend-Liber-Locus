@@ -4,7 +4,8 @@ import { BooksRoutes } from '../books/routes/BooksRoutes'
 import { useAuthStore } from '../hooks'
 import { useEffect } from 'react'
 import { Loader } from '../books/components'
-import { ContadorPage, ResultCorrect } from '../books/pages'
+import { ContadorPage } from '../contador/pagesC/ContadorPage'
+import { ResultCorrect } from '../books/pages'
 
 const AppRouter = () => {
   const { status, user, checkAuthToken } = useAuthStore()

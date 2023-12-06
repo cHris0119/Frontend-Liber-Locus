@@ -117,7 +117,6 @@ export const TableContador = ({ data }) => {
 
   const renderCell = React.useCallback((user, columnKey) => {
     const cellValue = user[columnKey]
-    console.log(user)
     switch (columnKey) {
       case 'estado':
         return (
