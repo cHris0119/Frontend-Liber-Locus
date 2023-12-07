@@ -36,7 +36,6 @@ export const MisCompras = () => {
 
   return (
     <>
-    <h1>Mis compras</h1>
     <div className={styles.cardList}>
     { isLoading
       ? <Loader />

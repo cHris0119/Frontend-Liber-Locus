@@ -46,6 +46,7 @@ export const TrendForum = () => {
             <div className={styles.forumsContainer}>
               {trendForums.map((forum) => (
                 <Link
+                className={styles.linkCard}
                 to={`/foro/${forum.id}/ultimasDiscusiones`}
                 key={forum.id}>
                   <article className={styles.forumCard}>

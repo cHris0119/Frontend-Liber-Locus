@@ -22,12 +22,14 @@ export const NotificationPage = () => {
       </div>
     )
   }
+
+  const hasNotification = notificationList.length > 0
   return (
     <div className={styles.container}>
         <h1>Notificaciones</h1>
         <hr />
-
-        <div className={styles.listNotification}>
+        {hasNotification
+          ? <div className={styles.listNotification}>
             {notificationList.map((noti) => (
               <>
                 <article
@@ -42,6 +44,7 @@ export const NotificationPage = () => {
 
             ))}
         </div>
+          : <h2 className='text-xl text-white'>No tienes ninguna notificacion...</h2>}
     </div>
   )
 }

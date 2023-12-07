@@ -70,7 +70,11 @@ export const Suscriptions = () => {
                   className={styles.suscriptionButton}>
                     Comprar ahora
                   </button>
-                : null
+                : <button
+                disabled
+                >
+                  Ya cuentas con una suscripcion
+                </button>
               }
 
               { dataUrl && dataToken

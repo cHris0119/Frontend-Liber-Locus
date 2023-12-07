@@ -35,7 +35,6 @@ export const MisVentas = () => {
   const hasVentas = misVentas.length > 0
   return (
     <>
-    <h1>Mis ventas</h1>
     <div className={styles.cardList}>
     { isLoading
       ? <Loader />
@@ -50,7 +49,7 @@ export const MisVentas = () => {
               />
               ))
             )
-          : <h3>No se encuentran ventas</h3>
+          : <h3 className='text-xl text-white text-center '>No se encuentran ventas</h3>
         ) }
 
     </div>

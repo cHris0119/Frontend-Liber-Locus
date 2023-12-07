@@ -78,13 +78,15 @@ export const ForumMainHeader = ({
 
           <div className={styles.leftHeader}>
             <h1>{forum.name}</h1>
-
-            <button
+            {isAdmin
+              ? null
+              : <button
             onClick={inForum ? handleLeave : handleJoin}
             className={styles.forumDetailsButton}
             >
                 { inForum ? 'Salirse' : 'Unirse' }
             </button>
+            }
 
           </div>
 

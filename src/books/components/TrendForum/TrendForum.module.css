@@ -22,7 +22,6 @@
 .forumsContainer{
     display: grid;
     width: 100%;
-    
     padding: 1rem;
     gap: 1rem;
     grid-template-columns:repeat(3,minmax(150px, 1fr));
@@ -34,7 +33,7 @@
     justify-content: space-between;
     align-items: center;
     border-radius: 10px;
-    background: #FFF;
+    background: #fff;
     box-shadow: 0px 4px 11px 0px rgba(0, 0, 0, 0.25);
     padding: 1rem;
     gap: 10px;
@@ -62,12 +61,27 @@
         width: 100%;
         padding: 1rem;
         gap: 2rem;
-        grid-template-columns:1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr;
+        justify-content: center;
+    }
+
+    .linkCard{
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .forumCard{
+        width: 100%;
     }
 
     .forumCard:hover{
         cursor: pointer;
         transform: none;
+    }
+
+    .forumCard h4{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
   }

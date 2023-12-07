@@ -27,7 +27,7 @@ export const SelectDirection = () => {
         </div>
 
         <footer className={styles.directionFooter}>
-          <NavLink className={styles.linkEditDirection}>Editar</NavLink>
+          <NavLink to='/editarDireccion' className={styles.linkEditDirection}>Editar</NavLink>
         </footer>
 
       </div>
