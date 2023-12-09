@@ -12,8 +12,6 @@ export const ForumList = () => {
   const { startLoadingForums } = useForumStore()
   const { isLoadingForums, forumList } = useSelector(state => state.forum)
 
-  console.log(forumList)
-
   useEffect(() => {
     startLoadingForums()
   }, [])

@@ -14,7 +14,7 @@ export const ForumPage = () => {
               <NavLink
               to={'ultimosPost'}
               className={({ isActive }) => (isActive ? styles.active : '')}
-              >Ultimas publicaciones</NavLink>
+              >Mis ultimas publicaciones</NavLink>
 
               <NavLink
               to={'listaForos'}

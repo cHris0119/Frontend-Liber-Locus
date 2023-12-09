@@ -48,8 +48,6 @@ export const useAuthStore = () => {
 
   //* LOGOUT
   const startLogout = async (uid) => {
-    console.log(uid)
-
     await booksApi.post(`api/logout/${uid}/`)
 
     localStorage.clear('token')
@@ -109,7 +107,6 @@ export const useAuthStore = () => {
       const response = await booksApi.get(`api/obtainUser/${tokenSinComillas}`)
 
       const { userData } = response.data
-      console.log(userData)
 
       const {
         first_name: firstName,

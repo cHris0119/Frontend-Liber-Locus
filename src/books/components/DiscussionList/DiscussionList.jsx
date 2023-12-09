@@ -3,6 +3,7 @@ import { DiscussionCard } from '../DiscussionCard/DiscussionCard'
 import { useParams } from 'react-router-dom'
 import booksApi from '../../../api/booksApi'
 import { Loader } from '../Loader/Loader'
+import { getEnvVariables } from '../helpers/'
 
 import styles from './DiscussionList.module.css'
 
@@ -10,6 +11,8 @@ export const DiscussionList = () => {
   const [discussion, setDiscussion] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const { id } = useParams()
+  const { VITE_API_URL } = getEnvVariables()
+
   const token = JSON.parse(localStorage.getItem('token'))
   const config = {
     headers: {
@@ -19,7 +22,7 @@ export const DiscussionList = () => {
   useEffect(() => {
     const getMembers = async () => {
       try {
-        const response = await booksApi.get(`api/forums/get_forum_discussions/${id}/`,
+        const response = await booksApi.get(`${VITE_API_URL}api/forums/get_forum_discussions/${id}/`,
           config)
         setIsLoading(false)
         const { data } = response
