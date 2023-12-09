@@ -18,7 +18,8 @@ export const InputComboBoxB = ({
   const { bookList, isLoadingBooks } = useSelector(state => state.book)
   const { startLoadingEvents } = useBookStore()
 
-  const myBooks = bookList.filter((book) => book.seller.id === user.id)
+  const avaliableBooks = bookList.filter((book) => book.book_state.id === 2)
+  const myBooks = avaliableBooks.filter((book) => book.seller.id === user.id)
 
   useEffect(() => {
     startLoadingEvents()
