@@ -12,7 +12,7 @@
 .sendMessage{
     border-radius: 0 0 10px 10px;
     background-color: #524644;
-    height: 10%;
+    height: 15%;
     padding: 12px;
     display: flex;
     justify-content: center;
@@ -34,7 +34,7 @@
 }
 
 .inputSubmit{
-    background-color: #2a1f1d !important;
+    background-color: #000000 ;
     color: #fff;
     width: 20%;
     font-weight: 500;
