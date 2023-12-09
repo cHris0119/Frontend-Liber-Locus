@@ -49,7 +49,7 @@ export const ForumLastPost = () => {
               />
                 ))
               )
-            : <h3>No se encuentra discusiones</h3>
+            : <h3 className='text-xl text-white text-center'>No se encuentra discusiones</h3>
           ) }
     </div>
 

@@ -3,7 +3,7 @@ import { DiscussionCard } from '../DiscussionCard/DiscussionCard'
 import { useParams } from 'react-router-dom'
 import booksApi from '../../../api/booksApi'
 import { Loader } from '../Loader/Loader'
-import { getEnvVariables } from '../helpers/'
+import { getEnvVariables } from '../../../helpers'
 
 import styles from './DiscussionList.module.css'
 
@@ -51,7 +51,7 @@ export const DiscussionList = () => {
               />
                 ))
               )
-            : <h3>No se encuentra discusiones</h3>
+            : <h3 className='text-xl text-white text-center'>No se encuentra discusiones</h3>
           ) }
     </div>
 

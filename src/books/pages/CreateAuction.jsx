@@ -11,7 +11,7 @@ const initialForm = {
 }
 
 const formValidations = {
-  book: [(value) => value !== 'Seleccione', 'Debes ingresar una categoria'],
+  book: [(value) => value !== 'Seleccione', 'Debes ingresar un libro'],
   initialPrice: [(value) => value >= 1 && !isNaN(parseInt(value)), 'Debe ser un numero'],
   durationDays: [(value) => value >= 1 && value <= 5 && !isNaN(parseInt(value)), 'Debe ser un numero max 5.']
 }

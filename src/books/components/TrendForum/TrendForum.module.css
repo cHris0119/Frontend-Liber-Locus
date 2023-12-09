@@ -10,13 +10,14 @@
 }
 
 .trendForumContainer h2{
-    color:#fff;
     text-align: center;
     text-transform: uppercase;
     border-bottom: 2px solid #fff;
     border-top: 2px solid #fff;
-    font-size: 2rem;
+    font-size: 2em;
+    font-weight: bold;
     padding: 1rem;
+    color: #fff;
 }
 
 .forumsContainer{

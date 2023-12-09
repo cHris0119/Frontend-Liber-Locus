@@ -57,7 +57,7 @@ export const QuestionsPost = () => {
   return (
 
     <div className={styles.questionsContainer}>
-      <h2 style={{ color: '#fff' }}>Preguntas y respuestas</h2>
+      <h2 className='text-3xl text-white text-center'>Preguntas y respuestas</h2>
 
       {isSeller
         ? null
@@ -67,7 +67,7 @@ export const QuestionsPost = () => {
         ? <Loader />
         : (hasAnswers
             ? <AnswerPost answers={answers} isSeller={isSeller} setAnswers={setAnswers} />
-            : <h3>No se han hecho preguntas aun</h3>)
+            : <h3 className='text-xl text-white text-center'>No se han hecho preguntas aun</h3>)
     }
 
     </div>

@@ -49,7 +49,7 @@ export const MisVentas = () => {
               />
               ))
             )
-          : <h3 className='text-xl text-white text-center '>No se encuentran ventas</h3>
+          : <h3 className='text-xl text-white text-center'>No se encuentran ventas</h3>
         ) }
 
     </div>

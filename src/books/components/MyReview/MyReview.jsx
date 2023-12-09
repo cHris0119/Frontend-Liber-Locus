@@ -41,13 +41,6 @@ export const MyReview = () => {
     <>
     {hasReview
       ? (myReviews?.map((review) => {
-          const fechaActual = new Date()
-          const fechaReview = new Date(review.created_at)
-          const diferencia = fechaActual - fechaReview
-          const segundos = Math.floor(diferencia / 1000)
-          const minutos = Math.floor(segundos / 60)
-          const horas = Math.floor(minutos / 60)
-          const dias = Math.floor(horas / 24)
           return (
     <article key={review.id} className={styles.myPost}>
 
@@ -59,7 +52,6 @@ export const MyReview = () => {
         <div className={styles.articleDetails}>
             <p>{review.title}</p>
             <StarRatingWithoutChange numStar={review.valoration} />
-            <p>Publicado hace: {dias < 1 ? '' : ` ${dias} días`} {horas < 1 ? 'Menos de una hora' : ` ${horas} horas`}</p>
         </div>
         <div className={styles.articleActions}>
           <button><Link to={`/editarReview/${review.id}`}>Editar</Link></button>

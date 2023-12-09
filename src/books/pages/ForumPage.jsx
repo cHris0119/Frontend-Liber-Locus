@@ -6,7 +6,9 @@ import styles from '../styles/ForumPage.module.css'
 export const ForumPage = () => {
   return (
     <div className={styles.forumContainer}>
-      <h1 style={{ color: '#fff', textAlign: 'center', borderBottom: '2px solid #fff', paddingBottom: '20px', display: 'inline-block' }}>FOROS</h1>
+      <h1
+      className='text-2xl font-extrabold'
+      style={{ color: '#fff', textAlign: 'center', borderBottom: '2px solid #fff', paddingBottom: '20px', display: 'inline-block' }}>FOROS</h1>
         <ForumHeader />
 
         <section className={styles.selectSection}>

@@ -4,9 +4,11 @@ import { BackButton, DiscussionForm, DiscussionListAnswer, DiscussionQuestion } 
 import styles from '../styles/DiscussionDetail.module.css'
 import { useParams } from 'react-router-dom'
 import booksApi from '../../api/booksApi'
+import { useSelector } from 'react-redux'
 
 export const DiscussionDetail = () => {
   const { id } = useParams()
+  const { user } = useSelector(state => state.auth)
   const [discussion, setDiscussion] = useState([])
   const [answers, setAnswers] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -25,6 +27,8 @@ export const DiscussionDetail = () => {
           booksApi.get(`api/discussions/${id}/comments/`, config)
         ])
 
+        console.log(discussionResponse)
+
         const discussionData = discussionResponse.data
         const answersData = answersResponse.data.Comments
 
@@ -41,6 +45,7 @@ export const DiscussionDetail = () => {
   }, [])
 
   const hasAnswers = answers?.length >= 0
+  const myDiscussion = discussion?.forum_user?.user.id === user.id
 
   return (
     <div className={styles.discussionDetailContainer}>
@@ -53,9 +58,12 @@ export const DiscussionDetail = () => {
           discussion={discussion}
           />
 
-        <DiscussionForm
+        {myDiscussion
+          ? null
+          : <DiscussionForm
         setAnswers={setAnswers}
-         />
+        />
+      }
 
         <DiscussionListAnswer
         isLoading={isLoading}

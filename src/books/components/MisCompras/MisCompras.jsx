@@ -50,7 +50,7 @@ export const MisCompras = () => {
               />
               ))
             )
-          : <h3>No se encuentran compras</h3>
+          : <h3 className='text-xl text-white text-center'>No se encuentran compras</h3>
         ) }
 
     </div>

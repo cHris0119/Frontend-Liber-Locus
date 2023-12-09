@@ -95,9 +95,9 @@ export const Login = () => {
           <span className={styles.link}>
           Aun no tienes cuenta? <Link to="/auth/registro">Registrate</Link>
           </span>
-          <span className={styles.link}>
+          {/* <span className={styles.link}>
            <Link to="/auth/recuperarContra">Olvidaste tu contraseña?</Link>
-          </span>
+          </span> */}
         </form>
       </div>
       <div className={styles.backgroundDark}>

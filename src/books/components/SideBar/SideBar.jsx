@@ -6,14 +6,14 @@ import styles from './SideBar.module.css'
 import { useEffect } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { useSelector } from 'react-redux'
-
+import { WS_URL } from '../../../helpers/constWS'
 export const Sidebar = ({ handleModal, modalOpen }) => {
   const { user } = useSelector(state => state.auth)
 
   const NavOpen = useNavOpen()
 
   useEffect(() => {
-    const socket = new WebSocket(`ws://192.168.100.23:8000/ws/notifications/${user.id}/`)
+    const socket = new WebSocket(`ws://${WS_URL}/ws/notifications/${user.id}/`)
 
     socket.onopen = (event) => {
       console.log('WebSocket conectado')

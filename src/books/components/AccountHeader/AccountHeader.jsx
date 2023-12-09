@@ -27,10 +27,10 @@ export const AccountHeader = () => {
 
             <section className={styles.headerRight}>
                 <h1>{ `${user.firstName} ${user.lastName}` }</h1>
-                <div className={styles.userFollowers}>
+                {/* <div className={styles.userFollowers}>
                     <p><span>100</span> seguidores</p>
                     <p><span>5</span> seguidos</p>
-                </div>
+                </div> */}
                 <button
                 className={styles.followButton}
                 onClick={handleClick}

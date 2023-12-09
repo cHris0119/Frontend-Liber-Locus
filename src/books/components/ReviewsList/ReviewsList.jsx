@@ -16,7 +16,7 @@ export const ReviewsList = ({ reviewList }) => {
         )
       : (
         <div className={styles.NoFoundContainer}>
-          <h2 className={styles.noFound}>No se encuentran reseñas...</h2>
+          <h2 className='text-xl text-white text-center'>No se encuentran reseñas</h2>
         </div>
         )}
 </>

@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 import { RiUserVoiceFill } from 'react-icons/ri'
 
 import { BackButton, Loader, StarRatingWithoutChange } from '../components'
+import { WS_URL } from '../../helpers/constWS'
+
 import booksApi from '../../api/booksApi'
 
 import styles from '../styles/ReviewDetail.module.css'
@@ -40,7 +42,7 @@ export const ReviewDetail = () => {
     }
     getLikes()
 
-    const websocket = new WebSocket('ws://localhost:8000/ws/consumer/likes/')
+    const websocket = new WebSocket(`ws://${WS_URL}/ws/consumer/likes/`)
 
     websocket.onmessage = async (event) => {
       const data = await JSON.parse(event.data)
@@ -137,9 +139,6 @@ export const ReviewDetail = () => {
         <div className={styles.userContainer}>
 
           <div className={styles.imgContainer}>
-            <img
-            src="https://a.ltrbxd.com/resized/avatar/upload/1/2/0/3/7/7/7/shard/avtr-0-1000-0-1000-crop.jpg?v=ff62b2f12e"
-            alt="userIMG" />
           </div>
           <div className={styles.userInfo}>
 

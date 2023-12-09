@@ -215,7 +215,7 @@ export const TableContador = ({ data }) => {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody emptyContent={'No users found'} items={sortedItems}>
+      <TableBody emptyContent={'No hay ventas'} items={sortedItems}>
         {(item) => (
           <TableRow key={item.id}>
             {(columnKey) => <TableCell className='text-lg'>{renderCell(item, columnKey)}</TableCell>}

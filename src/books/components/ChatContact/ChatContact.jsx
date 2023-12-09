@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 
 import { ListChatMessages } from '../ListChatMessages/ListChatMessages'
 import booksApi from '../../../api/booksApi'
-
+import { WS_URL } from '../../../helpers/constWS'
 import styles from './ChatContact.module.css'
 
 export const ChatContact = () => {
@@ -49,7 +49,7 @@ export const ChatContact = () => {
   }
 
   useEffect(() => {
-    const socket = new WebSocket(`ws://192.168.100.23:8000/ws/chat/${id}/`)
+    const socket = new WebSocket(`ws://${WS_URL}/ws/chat/${id}/`)
 
     socket.onopen = (msg) => {
     }

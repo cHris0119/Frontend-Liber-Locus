@@ -85,7 +85,7 @@ export const MyDiscussion = () => {
             </article>
 
               )))
-            : <h3>No hay discusiones</h3>
+            : <h3 className='text-xl text-white text-center'>No hay discusiones</h3>
         ) }
 
 </div>

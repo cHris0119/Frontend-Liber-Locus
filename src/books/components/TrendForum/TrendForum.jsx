@@ -39,11 +39,11 @@ export const TrendForum = () => {
 
       {isLoading
         ? <Loader/>
-        : (hasForum
-            ? (
+        : (
           <div className={styles.trendForumContainer}>
             <h2>Foros populares</h2>
-            <div className={styles.forumsContainer}>
+            {(hasForum
+              ? <div className={styles.forumsContainer}>
               {trendForums.map((forum) => (
                 <Link
                 className={styles.linkCard}
@@ -56,9 +56,10 @@ export const TrendForum = () => {
                 </Link>
               ))}
             </div>
+
+              : <h3 className='text-white text-xl'>No se encuentran foros</h3>)}
           </div>
-              )
-            : <h3>No se encuentran foros</h3>)}
+          )}
     </HomeSection>
   )
 }

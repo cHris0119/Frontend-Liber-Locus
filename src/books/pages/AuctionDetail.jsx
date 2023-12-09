@@ -5,6 +5,7 @@ import { useAuctionStore } from '../../hooks'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import styles from '../styles/AuctionDetail.module.css'
+import { WS_URL } from '../../helpers/constWS'
 
 export const AuctionDetail = () => {
   const { user } = useSelector(state => state.auth)
@@ -19,7 +20,7 @@ export const AuctionDetail = () => {
   const myAuction = auctionD?.book.seller.id === user.id
 
   useEffect(() => {
-    const socket = new WebSocket(`ws://192.168.100.23:8000/ws/auction/${id}/`)
+    const socket = new WebSocket(`ws://${WS_URL}/ws/auction/${id}/`)
 
     socket.onopen = (msg) => {
     }
