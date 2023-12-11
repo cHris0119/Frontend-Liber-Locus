@@ -11,6 +11,7 @@ export const MyPost = () => {
   const { user } = useSelector(state => state.auth)
   const { bookList, isLoadingBooks } = useSelector(state => state.book)
   const { startLoadingEvents, startDeletingBook } = useBookStore()
+  console.log(bookList)
 
   const availableBooks = bookList.filter(book => book.book_state.id === 2)
 

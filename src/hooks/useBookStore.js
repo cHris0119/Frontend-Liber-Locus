@@ -67,7 +67,6 @@ export const useBookStore = () => {
   const startUpdateBook = async (book) => {
     const { id, name, price, description, author, book_img: bookImg, book_category: bookCategory } = book
     try {
-      console.log('book', book)
       const requestData = {
         name,
         price,
@@ -85,7 +84,6 @@ export const useBookStore = () => {
         ...requestData
       }, config)
       const { data } = response
-      console.log(data)
 
       dispatch(onUpdateBook(data))
 

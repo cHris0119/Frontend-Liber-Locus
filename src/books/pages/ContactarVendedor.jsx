@@ -36,22 +36,24 @@ export const ContactarVendedor = () => {
     getDataBook()
   }, [])
 
-  console.log(dataBook)
-
   const amISeller = user.id === dataBook?.seller?.id
-  console.log(amISeller)
   const fullNameBuyer = `${dataBook?.buyer?.first_name} ${dataBook?.buyer?.last_name}`
   const fullNameSeller = `${dataBook?.seller?.first_name} ${dataBook?.seller?.last_name}`
+
+  const fullName = amISeller ? fullNameBuyer : fullNameSeller
+
   return (
     <div className={styles.container}>
 
         <BackButton />
-
-        <ChatContact />
-
         {isLoading
           ? <Loader />
-          : <div className={styles.detailsContainer}>
+
+          : <>
+          <ChatContact
+          amISeller={amISeller}
+          fullName={fullName} />
+          <div className={styles.detailsContainer}>
             <h2>Detalles</h2>
             <hr />
             <div className={styles.details}>
@@ -63,6 +65,7 @@ export const ContactarVendedor = () => {
 
             </div>
         </div>
+          </>
         }
     </div>
   )

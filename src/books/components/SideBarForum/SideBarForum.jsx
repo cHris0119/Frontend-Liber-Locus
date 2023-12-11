@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import styles from './SideBarForum.module.css'
 
 export const SideBarForum = ({ menu, userForum }) => {
-  console.log(userForum)
   return (
     <div
     className={`

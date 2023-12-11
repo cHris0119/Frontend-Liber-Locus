@@ -7,7 +7,7 @@ import booksApi from '../../../api/booksApi'
 import { WS_URL } from '../../../helpers/constWS'
 import styles from './ChatContact.module.css'
 
-export const ChatContact = () => {
+export const ChatContact = ({ fullName, amISeller }) => {
   const { id } = useParams()
   const { user } = useSelector(state => state.auth)
   const [chatMessage, setChatMessage] = useState('')
@@ -100,6 +100,7 @@ export const ChatContact = () => {
       listChat={listChat}
       isLoading={isLoading}
       chatContainerRef={chatContainerRef}
+      fullName={fullName}
        />
 
       <form
@@ -107,7 +108,7 @@ export const ChatContact = () => {
       className={styles.sendMessage}>
 
         <input
-        placeholder='Pregunta al vendedor'
+        placeholder={`Pregunta al ${amISeller ? 'comprador' : 'vendedor'}`}
         name='chat'
         value={chatMessage}
         onChange={handleChatMessageChange}

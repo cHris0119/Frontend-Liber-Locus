@@ -3,14 +3,14 @@ import { Loader } from '../Loader/Loader'
 
 import styles from './ListChatMessages.module.css'
 
-export const ListChatMessages = ({ listChat, isLoading, chatContainerRef }) => {
+export const ListChatMessages = ({ listChat, isLoading, chatContainerRef, fullName }) => {
   const hasMessages = listChat.length > 0
   return (
     <div className={styles.messagesContainer}>
 
         <header className={styles.header}>
 
-            <p>Juan Lopez</p>
+            <p>{fullName}</p>
 
         </header>
 

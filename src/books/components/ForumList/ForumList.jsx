@@ -23,6 +23,7 @@ export const ForumList = () => {
       </div>
     )
   }
+
   return (
     <div className={styles.forumListContainer}>
 
