@@ -118,6 +118,7 @@ export const TableContador = ({ data }) => {
 
   const renderCell = React.useCallback((user, columnKey) => {
     const cellValue = user[columnKey]
+    console.log(user)
     switch (columnKey) {
       case 'estado':
         return (
@@ -128,7 +129,7 @@ export const TableContador = ({ data }) => {
       case 'actions':
         return (
           <div className="relative flex items-center gap-2">
-                {user.estado !== 'CANCELADO' || user.estado !== 'FINALIZADO'
+                {(user.estado !== 'FINALIZADO')
                   ? <Dropdown>
                     <DropdownTrigger>
                       <Button isIconOnly size="md" variant="ghost">
