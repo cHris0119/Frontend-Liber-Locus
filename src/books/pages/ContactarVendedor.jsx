@@ -4,8 +4,10 @@ import { ChatContact, BackButton, Loader } from '../components/'
 import styles from '../styles/contactar.module.css'
 import booksApi from '../../api/booksApi'
 import { useParams } from 'react-router'
+import { useSelector } from 'react-redux'
 
 export const ContactarVendedor = () => {
+  const { user } = useSelector(state => state.auth)
   const { id } = useParams()
   const [dataBook, setDataBook] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -23,7 +25,7 @@ export const ContactarVendedor = () => {
           config)
         setIsLoading(false)
         console.log(response)
-        // setDataBook(response.data.Data)
+        setDataBook(response.data.books)
       } catch (error) {
         setIsLoading(false)
         console.log(error)
@@ -35,6 +37,11 @@ export const ContactarVendedor = () => {
   }, [])
 
   console.log(dataBook)
+
+  const amISeller = user.id === dataBook?.seller?.id
+  console.log(amISeller)
+  const fullNameBuyer = `${dataBook?.buyer?.first_name} ${dataBook?.buyer?.last_name}`
+  const fullNameSeller = `${dataBook?.seller?.first_name} ${dataBook?.seller?.last_name}`
   return (
     <div className={styles.container}>
 
@@ -49,10 +56,9 @@ export const ContactarVendedor = () => {
             <hr />
             <div className={styles.details}>
                 <ul>
-                    <li>Harry potter</li>
-                    <li>5000 CLP</li>
-                    <li>Juan Lopez</li>
-                    <li>En revision</li>
+                    <li>{dataBook.book.name}</li>
+                    <li>{dataBook.book.price} CLP</li>
+                    <li>{amISeller ? fullNameBuyer : fullNameSeller}</li>
                 </ul>
 
             </div>
