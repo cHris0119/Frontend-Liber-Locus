@@ -18,6 +18,8 @@ export const MyAuction = () => {
 
   const myAuction = availableAuction.filter(auction => auction.book.seller.id === user.id)
 
+  console.log(myAuction)
+
   const hasAuction = myAuction.length > 0
 
   useEffect(() => {
@@ -74,7 +76,7 @@ export const MyAuction = () => {
               <div className={styles.articleContent}>
                 <div className={styles.articleDetails}>
                     <p>{auction.book.name}</p>
-                    <p>5000 CLP</p>
+                    <p>{auction.final_price ? auction.final_price : auction.initial_price} CLP</p>
 
                       {timeRemaining.days > 0 && (
                         <p>{`Finaliza en: ${timeRemaining.days} ${timeRemaining.days === 1 ? 'dia' : 'dias'}`}</p>

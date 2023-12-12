@@ -42,7 +42,7 @@ export const ShippingDetail = () => {
   const handlePay = async () => {
     try {
       const response = await booksApi.post('api/transbank/iniciar_pago', {
-        monto: selectedBook.price,
+        monto: Number(selectedBook.price) + 3000,
         orden_compra: postId,
         user_id: user.id
       }, {

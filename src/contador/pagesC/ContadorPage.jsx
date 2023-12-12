@@ -39,7 +39,7 @@ export const ContadorPage = () => {
     <div>
       <NavBarContador />
 
-    <div className='w-8/12 mx-auto flex justify-center items-center h-screen' >
+    <div className='w-8/12 mx-auto flex justify-center items-center' >
       <TableContador data = {mappedSales} />
     </div>
     </div>

@@ -15,6 +15,8 @@ export const MyReview = () => {
   const myReviews = reviewList.filter((review) => review.user.id === user.id)
   const hasReview = myReviews.length > 0
 
+  console.log(myReviews)
+
   const handleDelete = async (id) => {
     const confirmacion = confirm('Estas seguro que quieres eliminar esta reseña?')
     if (confirmacion) {
@@ -45,7 +47,9 @@ export const MyReview = () => {
     <article key={review.id} className={styles.myPost}>
 
       <div className={styles.articleImgContainer}>
-        <img src="" alt="img-review" />
+        <img
+        src={review.review_img ? `data:image/${review.format};base64,${review.review_img}` : '/public/not-found.jpg'}
+        alt="img-review" />
       </div>
 
       <div className={styles.articleContent}>
